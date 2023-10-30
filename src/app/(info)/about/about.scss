@@ -21,13 +21,95 @@
 		color: #fff;
 		line-height: 1.62;
 	}
-	@media (max-width: 992px) {
+}
+
+.main-about {
+	padding: 46px 50px;
+	&__list {
+		display: flex;
+		justify-content: space-between;
+	}
+	&__item {
+		max-width: 480px;
+		&:not(:last-child) {
+			margin: 0 30px 0 0;
+		}
+	}
+	&__image {
+		display: inline-block;
+		margin-bottom: 17px;
+	}
+	&__title {
+		font-size: 26px;
+		line-height: 1.45;
+		font-weight: 700;
+		margin-bottom: 17px;
+	}
+	&__text {
+		line-height: 1.45;
+		p {
+			margin-bottom: 17px;
+			&:last-child {
+				margin: 0;
+			}
+		}
+	}
+}
+
+.footer-about {
+	background: #F2FDF0;
+	padding: 30px 0 37px;
+	&__title {
+		text-align: center;
+		font-size: 22px;
+		line-height: 1.45;
+		font-weight: 700;
+		margin-bottom: 34px;
+		span {
+			color: #0ACF83;
+		}
+	}
+	&__list {
+		display: grid;
+		justify-content: center;
+		grid-template-columns: repeat(auto-fit, minmax(265px, 295px));
+		gap: 44px;
+	}
+	&__icon {
+		display: inline-block;
+		margin: 0 auto 11px;
+	}
+	&__item {
+		text-align: center;
+	}
+	&__title-item {
+		color: #546651;
+		font-weight: 700;
+		line-height: 1.45;
+		margin-bottom: 9px;
+	}
+	&__text {
+		font-size: 14px;
+		line-height: 1.4;
+		max-width: 266px;
+		margin: 0 auto;
+	}
+}
+
+@media (max-width: 992px) {
+	.about {
 		&__head-title {
 			margin: 0 20px 0 0;
 			font-size: 30px;
 		}
 	}
-	@media (max-width: 768px) {
+
+	.main-about {
+		padding: 40px 0;
+	}
+}
+@media (max-width: 767px) {
+	.about {
 		&__head {
 			padding: 33px 0 39px;
 		}
@@ -37,15 +119,62 @@
 		&__head-title {
 			margin: 0 0 14px;
 			font-size: 24px;
-			span {
-				color: #36dd65;
-				display: block;
-				margin: 0;
-			}
+		}
+		&__head-site {
+			color: #36dd65;
+			display: block;
+			margin: 0;
 		}
 		&__head-text {
 			font-size: 14px;
 			max-width: 100%;
+		}
+	}
+
+	.main-about {
+		padding: 11px 0 38px;
+		&__image {
+			margin-bottom: 4px;
+		}
+		&__list {
+			flex-direction: column;
+		}
+		&__item {
+			max-width: 100%;
+			&:not(:last-child) {
+				margin: 0 0 25px;
+			}
+		}
+		&__title {
+			font-size: 16px;
+			margin-bottom: 8px;
+		}
+		&__text {
+			font-size: 14px;
+		}
+	}
+
+	.footer-about {
+		padding: 24px 0 36px;
+		&__title {
+			font-size: 16px;
+			line-height: 1.05;
+			margin-bottom: 26px;
+		}
+		&__list {
+			display: block;
+		}
+		&__title-item {
+			font-size: 14px;
+			margin-bottom: 6px;
+		}
+		&__text {
+			font-size: 12px;
+		}
+		&__item {
+			&:not(:last-child) {
+				margin-bottom: 26px;
+			}
 		}
 	}
 }
