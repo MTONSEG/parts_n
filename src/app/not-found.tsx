@@ -1,6 +1,5 @@
-import { title } from 'process'
+
 import type { ILink } from '../ts_types/types'
-import { v4 } from 'uuid'
 import {
 	CATALOG_PATH,
 	CONTACTS_PATH,
@@ -9,6 +8,11 @@ import {
 } from '../routes/routes'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = { 
+	title: 'Page is not found | NOUT PARTS'
+}
 
 export default function NotFound() {
 	return (
@@ -25,8 +29,8 @@ export default function NotFound() {
 							{data.titleBtn}
 						</Link>
 						<ul className='not-found__list'>
-							{data.list.map(link => (
-								<li className='not-found__item' key={link.id}>
+							{data.list.map((link, index) => (
+								<li className='not-found__item' key={index}>
 									<Link href={link.path} className='not-found__link'>
 										{link.title}
 									</Link>
@@ -92,22 +96,22 @@ export const data: INotFoundData = {
 	},
 	list: [
 		{
-			id: v4(),
+
 			title: 'Каталог',
 			path: CATALOG_PATH,
 		},
 		{
-			id: v4(),
+
 			title: 'Доставка и оплата',
 			path: DELIVERY_PATH,
 		},
 		{
-			id: v4(),
+
 			title: 'Гарантии',
 			path: WARRANTY_PATH,
 		},
 		{
-			id: v4(),
+
 			title: 'Контакты',
 			path: CONTACTS_PATH,
 		},

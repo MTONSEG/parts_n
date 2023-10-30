@@ -1,0 +1,53 @@
+.breadcrumbs {
+	overflow-x: auto;
+	&__row {
+		padding: 19px 0 24px;
+		align-items: flex-end;
+		display: flex;
+	}
+	&__link {
+		color: #7e7c7c;
+		text-decoration: underline;
+		display: inline-block;
+		margin: 0 24px 0 0;
+		position: relative;
+		height: 19px;
+		display: flex;
+		align-items: center;
+		svg {
+			fill: rgba(0, 0, 0, 0.5);
+			width: 16px;
+			height: 15px;
+			display: block;
+			transition: all 0.2s;
+		}
+		svg:hover {
+			fill: #000;
+		}
+		&:hover {
+			color: #424242;
+			text-decoration: none;
+		}
+		&:last-child {
+			margin: 0;
+			pointer-events: none;
+			color: #000;
+			text-decoration: none;
+			&::after {
+				display: none;
+			}
+		}
+		&::after {
+			content: '';
+			position: absolute;
+			top: 35%;
+			left: calc(100% + 6px);
+			border: 1px solid #36dd65;
+			border-width: 1px 1px 0 0;
+			width: 7px;
+			height: 7px;
+			display: block;
+			transform: rotate(45deg);
+		}
+	}
+}
