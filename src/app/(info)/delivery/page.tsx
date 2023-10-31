@@ -3,6 +3,11 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs'
 import { ILink } from '@/ts_types/types'
 import './delivery.scss'
 import { sfProDisplay700 } from '../../../fonts/fonts'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+	title: 'Delivery and Payment | NOUT PARTS'
+}
 
 export default function Delivery() {
 	const fontSF = sfProDisplay700.style
