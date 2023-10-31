@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import '../styles/global.scss'
 import Header from '../components/common/Header/Header'
 import Footer from '../components/common/Footer/Footer'
-
-const inter = Inter({ subsets: ['latin'] })
+import { roboto } from '../fonts/fonts'
 
 export const metadata: Metadata = {
 	title: 'Welcome NOUT PARTS',
@@ -18,7 +16,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={inter.className}>
+			<body className={roboto.className}>
 				<div className='wrapper'>
 					<Header />
 					<main className='main'>{children}</main>
