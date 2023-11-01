@@ -1,10 +1,8 @@
 import { Breadcrumbs } from '../../../components/common/Breadcrumbs/Breadcrumbs'
-import { ILink } from '../../../ts_types/types'
+import { ILink } from '../../../models/models'
 import { Metadata } from 'next'
 import Image from 'next/image'
 import './about.scss'
-
-
 
 type ItemType = {
 	iconSrc: string
@@ -120,7 +118,9 @@ export default function About() {
 									alt='icon'
 									className='footer-about__icon'
 								/>
-								<h4 className='footer-about__title-item'>{item.title}</h4>
+								<h4 className='footer-about__title-item'>
+									{item.title}
+								</h4>
 								<p className='footer-about__text'>{item.text}</p>
 							</li>
 						))}

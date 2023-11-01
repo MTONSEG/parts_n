@@ -1,6 +1,6 @@
 'use client'
 import { FC } from 'react'
-import { ILink } from '../../../ts_types/types'
+import { ILink } from '../../../models/models'
 import Link from 'next/link'
 import './Breadcrumbs.scss'
 import HomeIcon from '../../../../public/icons/home.svg'

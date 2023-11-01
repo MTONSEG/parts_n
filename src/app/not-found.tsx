@@ -1,5 +1,4 @@
-
-import type { ILink } from '../ts_types/types'
+import type { ILink } from '../models/models'
 import {
 	CATALOG_PATH,
 	CONTACTS_PATH,
@@ -10,8 +9,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = { 
-	title: 'Page is not found | NOUT PARTS'
+export const metadata: Metadata = {
+	title: 'Page is not found | NOUT PARTS',
 }
 
 export default function NotFound() {
@@ -96,22 +95,18 @@ export const data: INotFoundData = {
 	},
 	list: [
 		{
-
 			title: 'Каталог',
 			path: CATALOG_PATH,
 		},
 		{
-
 			title: 'Доставка и оплата',
 			path: DELIVERY_PATH,
 		},
 		{
-
 			title: 'Гарантии',
 			path: WARRANTY_PATH,
 		},
 		{
-
 			title: 'Контакты',
 			path: CONTACTS_PATH,
 		},

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import { Breadcrumbs } from '../../../components/common/Breadcrumbs/Breadcrumbs'
-import type { ILink } from '../../../ts_types/types'
+import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs'
+import type { ILink } from '@/models/models'
 import Image from 'next/image'
 import './warranty.scss'
 
@@ -80,18 +80,18 @@ export default function Warranty() {
 							</h2>
 							<div className='warranty__section-body'>
 								<h3 className='warranty__section-subtitle warranty__section-subtitle_second'>
-									На все товары, купленные в нашем магазине,
+									{`На все товары, купленные в нашем магазине,
 									распространяется действие Закона Украины "О защите
 									прав потребителей". Согласно статьи 9 Закона, товар
 									надлежащего качества (без дефектов) может быть
 									обменен или возвращен в магазин в течение 14 дней, не
-									считая дня покупки, если соблюдены следующие условия:
+									считая дня покупки, если соблюдены следующие условия:`}
 								</h3>
 								<ul className='warranty__section-list'>
 									<li className='warranty__section-item warranty__section-item_disc'>
 										присутствуют все документы на товар (инструкции,
 										гарантийный талон, квитанция либо товарный чек,
-										подтверждающие покупку); 
+										подтверждающие покупку);
 									</li>
 									<li className='warranty__section-item  warranty__section-item_disc'>
 										товарный вид сохранен, то есть, остались все

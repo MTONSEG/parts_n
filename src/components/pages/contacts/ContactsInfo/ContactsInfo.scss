@@ -1,0 +1,39 @@
+.info-contacts {
+	background: #F3F3F3;
+	padding: 23px 49px 19px;
+	&__item {
+		padding: 18px 0 16px;
+		border-bottom: 1px solid rgba(0, 0, 0, .2);
+		&:last-child {
+			border: 0;
+		}
+	}
+	&__item-title,
+	&__item-value {
+		padding: 0 0 0 35px;
+	}
+	&__item-title {
+		display: flex;
+		position: relative;
+		img {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translateY(-50%);
+		}
+	}
+	&__item-title {
+		line-height: normal;
+		margin-bottom: 8px;
+	}
+	&__item-value {
+		font-size: 18px;
+		line-height: 1.4;
+		&_link {
+			color: #4B88FF;
+		}
+		span {
+			font-weight: 500;
+		}
+	}
+}

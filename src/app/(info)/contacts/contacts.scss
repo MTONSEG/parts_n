@@ -1,0 +1,14 @@
+.contacts {
+	&__text {
+		font-size: 18px;
+		line-height: 1.66;
+		margin: 5px 0 27px;
+	}
+	&__body {
+		display: grid;
+		grid-template-columns: 369px 1fr;
+		align-items: start;
+		gap: 42px;
+		font-family: 'Roboto';
+	}
+}

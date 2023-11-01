@@ -1,9 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit'
+import { contactsReducer } from './contacts/contacts-slice'
 
 export const store = configureStore({
 	reducer: {
-
-	}
+		contacts: contactsReducer
+	},
 })
 
 export type RootState = ReturnType<typeof store.getState>
