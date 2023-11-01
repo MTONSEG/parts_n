@@ -24,6 +24,21 @@
 	}
 }
 
+.button {
+	border-radius: 25px;
+	background: #30d25e;
+	font-size: 16px;
+	display: block;
+	font-weight: 700;
+	line-height: normal;
+	color: #fff;
+	padding: 15px 20px;
+	text-align: center;
+	&:hover {
+		background-color: #1BA341;
+	}
+}
+
 .not-found {
 	padding: 40px 0;
 	flex: 1 1 auto;

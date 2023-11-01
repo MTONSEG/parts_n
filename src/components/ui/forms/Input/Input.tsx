@@ -27,15 +27,15 @@ export const Input: FC<InputPropsType> = ({
 				className ? className : ''
 			}`}
 		>
-			<div className='form-field__inner'>
-				<p className='form-field__error'>{error}</p>
+			<div className={`form-field__inner ${error ? 'error' : ''}`}>
+				{error && <p className='form-field__error'>{error}</p>}
 				<input
 					type={type}
-					className='form-field__input'
+					className={`form-field__input`}
 					placeholder={placeholder}
 					{...register}
 				/>
-				<p className='form-field__title'>{title}</p>
+				{title && <p className='form-field__title'>{title}</p>}
 			</div>
 		</label>
 	)

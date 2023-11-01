@@ -5,6 +5,9 @@ import { useAppSelector } from '@/hooks/useRedux'
 import './ContactsForms.scss'
 import { Input } from '../../../ui/forms/Input/Input'
 import { Textarea } from '../../../ui/forms/Textarea/Textarea'
+import { error } from 'console'
+import { useEffect } from 'react'
+import { Button } from '../../../ui/buttons/Button'
 
 type InputForm = {
 	name: string
@@ -18,10 +21,30 @@ export function ContactsForm() {
 		state => state.contacts
 	)
 
-	const { register, handleSubmit } = useForm<InputForm>({})
+	const {
+		register,
+		handleSubmit,
+		reset,
+		setError,
+		formState: { errors, isValid },
+	} = useForm<InputForm>()
 
 	const onSubmit: SubmitHandler<InputForm> = data => {
-		console.log(data)
+		console.log(JSON.stringify({ data: { ...data } }))
+
+		fetch('http://localhost:1337/api/feedbacks', {
+			method: 'POST',
+			body: JSON.stringify({ data: data }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+			.then(res => {
+				reset()
+			})
+			.catch((error: Error) => {
+				console.log(error.message)
+			})
 	}
 
 	return (
@@ -31,36 +54,40 @@ export function ContactsForm() {
 					title={inputName.title}
 					placeholder={inputName.placeholder}
 					register={register('name', {
-						required: inputName.required,
+						required: inputName.requiredMess,
 					})}
 					required
+					error={errors?.name && errors?.name?.message}
 				/>
 				<Input
 					title={inputEmail.title}
 					placeholder={inputEmail.placeholder}
 					register={register('email', {
-						required: inputEmail.required,
+						required: inputEmail.requiredMess,
 					})}
+					error={errors.email ? errors.email.message : ''}
 					required
 				/>
 				<Input
 					title={inputTel.title}
 					placeholder={inputTel.placeholder}
-					register={register('tel', {
-						required: inputTel.required,
-					})}
+					register={register('tel')}
+					type='number'
 				/>
 				<Textarea
 					title={inputComment.title}
 					placeholder={inputComment.placeholder}
 					register={register('comment', {
-						required: inputComment.required,
+						required: inputComment.requiredMess,
 					})}
+					error={errors.comment && errors.comment.message}
 					required
 					className='contacts-form__comment'
 				/>
 			</div>
-			<button type='submit'>Отправить</button>
+			<Button type='submit' className='contacts-form__btn'>
+				Отправить
+			</Button>
 		</form>
 	)
 }

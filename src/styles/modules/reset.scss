@@ -28,15 +28,15 @@ aside {
 }
 html,
 body {
-	font-family: 'Roboto', sans-serif;
-	background: $bgBase;
-	color: $colorBase;
+	font-family: var(--font-roboto);
+	background: #fff;
+	color: #000;
 	height: 100%;
 	width: 100%;
 	font-size: 100%;
 	line-height: 1;
-	font-size: $fontSize;
-	font-weight: $fontWeight;
+	font-size: 16px;
+	font-weight: 400;
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;

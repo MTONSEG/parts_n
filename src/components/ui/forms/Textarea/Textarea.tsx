@@ -26,13 +26,13 @@ export const Textarea: FC<TextareaPropsType> = ({
 			}`}
 		>
 			<div className='form-field__inner'>
-				<p className='form-field__error'>{error}</p>
+				{error && <p className='form-field__error'>{error}</p>}
 				<textarea
 					className='form-field__textarea'
 					placeholder={placeholder}
 					{...register}
 				></textarea>
-				<p className='form-field__title'>{title}</p>
+				{title && <p className='form-field__title'>{title}</p>}
 			</div>
 		</label>
 	)

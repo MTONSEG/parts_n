@@ -33,7 +33,7 @@ export default function ContactsLayout({
 							мы свяжемся с вами!
 						</p>
 						<div className='contacts__body'>
-							<ContactsInfo/>
+							<ContactsInfo />
 							{children}
 						</div>
 					</div>

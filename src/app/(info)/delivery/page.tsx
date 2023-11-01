@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs'
-import { ILink } from '@/ts_types/types'
 import './delivery.scss'
 import { sfProDisplay700 } from '../../../fonts/fonts'
 import { Metadata } from 'next'
+import { ILink } from '@/models/models'
 
 export const metadata: Metadata = {
 	title: 'Delivery and Payment | NOUT PARTS'

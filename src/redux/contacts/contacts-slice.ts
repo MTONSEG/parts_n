@@ -13,27 +13,28 @@ const initialState: ContactsStateType = {
 	status: 'init',
 	inputName: {
 		title: 'Ваше имя',
-		value: '',
 		placeholder: 'Введите имя',
 		required: true,
+		requiredMess: 'Поле обязательно к заполнению',
 	},
 	inputEmail: {
 		title: 'Ваш email ',
-		value: '',
-		placeholder: 'Введите имя',
+		placeholder: 'Введите ваш Email',
 		required: true,
+		requiredMess: 'Поле обязательно к заполнению',
+		pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
 	},
 	inputTel: {
 		title: 'Ваш номер телефона (необязательно)',
-		value: '',
-		placeholder: 'Введите имя',
+		placeholder: 'Введите номер телефона',
 		required: false,
+		requiredMess: 'Поле обязательно к заполнению',
 	},
 	inputComment: {
 		title: 'Что вас интересует? ',
-		value: '',
 		placeholder: 'Напишите и мы свяжемся как можно быстрее',
 		required: true,
+		requiredMess: 'Поле обязательно к заполнению',
 	},
 }
 
