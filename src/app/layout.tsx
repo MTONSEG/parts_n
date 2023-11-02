@@ -1,15 +1,10 @@
 import type { Metadata } from 'next'
-import '../styles/global.scss'
+import '@/styles/global.scss'
 import Header from '../components/common/Header/Header'
 import Footer from '../components/common/Footer/Footer'
 import { ReduxProvider } from '@/redux/ReduxProvider'
-import { Roboto } from 'next/font/google'
+import { roboto } from '@/fonts'
 
-export const roboto = Roboto({
-	weight: ['300', '400', '500', '700'],
-	subsets: ['cyrillic', 'latin'],
-	variable: '--font-roboto',
-})
 
 export const metadata: Metadata = {
 	title: 'Welcome NOUT PARTS',

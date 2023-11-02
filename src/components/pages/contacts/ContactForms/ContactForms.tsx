@@ -72,7 +72,8 @@ export function ContactsForm() {
 					title={inputTel.title}
 					placeholder={inputTel.placeholder}
 					register={register('tel')}
-					type='number'
+					error={errors.email ? errors.email.message : ''}
+					type='tel'
 				/>
 				<Textarea
 					title={inputComment.title}

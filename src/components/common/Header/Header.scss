@@ -1,24 +1,4 @@
 .header {
-	padding: 8px 0;
-	min-height: 90px;
-	background: #000;
+
 }
 
-.top-header {
-	background: #fff;
-	&__list {
-		display: flex;
-		align-items: center;
-	}
-	&__item {
-		&:not(:last-child) {
-			margin-right: 28px;
-		}
-	}
-	&__link {
-		color: #000;
-		&:hover {
-			color: #444;
-		}
-	}
-}
