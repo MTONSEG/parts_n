@@ -1,0 +1,37 @@
+.catalog-header {
+	margin: 0 5.3% 0 0;
+	&__btn {
+		padding: 12px 14px;
+		border-radius: 5px;
+		background: #4e4e4e;
+		color: #fff;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: normal;
+		display: flex;
+		align-items: center;
+		border: 1px solid transparent;
+		&:hover {
+			background: #000;
+			border-color: #fff;
+			box-shadow: 0 0 10px #fff;
+		}
+	}
+	&__btn-icon {
+		pointer-events: none;
+		margin: 0 0 0 18px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 6px 6px;
+		width: 16px;
+		height: 16px;
+		gap: 4px;
+		span {
+			display: block;
+			background: #fff;
+		}
+	}
+	@media (max-width: 1220px) {
+		margin: 0 20px 0 0;
+	}
+}

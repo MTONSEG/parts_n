@@ -1,0 +1,42 @@
+.main-header {
+	background-color: #000;
+	padding: 17px 0;
+	position: relative;
+	&__row,
+	&__buttons {
+		display: flex;
+		align-items: center;
+	}
+	&__burger-icon {
+		display: none;
+	}
+	&__logo {
+		margin: 0 4.9% 0 0;
+	}
+	&__buttons {
+		margin: 0 0 0 auto;
+	}
+	@media (max-width: 992px) {
+		padding: 20px 0 12px;
+		position: relative;
+		&__row {
+			flex-wrap: wrap;
+		}
+		&__logo {
+			position: absolute;
+			top: 17px;
+			left: 50%;
+			transform: translateX(-50%);
+			img {
+				width: 101px;
+				height: auto;
+			}
+		}
+		&__burger-icon {
+			display: block;
+			svg {
+				stroke: #fff;
+			}
+		}
+	}
+}

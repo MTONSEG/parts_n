@@ -1,6 +1,6 @@
 .top-header {
 	background: #fff;
-	padding: 8px 0 9px;
+	padding: 9px 0 8px;
 	&__row,
 	&__list,
 	&__lang,
@@ -13,7 +13,7 @@
 	}
 	&__item {
 		&:not(:last-child) {
-			margin-right: 28px;
+			margin-right: 29px;
 		}
 	}
 	&__link {
@@ -24,7 +24,7 @@
 	}
 	&__lang {
 		position: relative;
-		margin: 0 0 0 29px;
+		margin: 0 36px 0 34px;
 		&::after {
 			content: '';
 			position: absolute;
@@ -44,7 +44,52 @@
 		color: #000;
 		&:first-child {
 			margin: 0 14px 0 0;
-			opacity: .5;
+			opacity: 0.5;
+		}
+	}
+	&__soc-link {
+		&:hover {
+			opacity: 0.5;
+		}
+		svg {
+			width: 25px;
+			height: 25px;
+		}
+		&:first-child {
+			margin-right: 10px;
+		}
+		&:last-child svg {
+			fill: #161d2d;
+		}
+	}
+	&__close-icon {
+		display: none;
+	}
+	@media (max-width: 992px) {
+		display: none;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		min-height: 100vh;
+		z-index: 10;
+		background: rgba(0, 0, 0, 0.5);
+		padding: 0;
+
+		overflow: auto;
+		&__row,
+		&__list,
+		&__body {
+			display: block;
+		}
+		&__row {
+			width: 259px;
+			height: 100%;
+			min-height: 100vh;
+			background-color: #fff;
+			margin: 0 -20px;
+			padding: 97px 16px 39px;
+		}
+		&__list {
 		}
 	}
 }
