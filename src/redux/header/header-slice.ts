@@ -1,12 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ILink } from '../../models/models'
 import { v4 } from 'uuid'
-import {
-	ABOUT_PATH,
-	CONTACTS_PATH,
-	DELIVERY_PATH,
-	WARRANTY_PATH,
-} from '../../routes/routes'
 
 type HeaderStateType = {
 	activeMenu: boolean
@@ -27,22 +21,22 @@ const initialState: HeaderStateType = {
 		{
 			id: v4(),
 			title: 'О нас',
-			path: ABOUT_PATH,
+			path: '/about',
 		},
 		{
 			id: v4(),
 			title: 'Доставка и оплата',
-			path: DELIVERY_PATH,
+			path: '/delivery',
 		},
 		{
 			id: v4(),
 			title: 'Гарантии',
-			path: WARRANTY_PATH,
+			path: '/warranty',
 		},
 		{
 			id: v4(),
 			title: 'Контакты',
-			path: CONTACTS_PATH,
+			path: '/contacts',
 		},
 	],
 	callbackBtn: {

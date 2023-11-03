@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import { CATALOG_PATH } from '../../../../routes/routes'
+
 import './CatalogButton.scss'
 import { useActions, useAppSelector } from '../../../../hooks/useRedux'
 

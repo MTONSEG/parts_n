@@ -10,6 +10,7 @@ import CloseSVG from '@/icons/close.svg'
 import { LegacyRef, useEffect, useRef } from 'react'
 import useResize from '../../../../hooks/useResize'
 import { FavoriteHeader } from '../FavoriteHeader/FavoriteHeader'
+import { MobileCatalogHeader } from '../MobileCatalogHeader/MobileCatalogHeader'
 
 export function TopHeader() {
 	const size = useResize()
@@ -31,6 +32,7 @@ export function TopHeader() {
 				disableMenu()
 			}}
 		>
+
 			<button
 				className='top-header__close-icon'
 				onClick={() => {
@@ -42,6 +44,8 @@ export function TopHeader() {
 
 			<div className='container'>
 				<div ref={rowRef} className='top-header__row'>
+					{size[0] < 992 ? <MobileCatalogHeader /> : <></>}
+
 					<ul className='top-header__list'>
 						{links.map(link => (
 							<li className='top-header__item' key={link.id}>

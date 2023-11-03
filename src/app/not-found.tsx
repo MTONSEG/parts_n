@@ -1,10 +1,4 @@
 import type { ILink } from '../models/models'
-import {
-	CATALOG_PATH,
-	CONTACTS_PATH,
-	DELIVERY_PATH,
-	WARRANTY_PATH,
-} from '../routes/routes'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
@@ -96,19 +90,19 @@ export const data: INotFoundData = {
 	list: [
 		{
 			title: 'Каталог',
-			path: CATALOG_PATH,
+			path: '/catalog',
 		},
 		{
 			title: 'Доставка и оплата',
-			path: DELIVERY_PATH,
+			path: '/delivery',
 		},
 		{
 			title: 'Гарантии',
-			path: WARRANTY_PATH,
+			path: '/warranty',
 		},
 		{
 			title: 'Контакты',
-			path: CONTACTS_PATH,
+			path: '/contacts',
 		},
 	],
 	num: 404,
