@@ -22,7 +22,6 @@ const initialState: ContactsStateType = {
 		placeholder: 'Введите ваш Email',
 		required: true,
 		requiredMess: 'Поле обязательно к заполнению',
-		pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
 	},
 	inputTel: {
 		title: 'Ваш номер телефона (необязательно)',

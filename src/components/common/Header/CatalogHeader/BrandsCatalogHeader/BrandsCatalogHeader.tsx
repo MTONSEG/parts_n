@@ -1,0 +1,78 @@
+import Image from 'next/image';
+
+export function BrandsCatalogHeader() {
+	return (
+		<div className='catalog-header__bands'>
+			<Image
+				className='catalog-header__brand-icon'
+				src={'/images/asus.png'}
+				width={115}
+				height={22}
+				alt='Asus'
+			/>
+			<Image
+				className='catalog-header__brand-icon'
+				src='/images/apple.png'
+				width={40}
+				height={49}
+				alt='Apple'
+			/>
+			<Image
+				className='catalog-header__brand-icon'
+				src='/images/hp.png'
+				width={46}
+				height={46}
+				alt='Hewlett Packard'
+			/>
+			<Image
+				className='catalog-header__brand-icon'
+				src='/images/dell.png'
+				width={85}
+				height={25}
+				alt='Dell'
+			/>
+			<Image
+				className='catalog-header__brand-icon'
+				src='/images/gigabyte.png'
+				width={109}
+				height={57}
+				alt='Gigabyte'
+			/>
+			<Image
+				className='catalog-header__brand-icon'
+				src='/images/sony.png'
+				width={113}
+				height={19}
+				alt='Sony'
+			/>
+			<Image
+				className='catalog-header__brand-icon'
+				src='/images/acer.png'
+				width={93}
+				height={23}
+				alt='Acer'
+			/>
+			<Image
+				className='catalog-header__brand-icon'
+				src='/images/bell.png'
+				width={86}
+				height={41}
+				alt='Bell'
+			/>
+			<Image
+				className='catalog-header__brand-icon'
+				src='/images/fujitsu.png'
+				width={95}
+				height={47}
+				alt='Fujitsu'
+			/>
+			<Image
+				className='catalog-header__brand-icon'
+				src='/images/lenovo.png'
+				width={115}
+				height={17}
+				alt='Lenovo'
+			/>
+		</div>
+	)
+}

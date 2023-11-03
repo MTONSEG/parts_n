@@ -1,17 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ILink } from '../../models/models'
 import { v4 } from 'uuid'
-import { ABOUT_PATH, CONTACTS_PATH, DELIVERY_PATH, WARRANTY_PATH } from '../../routes/routes'
+import {
+	ABOUT_PATH,
+	CONTACTS_PATH,
+	DELIVERY_PATH,
+	WARRANTY_PATH,
+} from '../../routes/routes'
 
 type HeaderStateType = {
-	staticLinks: ILink[],
+	activeMenu: boolean
+	activeCatalog: boolean
+	staticLinks: ILink[]
 	callbackBtn: {
-		tel: string,
+		tel: string
+		hrefTel: string
+		time: string
 		text: string
 	}
 }
 
 const initialState: HeaderStateType = {
+	activeMenu: false,
+	activeCatalog: false,
 	staticLinks: [
 		{
 			id: v4(),
@@ -36,14 +47,32 @@ const initialState: HeaderStateType = {
 	],
 	callbackBtn: {
 		tel: '(066) 388-88 95',
+		hrefTel: '380663888895',
+		time: 'С 9:00 до 18:00 Без выходных',
 		text: 'Обратный звонок',
 	},
 }
 
 const headerSlice = createSlice({
-	name: 'header',
+	name: 'headerSlice',
 	initialState,
-	reducers: {},
+	reducers: {
+		enableMenu(state) {
+			state.activeMenu = true
+		},
+		disableMenu(state) {
+			state.activeMenu = false
+		},
+		enableCatalog(state) {
+			state.activeCatalog = true
+		},
+		disableCatalog(state) {
+			state.activeCatalog = false
+		},
+		toggleCatalog(state) {
+			state.activeCatalog = !state.activeCatalog
+		},
+	},
 })
 
-export const { reducer: headerReducer } = headerSlice
+export const { reducer: headerReducer, actions: headerActions } = headerSlice

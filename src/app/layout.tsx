@@ -5,7 +5,6 @@ import Footer from '../components/common/Footer/Footer'
 import { ReduxProvider } from '@/redux/ReduxProvider'
 import { roboto } from '@/fonts'
 
-
 export const metadata: Metadata = {
 	title: 'Welcome NOUT PARTS',
 	description: 'Details for your PC',

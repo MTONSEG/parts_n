@@ -1,12 +1,12 @@
 import { useRouter } from 'next/navigation'
-import type { ButtonTypes } from '../../../models/models'
+import type { ButtonTypes } from '../../../../models/models'
 import { ReactNode } from 'react'
 
 type ButtonPropsType = {
 	path?: string
 	type?: ButtonTypes
 	className?: string
-	children?:ReactNode 
+	children?: ReactNode
 	onClick?: () => void
 }
 

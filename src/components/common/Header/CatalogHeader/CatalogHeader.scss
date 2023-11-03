@@ -1,37 +1,115 @@
 .catalog-header {
-	margin: 0 5.3% 0 0;
-	&__btn {
-		padding: 12px 14px;
-		border-radius: 5px;
-		background: #4e4e4e;
-		color: #fff;
-		font-size: 18px;
-		font-weight: 700;
-		line-height: normal;
-		display: flex;
-		align-items: center;
-		border: 1px solid transparent;
-		&:hover {
-			background: #000;
-			border-color: #fff;
-			box-shadow: 0 0 10px #fff;
+	background: #fff;
+	width: 100%;
+	max-width: 1230px;
+	padding: 0 0 48px;
+	border: 1px solid #dfe3e9;
+	position: absolute;
+	top: -100%;
+	left: 50%;
+	transform: translate(-50%, 0);
+	z-index: 5;
+	transition: all 0.2s;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	&.active {
+		top: 100%;
+		opacity: 1;
+		pointer-events: all;
+		visibility: visible;
+		& + .callback-header__inner {
+			background-color: #36dd65;
 		}
 	}
-	&__btn-icon {
+
+	&__inner {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		min-height: 100vh;
+		opacity: 0;
+		transition: opacity .2s;
+		z-index: 4;
 		pointer-events: none;
-		margin: 0 0 0 18px;
+	}
+	&.active ~ .catalog-header__inner {
+		opacity: 1;
+		background-color: rgba(0, 0, 0, 0.5);
+		pointer-events: all;
+	}
+	&__top {
+		display: flex;
+		margin-bottom: 46px;
+	}
+	&__bands {
+		max-width: 744px;
+		margin: 0 auto;
+		align-items: center;
+		justify-content: space-between;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 6px 6px;
-		width: 16px;
-		height: 16px;
-		gap: 4px;
-		span {
+		grid-template-columns: repeat(5, 1fr);
+		gap: 32px 20px;
+	}
+	&__brand-icon {
+		display: inline-block;
+		margin: 0 auto;
+	}
+	&__list {
+		flex: 0 0 295px;
+	}
+	&__item {
+		position: relative;
+		&::after {
+			content: '';
+			width: 7px;
+			height: 7px;
+			border: 2px solid #000;
+			border-width: 2px 2px 0 0;
 			display: block;
-			background: #fff;
+			transform: translateY(-50%) rotate(45deg);
+			position: absolute;
+			top: 50%;
+			right: 20px;
 		}
 	}
-	@media (max-width: 1220px) {
-		margin: 0 20px 0 0;
+	&__link {
+		display: block;
+		color: #000;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: normal;
+		padding: 13px 35px;
+		position: relative;
+		&::before {
+			content: '';
+			display: block;
+			width: 4px;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: #36dd65;
+			opacity: 0;
+			transition: opacity 0.2s;
+			pointer-events: none;
+		}
+		&:hover {
+			background: #dfffe8;
+		}
+		&:hover::before {
+			opacity: 1;
+		}
 	}
+	@media (max-width: 992px) {
+		display: none;
+	}
+}
+
+.categories-catalog {
+	border: 1px solid #cacdd8;
+	border-width: 0 0 1px 1px;
+	flex: 1 1 auto;
 }

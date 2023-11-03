@@ -10,15 +10,23 @@ import { CartHeader } from '../CartHeader/CartHeader'
 import BurgerSVG from '@/icons/burger.svg'
 import Image from 'next/image'
 import useResize from '../../../../hooks/useResize'
+import { useActions, useAppDispatch } from '../../../../hooks/useRedux'
+import { CatalogButton } from '../../../ui/buttons/CatalogButton/CatalogButton'
 
 export function MainHeader() {
 	const size = useResize()
+	const { enableMenu } = useActions()
 
 	return (
 		<div className='main-header'>
 			<div className='container'>
 				<div className='main-header__row'>
-					<button className='main-header__burger-icon'>
+					<button
+						className='main-header__burger-icon'
+						onClick={() => {
+							enableMenu()
+						}}
+					>
 						<BurgerSVG />
 					</button>
 
@@ -30,7 +38,7 @@ export function MainHeader() {
 							alt='logo'
 						/>
 					</Link>
-					{size[0] < 992 ? <></> : <CatalogHeader />}
+					{size[0] < 992 ? <></> : <CatalogButton title='Каталог' />}
 
 					<SearchForm />
 					<div className='main-header__buttons'>

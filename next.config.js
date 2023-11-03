@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+const path = require("path");
+
+
 
 const nextConfig = {
 	webpack(config) {
@@ -26,9 +29,13 @@ const nextConfig = {
 		// Modify the file loader rule to ignore *.svg, since we have it handled now.
 		fileLoaderRule.exclude = /\.svg$/i
 
-
-		return config;
+		return config
 	},
-};
+	sassOptions: {
+		includePaths: [path.join(__dirname, "styles")],
+		sourceMap: true,
+	},
+	productionBrowserSourceMaps: true,
+}
 
-export default nextConfig;
+module.exports = nextConfig

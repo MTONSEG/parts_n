@@ -5,12 +5,14 @@
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	overflow: hidden;
 }
 
 .main {
 	flex: 1 1 auto;
 	display: flex;
 	flex-direction: column;
+	position: relative;
 }
 
 .container {
@@ -180,10 +182,6 @@
 }
 
 @media (max-width: 576px) {
-	.top-header {
-		display: none;
-	}
-
 	.not-found {
 		&__error-num {
 			max-width: 150px;

@@ -1,24 +1,28 @@
 'use client'
 
-import Image from 'next/image'
 import { useAppSelector } from '../../../../hooks/useRedux'
 import './CallbackHeader.scss'
+import PhoneSVG from '@/icons/phone.svg'
+import LineSVG from '@/icons/lines-cb.svg'
 
 export function CallbackHeader() {
 	const data = useAppSelector(state => state.header.callbackBtn)
 
 	return (
 		<div className='callback-header'>
-			<Image
-				src='/icons/phone.svg'
-				width={18}
-				height={18}
-				alt='phone icon'
-				className='callback-header__icon'
-			/>
+			<div className='callback-header__icon'>
+				<PhoneSVG />
+			</div>
+
 			<div className='callback-header__body'>
-				<p className='callback-header__tel'>{data.tel}</p>
-				<p className='callback-header__text'>{data.text}</p>
+				<a href={`tel:${data.hrefTel}`} className='callback-header__tel'>
+					{data.tel}
+				</a>
+				<p className='callback-header__time'>{data.time}</p>
+				<p className='callback-header__text'>
+					<span>{data.text}</span>
+					<LineSVG />
+				</p>
 			</div>
 		</div>
 	)

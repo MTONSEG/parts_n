@@ -7,7 +7,7 @@ import { Input } from '../../../ui/forms/Input/Input'
 import { Textarea } from '../../../ui/forms/Textarea/Textarea'
 import { error } from 'console'
 import { useEffect } from 'react'
-import { Button } from '../../../ui/buttons/Button'
+import { Button } from '../../../ui/buttons/Button/Button'
 
 type InputForm = {
 	name: string
