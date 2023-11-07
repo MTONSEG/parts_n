@@ -48,6 +48,16 @@
 		&:focus + .form-field__title {
 			color: #000;
 		}
+		&_black {
+			border-radius: 4px;
+			border: 1px solid #fff;
+			background: #000;
+			font-weight: 300;
+			column-rule: #fff;
+			&:focus {
+				background: #383838b0;
+			}
+		}
 	}
 	&__textarea {
 		resize: none;

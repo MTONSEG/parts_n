@@ -9,7 +9,8 @@ interface InputPropsType {
 	error?: string
 	placeholder?: string
 	type?: 'text' | 'number' | 'tel' | 'email'
-	className?: string
+	className?: string,
+	variant?: 'white'|'black'
 }
 
 export const Input: FC<InputPropsType> = ({
@@ -20,6 +21,7 @@ export const Input: FC<InputPropsType> = ({
 	placeholder = '',
 	type = 'text',
 	className,
+	variant = 'white'
 }) => {
 	return (
 		<label
@@ -31,7 +33,7 @@ export const Input: FC<InputPropsType> = ({
 				{error && <p className='form-field__error'>{error}</p>}
 				<input
 					type={type}
-					className={`form-field__input`}
+					className={`form-field__input form-field__input_${variant}`}
 					placeholder={placeholder}
 					{...register}
 				/>

@@ -8,9 +8,9 @@ import { SearchForm } from '../../../ui/forms/SearchForm/SearchForm'
 import { FavoriteHeader } from '../FavoriteHeader/FavoriteHeader'
 import { CartHeader } from '../CartHeader/CartHeader'
 import BurgerSVG from '@/icons/burger.svg'
-import Image from 'next/image'
-import { useActions} from '../../../../hooks/useRedux'
+import { useActions } from '../../../../hooks/useRedux'
 import { CatalogButton } from '../../../ui/buttons/CatalogButton/CatalogButton'
+import Logo from '../../../ui/atoms/Logo/Logo'
 
 export function MainHeader() {
 	const { enableMenu } = useActions()
@@ -27,20 +27,12 @@ export function MainHeader() {
 					>
 						<BurgerSVG />
 					</button>
-
-					<Link href='/' className='main-header__logo'>
-						<Image
-							src='/icons/logo.png'
-							width={162}
-							height={69}
-							alt='logo'
-						/>
-					</Link>
+					<Logo height={69} width={162} variant='header' />
 					<CatalogButton title='Каталог' />
 
 					<SearchForm />
 					<div className='main-header__buttons'>
-						 <FavoriteHeader />
+						<FavoriteHeader />
 
 						<CartHeader />
 					</div>

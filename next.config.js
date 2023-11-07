@@ -1,7 +1,4 @@
 /** @type {import('next').NextConfig} */
-const path = require("path");
-
-
 
 const nextConfig = {
 	webpack(config) {
@@ -31,11 +28,6 @@ const nextConfig = {
 
 		return config
 	},
-	sassOptions: {
-		includePaths: [path.join(__dirname, "styles")],
-		sourceMap: true,
-	},
-	productionBrowserSourceMaps: true,
 }
 
 module.exports = nextConfig
