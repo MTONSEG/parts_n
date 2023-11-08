@@ -1,103 +1,61 @@
 import { Breadcrumbs } from '../../../components/common/Breadcrumbs/Breadcrumbs'
 import { ILink } from '../../../models/models'
-import { Metadata } from 'next'
 import Image from 'next/image'
 import './about.scss'
+import { API } from '../../../api'
+import parse from 'html-react-parser'
 
-type ItemType = {
-	iconSrc: string
-	title: string
-	text: string
-	text2?: string
+const getData = async (): Promise<Attributes> => {
+	const res = await fetch(
+		`${API}/abouts?populate[about][populate]=*&populate[benefit][populate]=*`,
+		{
+			next: { revalidate: 3600 },
+		}
+	)
+	if (!res.ok) {
+		throw new Error('Failed to fetch data')
+	}
+
+	let data = await res.json()
+
+	return data.data[0].attributes
 }
 
-type AboutDataType = {
-	title: string
-	nameSite: string
-	text: string
-	mainList: ItemType[]
-	titleBottom: string
-	titleBottomLabel: string
-	bottomList: ItemType[]
-}
-
-export default function About() {
+export default async function About() {
 	const breadcrumbs: ILink[] = [
 		{
 			title: 'О нас',
 			path: '#',
 		},
 	]
-	const data: AboutDataType = {
-		title: 'Интернет-магазин',
-		nameSite: 'Noutparts',
-		text: 'Это один из крупнейший в Украине магазин для поиска и выбора комплектующих для ноутбуков всех популярных брендов. С помощью нашего сайта вы можете без особых профессиональных навыков выбрать себе необходимые комплектующие по модели вашего ноутбука',
-		mainList: [
-			{
-				iconSrc: 'icons/users_about.svg',
-				title: 'Мы команда профессионалов',
-				text: 'Которые любят и ценят свою работу. Мы энергичны, молоды и всегда развиваемся. Наши специалисты готовы решить Ваши проблемы, связанные с подбором комплектующих, профессионально и быстро!',
-				text2: ' Работа, направленная на то, чтобы заработать и сохранить доверие наших клиентов, - это главный двигатель подхода нашей компании с первого дня.',
-			},
-			{
-				iconSrc: '/icons/elipsys_about.svg',
-				title: 'Цель магазина',
-				text: 'Обеспечить посетителям максимально удобный сайт для выбора и приобретения запчастей для ноутбука, а так же создать максимально широкий ассортимент для выбора комплектующих.',
-				text2: 'Мы стараемся создать высокий сервис и максимально облегчить покупку комплектующих для ноутбука предоставив лучший выбор и необходимую информацию о товарах.',
-			},
-		],
-		titleBottom: 'Работая с нами,',
-		titleBottomLabel: 'Вы получаете:',
-		bottomList: [
-			{
-				iconSrc: '/icons/level_about.svg',
-				title: 'Высокий уровень обслуживания',
-				text: 'Заботимся о каждом клиенты и пытаемся делать высокий уровень обслуживания',
-			},
-			{
-				iconSrc: '/icons/service_about.svg',
-				title: 'Качественный сервис',
-				text: 'Знаём все о своих товарах, поэтому предоставляем качественную поддержку',
-			},
-			{
-				iconSrc: '/icons/price_about.svg',
-				title: 'Гибкую ценовую политику',
-				text: 'У нас разнообразный товар и разный уровень цен, мы часто делаем скидки для наших клиентов',
-			},
-		],
-	}
+
+	const data: Attributes = await getData()
+
 	return (
 		<div className='about'>
 			<Breadcrumbs links={breadcrumbs} />
 			<div className='about__head'>
 				<div className='container'>
 					<div className='about__head-row'>
-						<h1 className='about__head-title'>
-							<span>{data.title + ' '}</span>
-							<span className='about__head-site'>{data.nameSite}</span>
-						</h1>
+						<h1 className='about__head-title'>{parse(data.title)}</h1>
 						<p className='about__head-text'>{data.text}</p>
 					</div>
 				</div>
 			</div>
-
 			<div className='main-about'>
 				<div className='container'>
 					<ul className='main-about__list'>
-						{data.mainList.map((item, index) => (
-							<li className='main-about__item' key={index}>
+						{data.about.map(item => (
+							<li className='main-about__item' key={item.id}>
 								<Image
-									src={item.iconSrc}
+									src={item.icon.data[0].attributes.url}
 									height={38}
 									width={38}
 									alt='Team'
 									className='main-about__image'
 								/>
 								<h2 className='main-about__title'>{item.title}</h2>
-								<div className='main-about__text'>
-									<p>{item.text}</p>
-									{item.text2 && <p>{item.text2}</p>}
-								</div>
+								<div className='main-about__text'>{parse(item.text)}</div>
 							</li>
 						))}
 					</ul>
@@ -105,14 +63,12 @@ export default function About() {
 			</div>
 			<div className='footer-about'>
 				<div className='container'>
-					<h3 className='footer-about__title'>
-						{data.titleBottom} <span>{data.titleBottomLabel}</span>
-					</h3>
+					<h3 className='footer-about__title'>{parse(data.subtitle)}</h3>
 					<ul className='footer-about__list'>
-						{data.bottomList.map((item, index) => (
+						{data.benefit.map((item, index) => (
 							<li className='footer-about__item' key={index}>
 								<Image
-									src={item.iconSrc}
+									src={item.icon.data[0].attributes.url}
 									width={39}
 									height={43}
 									alt='icon'
@@ -130,3 +86,149 @@ export default function About() {
 		</div>
 	)
 }
+
+export interface Daum {
+	id: number
+	attributes: Attributes
+}
+
+export interface Attributes {
+	title: string
+	text: string
+	createdAt: string
+	updatedAt: string
+	publishedAt: string
+	subtitle: string
+	about: About[]
+	benefit: Benefit[]
+}
+
+export interface About {
+	id: number
+	title: string
+	text: string
+	icon: Icon
+}
+
+export interface Icon {
+	data: Daum2[]
+}
+
+export interface Daum2 {
+	id: number
+	attributes: Attributes2
+}
+
+export interface Attributes2 {
+	name: string
+	alternativeText: any
+	caption: any
+	width: number
+	height: number
+	formats: any
+	hash: string
+	ext: string
+	mime: string
+	size: number
+	url: string
+	previewUrl: any
+	provider: string
+	provider_metadata: ProviderMetadata
+	createdAt: string
+	updatedAt: string
+}
+
+export interface ProviderMetadata {
+	public_id: string
+	resource_type: string
+}
+
+export interface Benefit {
+	id: number
+	title: string
+	text: string
+	icon: Icon2
+}
+
+export interface Icon2 {
+	data: Daum3[]
+}
+
+export interface Daum3 {
+	id: number
+	attributes: Attributes3
+}
+
+export interface Attributes3 {
+	name: string
+	alternativeText: any
+	caption: any
+	width: number
+	height: number
+	formats: any
+	hash: string
+	ext: string
+	mime: string
+	size: number
+	url: string
+	previewUrl: any
+	provider: string
+	provider_metadata: ProviderMetadata2
+	createdAt: string
+	updatedAt: string
+}
+
+export interface ProviderMetadata2 {
+	public_id: string
+	resource_type: string
+}
+
+export interface Meta {
+	pagination: Pagination
+}
+
+export interface Pagination {
+	page: number
+	pageSize: number
+	pageCount: number
+	total: number
+}
+
+// const data: AboutDataType = {
+// 	title: 'Интернет-магазин',
+// 	nameSite: 'Noutparts',
+// 	text: 'Это один из крупнейший в Украине магазин для поиска и выбора комплектующих для ноутбуков всех популярных брендов. С помощью нашего сайта вы можете без особых профессиональных навыков выбрать себе необходимые комплектующие по модели вашего ноутбука',
+// 	mainList: [
+// 		{
+// 			iconSrc: 'icons/users_about.svg',
+// 			title: 'Мы команда профессионалов',
+// 			text: 'Которые любят и ценят свою работу. Мы энергичны, молоды и всегда развиваемся. Наши специалисты готовы решить Ваши проблемы, связанные с подбором комплектующих, профессионально и быстро!',
+// 			text2: ' Работа, направленная на то, чтобы заработать и сохранить доверие наших клиентов, - это главный двигатель подхода нашей компании с первого дня.',
+// 		},
+// 		{
+// 			iconSrc: '/icons/elipsys_about.svg',
+// 			title: 'Цель магазина',
+// 			text: 'Обеспечить посетителям максимально удобный сайт для выбора и приобретения запчастей для ноутбука, а так же создать максимально широкий ассортимент для выбора комплектующих.',
+// 			text2: 'Мы стараемся создать высокий сервис и максимально облегчить покупку комплектующих для ноутбука предоставив лучший выбор и необходимую информацию о товарах.',
+// 		},
+// 	],
+// 	titleBottom: 'Работая с нами,',
+// 	titleBottomLabel: 'Вы получаете:',
+// 	bottomList: [
+// 		{
+// 			iconSrc: '/icons/level_about.svg',
+// 			title: 'Высокий уровень обслуживания',
+// 			text: 'Заботимся о каждом клиенты и пытаемся делать высокий уровень обслуживания',
+// 		},
+// 		{
+// 			iconSrc: '/icons/service_about.svg',
+// 			title: 'Качественный сервис',
+// 			text: 'Знаём все о своих товарах, поэтому предоставляем качественную поддержку',
+// 		},
+// 		{
+// 			iconSrc: '/icons/price_about.svg',
+// 			title: 'Гибкую ценовую политику',
+// 			text: 'У нас разнообразный товар и разный уровень цен, мы часто делаем скидки для наших клиентов',
+// 		},
+// 	],
+// }

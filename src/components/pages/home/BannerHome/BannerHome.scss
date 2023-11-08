@@ -1,0 +1,29 @@
+.banner-home {
+	background: #000;
+	padding: 55px 72px;
+	overflow: hidden;
+	&__title {
+		color: #f2fdf0;
+		font-size: 36px;
+		font-weight: 900;
+		line-height: 1.2;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		margin-bottom: 14px;
+	}
+	&__text {
+		font-size: 20px;
+		font-weight: 500;
+		line-height: 1.4;
+		margin-bottom: 22px;
+	}
+	&__list {
+		margin-bottom: 22px;
+	}
+	&__item {
+		position: relative;
+		font-size: 18px;
+		line-height: 1.7;
+	}
+
+}

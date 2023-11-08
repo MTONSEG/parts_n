@@ -11,7 +11,7 @@ import { LinkNavPanel } from './LinkNavPanel/LinkNavPanel'
 
 export default function NavPanel() {
 	return (
-		<div className='nav-panel'>
+		<nav className='nav-panel'>
 			<div className='container'>
 				<div className='nav-panel__row'>
 					<LinkNavPanel title='Матрицы' path='/matrices'>
@@ -34,6 +34,6 @@ export default function NavPanel() {
 					</LinkNavPanel>
 				</div>
 			</div>
-		</div>
+		</nav>
 	)
 }
