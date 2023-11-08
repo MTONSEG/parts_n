@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const getData = async (): Promise<NoFoundData> => {
 	const res = await fetch(`${API}/not-founds?populate=*`, {
-		next: { revalidate: 7200 }
+		next: { revalidate: 1}
 	})
 
 	const data = await res.json()

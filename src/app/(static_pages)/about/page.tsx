@@ -9,7 +9,7 @@ const getData = async (): Promise<Attributes> => {
 	const res = await fetch(
 		`${API}/abouts?populate[about][populate]=*&populate[benefit][populate]=*`,
 		{
-			next: { revalidate: 3600 },
+			next: {revalidate: 7200}
 		}
 	)
 	if (!res.ok) {
