@@ -15,7 +15,9 @@ const getData = async (): Promise<DeliveryData> => {
 	const res = await fetch(
 		`${API}/deliveries?populate[payment][populate]=*&populate[delivery][populate]=*`,
 		{
-			cache: 'no-cache',
+			next: {
+				revalidate: 7200
+			}
 		}
 	)
 
