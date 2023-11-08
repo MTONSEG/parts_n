@@ -1,13 +1,25 @@
-import type { ILink } from '../models/models'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
+import { API } from '../api'
 
 export const metadata: Metadata = {
 	title: 'Page is not found | NOUT PARTS',
 }
 
-export default function NotFound() {
+const getData = async (): Promise<NoFoundData> => {
+	const res = await fetch(`${API}/not-founds?populate=*`, {
+		next: { revalidate: 7200 }
+	})
+
+	const data = await res.json()
+
+	return data.data[0].attributes
+}
+
+export default async function NotFound() {
+	const data: NoFoundData = await getData()
+
 	return (
 		<div className='not-found'>
 			<div className='container'>
@@ -22,8 +34,8 @@ export default function NotFound() {
 							{data.titleBtn}
 						</Link>
 						<ul className='not-found__list'>
-							{data.list.map((link, index) => (
-								<li className='not-found__item' key={index}>
+							{data.links.map(link => (
+								<li className='not-found__item' key={link.id}>
 									<Link href={link.path} className='not-found__link'>
 										{link.title}
 									</Link>
@@ -38,12 +50,11 @@ export default function NotFound() {
 								alt='icon'
 								className='not-found__warn-icon'
 							/>
-							<Link
-								href={data.support.path}
+							<button
 								className='not-found__supp-link'
 							>
-								{data.support.title}
-							</Link>
+								{data.support}
+							</button>
 							<Image
 								src='/icons/quarnuts.png'
 								width={89}
@@ -68,42 +79,20 @@ export default function NotFound() {
 	)
 }
 
-interface INotFoundData {
+export interface NoFoundData {
 	title: string
 	subtitle: string
-	text: string
 	titleBtn: string
-	list: ILink[]
-	support: ILink
-	num: number
+	createdAt: string
+	updatedAt: string
+	publishedAt: string
+	support: string
+	text: string
+	links: Link[]
 }
 
-export const data: INotFoundData = {
-	title: 'Упс! Что-то пошло не так! ',
-	subtitle: 'Страница которую вы запрашиваете не найдена. ',
-	text: 'Возможно она была удалена или вы набрали неверный адрес.',
-	titleBtn: 'Вернуться на главную',
-	support: {
-		title: 'Служба поддержки',
-		path: '#',
-	},
-	list: [
-		{
-			title: 'Каталог',
-			path: '/catalog',
-		},
-		{
-			title: 'Доставка и оплата',
-			path: '/delivery',
-		},
-		{
-			title: 'Гарантии',
-			path: '/warranty',
-		},
-		{
-			title: 'Контакты',
-			path: '/contacts',
-		},
-	],
-	num: 404,
+interface Link {
+	id: number
+	title: string
+	path: string
 }

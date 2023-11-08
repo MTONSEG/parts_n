@@ -61,6 +61,7 @@
 	flex: 1 1 auto;
 	display: flex;
 	align-items: center;
+	min-height: calc(100vh - 152px);
 	&__row,
 	&__list,
 	&__support {
@@ -166,6 +167,7 @@
 @media (max-width: 992px) {
 	.not-found {
 		justify-content: center;
+		min-height: calc(100vh - 124px);
 		&__row {
 			flex-direction: column-reverse;
 		}
