@@ -6,7 +6,7 @@
 		font-weight: 700;
 		line-height: normal;
 	}
-	&__section {
+	&__item {
 		display: flex;
 		align-items: flex-start;
 		margin-bottom: 70px;
@@ -14,7 +14,7 @@
 			margin-bottom: 82px;
 		}
 	}
-	&__section-title {
+	&__item-title {
 		margin: 0 37px 0 0;
 		padding: 31px 32px;
 		color: #4b4b4b;
@@ -26,46 +26,51 @@
 		background: #e9fedf;
 		flex: 0 1 460px;
 	}
-	&__section-body {
+	&__item-body {
 		flex: 0 1 728px;
-	}
-	&__section-subtitle {
-		font-size: 20px;
-		font-weight: 700;
-		line-height: 1.4;
-		margin-bottom: 14px;
-		&_second {
-			font-size: 16px;
-			line-height: 1.6;
+		line-height: 1.63;
+		h3 {
+			font-size: 20px;
+			font-weight: 700;
+			line-height: 1.4;
+			margin-bottom: 14px;
+			max-width: 584px;
 		}
-	}
-	&__section-item {
-		line-height: 1.6;
-		margin-bottom: 20px;
-		&_disc,
-		&_num {
-			margin: 0 0 20px 20px;
+		h4 {
+			font-weight: 500;
+			margin-bottom: 24px;
 		}
-		&_disc {
+		p,
+		li {
+			margin-bottom: 25px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		li {
+			position: relative;
+			margin-left: 20px;
+		}
+
+		ul > li {
 			list-style-type: disc;
 		}
-		&_num {
+		ol > li {
 			list-style-type: decimal;
 		}
-		span {
-			font-weight: 700;
-		}
-		&:last-child {
-			margin-bottom: 0;
+		blockquote {
+			display: block;
+			background: #edffe4;
+			padding: 23px 56px;
+			margin-top: 30px;
+			font-size: 16px;
+			font-weight: 500;
+			p {
+				margin: 0;
+			}
 		}
 	}
-	&__section-text {
-		line-height: 1.6;
-		font-weight: 500;
-		background: #edffe4;
-		margin-top: 30px;
-		padding: 23px 56px;
-	}
+
 	&__bonus {
 		background: #edffe4;
 		display: flex;
@@ -104,29 +109,32 @@
 			font-size: 18px;
 			margin-bottom: 25px;
 		}
-		&__section {
+		&__item {
 			flex-direction: column;
 			margin: 0 0 53px;
 		}
-		&__section-title,
-		&__section-body {
+		&__item-title,
+		&__item-body {
 			flex: 1 1 auto;
 			width: 100%;
 		}
-		&__section-title {
+		&__item-title {
 			font-size: 16px;
 			margin: 0 0 12px;
 			padding: 14px 15px;
 		}
-		&__section-subtitle,
-		&__section-subtitle_second,
-		&__section-item,
-		&__section-text {
+		&__item-body {
 			font-size: 14px;
+			h3,
+			h4,
+			blockquote {
+				font-size: 14px;
+			}
+			blockquote {
+				padding: 22px 23px;
+			}
 		}
-		&__section-text {
-			padding: 22px 23px;
-		}
+
 		&__bonus {
 			padding: 38px 16px 24px;
 			margin: 0 -16px;
