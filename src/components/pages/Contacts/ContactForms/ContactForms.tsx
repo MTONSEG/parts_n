@@ -5,9 +5,9 @@ import { useAppSelector } from '@/hooks/useRedux'
 import './ContactsForms.scss'
 import { Input } from '../../../ui/forms/Input/Input'
 import { Textarea } from '../../../ui/forms/Textarea/Textarea'
-import { error } from 'console'
-import { useEffect } from 'react'
 import { Button } from '../../../ui/buttons/Button/Button'
+import { useEffect } from 'react'
+import { API } from '../../../../api'
 
 type InputForm = {
 	name: string
@@ -21,6 +21,7 @@ export function ContactsForm() {
 		state => state.contacts
 	)
 
+
 	const {
 		register,
 		handleSubmit,
@@ -32,7 +33,7 @@ export function ContactsForm() {
 	const onSubmit: SubmitHandler<InputForm> = data => {
 		console.log(JSON.stringify({ data: { ...data } }))
 
-		fetch('http://localhost:1337/api/feedbacks', {
+		fetch(`${API}/feedbacks`, {
 			method: 'POST',
 			body: JSON.stringify({ data: data }),
 			headers: {

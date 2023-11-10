@@ -13,6 +13,7 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
+		"baseUrl": "./",
 		"plugins": [
 			{
 				"name": "next"
@@ -22,6 +23,7 @@
 			"@/*": ["./src/*"],
 			"@/fonts": ["./src/fonts/fonts.ts"],
 			"@/icons/*": ["./src/assets/icons/*"],
+			"@/images/*": ["./src/assets/images/*"],
 			"@/styles/*": ["./src/styles/*"]
 		}
 	},

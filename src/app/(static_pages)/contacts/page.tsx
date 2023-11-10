@@ -1,5 +1,11 @@
-import { ContactsForm } from '../../../components/pages/contacts/ContactForms/ContactForms'
+import Contacts from '@/components/pages/Contacts/Contacts';
+import { Metadata } from 'next';
 
-export default function Contacts() {
-	return <ContactsForm />
+export const metadata: Metadata= {
+	title: 'Contacts | NOUT PARTS',
+}
+
+export default function ContactsPage() {
+	return <Contacts/>
+	
 }

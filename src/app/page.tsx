@@ -1,12 +1,5 @@
-import Link from 'next/link'
-import NavPanel from '@/components/common/NavPanel/NavPanel'
+import Home from '../components/pages/Home/Home'
 
-export default function Home() {
-	return (
-		<>
-			<NavPanel />
-			<Link href='/product'>product</Link>
-			<Link href='/about'>about</Link>
-		</>
-	)
+export default function HomePage() {
+	return <Home/>
 }
