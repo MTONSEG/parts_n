@@ -5,13 +5,13 @@ import { INoFoundData } from './not-found.types'
 import { API } from '@/api'
 
 const getData = async (): Promise<INoFoundData> => {
-	const res = await fetch(`${API}/not-founds?populate=*`, {
-		next: { revalidate: 1 },
+	const res = await fetch(`${API}/not-found?populate=*`, {
+		next: { revalidate: 7200 },
 	})
 
 	const data = await res.json()
 
-	return data.data[0].attributes
+	return data.data.attributes
 }
 
 export default async function NotFound() {

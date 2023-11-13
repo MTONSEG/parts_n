@@ -9,7 +9,7 @@ import { IDeliveryData } from './delivery.types'
 
 const getData = async (): Promise<IDeliveryData> => {
 	const res = await fetch(
-		`${API}/deliveries?populate[payment][populate]=*&populate[delivery][populate]=*`,
+		`${API}/delivery?populate[payment][populate]=*&populate[delivery][populate]=*`,
 		{
 			next: {
 				revalidate: 7200,
@@ -23,7 +23,7 @@ const getData = async (): Promise<IDeliveryData> => {
 
 	const data = await res.json()
 
-	return data.data[0].attributes
+	return data.data.attributes
 }
 
 export default async function Delivery() {

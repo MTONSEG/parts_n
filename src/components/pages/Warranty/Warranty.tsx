@@ -9,7 +9,7 @@ import type { IWarrantyData } from './warranty.types';
 
 const getData = async (): Promise<IWarrantyData> => {
 	const res = await fetch(
-		`${API}/warranties?populate[bonusIcon][populate]=*&populate[items]populate=*`,
+		`${API}/warranty?populate[bonusIcon][populate]=*&populate[items]populate=*`,
 		{
 			next: {
 				revalidate: 7200,
@@ -23,7 +23,7 @@ const getData = async (): Promise<IWarrantyData> => {
 
 	const data = await res.json()
 
-	return data.data[0].attributes
+	return data.data.attributes
 }
 
 export default async function Warranty() {

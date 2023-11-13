@@ -2,6 +2,8 @@ export interface IContactsData {
 	createdAt: string
 	updatedAt: string
 	publishedAt: string
+	title: string
+	text: string
 	address: Address
 	email: Email
 	tel: Tel

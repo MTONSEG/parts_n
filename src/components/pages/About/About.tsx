@@ -8,7 +8,7 @@ import { IAboutData } from './about.types'
 
 const getData = async (): Promise<IAboutData> => {
 	const res = await fetch(
-		`${API}/abouts?populate[about][populate]=*&populate[benefit][populate]=*`,
+		`${API}/about?populate[about][populate]=*&populate[benefit][populate]=*`,
 		{
 			next: { revalidate: 7200 },
 		}
@@ -19,7 +19,7 @@ const getData = async (): Promise<IAboutData> => {
 
 	let data = await res.json()
 
-	return data.data[0].attributes
+	return data.data.attributes
 }
 
 export default async function About() {
