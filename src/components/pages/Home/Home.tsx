@@ -3,6 +3,7 @@ import NavPanel from '@/components/common/NavPanel/NavPanel'
 import { BannerHome } from './BannerHome/BannerHome'
 import { API } from '../../../api'
 import { HomeData } from './home.types'
+import ListCategoryHome from './ListCategoryHome/ListCategoryHome'
 
 const getData = async (): Promise<HomeData> => {
 	const res = await fetch(`${API}/home?populate[banner][populate]=*`, {
@@ -16,11 +17,11 @@ const getData = async (): Promise<HomeData> => {
 
 export default async function Home() {
 	const data: HomeData = await getData()
-	console.log(data);
 	return (
 		<>
 			<NavPanel />
 			<BannerHome state={data.banner} />
+			<ListCategoryHome/>
 			<Link href='/product'>product</Link>
 			<Link href='/about'>about</Link>
 		</>
