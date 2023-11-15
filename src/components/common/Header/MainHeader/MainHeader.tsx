@@ -1,9 +1,6 @@
 'use client'
 
-import Link from 'next/link'
 import './MainHeader.scss'
-import LogoSVG from '@/icons/logo.svg'
-import { CatalogHeader } from '../CatalogHeader/CatalogHeader'
 import { SearchForm } from '../../../ui/forms/SearchForm/SearchForm'
 import { FavoriteHeader } from '../FavoriteHeader/FavoriteHeader'
 import { CartHeader } from '../CartHeader/CartHeader'

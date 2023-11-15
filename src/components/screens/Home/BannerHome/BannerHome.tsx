@@ -44,7 +44,7 @@ export function BannerHome({ state }: PropsType) {
 					className='banner-home__table-img'
 					priority
 				/>
-				<Button path='/catalog' className='banner-home__btn'>
+				<Button path='/catalog' className='banner-home__btn' ariaLabel='Go to Catalog'>
 					{state.titleBtn}
 				</Button>
 			</div>

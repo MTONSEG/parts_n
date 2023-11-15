@@ -18,7 +18,7 @@ export function Button({
 	type = 'button',
 	className,
 	children,
-	ariaLabel,
+	ariaLabel = 'Go to Catalog',
 	onClick,
 }: ButtonPropsType) {
 	const router = useRouter()
@@ -35,7 +35,7 @@ export function Button({
 			type={type}
 			className={`button ${className ? className : ''}`}
 			onClick={handleClick}
-			aria-label='Submit button'
+			aria-label={ariaLabel}
 		>
 			{children}
 		</button>

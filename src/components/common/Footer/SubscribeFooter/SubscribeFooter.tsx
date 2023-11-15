@@ -27,7 +27,7 @@ export default function SubscribeFooter() {
 					variant='black'
 					placeholder={data.placeholder}
 				/>
-				<Button type='submit'>{data.btnTitle}</Button>
+				<Button type='submit' ariaLabel='Subscribe on the notify'>{data.btnTitle}</Button>
 			</form>
 		</div>
 	)

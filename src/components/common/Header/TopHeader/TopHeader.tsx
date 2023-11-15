@@ -34,6 +34,7 @@ export function TopHeader() {
 				></div>
 				<div className='top-header__row'>
 					<button
+						aria-label='Close Menu'
 						className='top-header__close-icon'
 						onClick={() => {
 							disableMenu()
