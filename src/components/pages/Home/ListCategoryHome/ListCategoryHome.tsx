@@ -1,24 +1,12 @@
-import Image from 'next/image'
-import { API } from '../../../../api'
 import './ListCategoryHome.scss'
-import type { CategoryHomeData } from './list-catalog.types'
 import ItemListCategory from './ItemListCategory/ItemListCategory'
+import type { CategoriesData } from '../home.types'
 
-const getData = async (): Promise<CategoryHomeData[]> => {
-	const res = await fetch(`${API}/categories?populate=*`, {
-		next: {
-			revalidate: 7200
-		}
-	})
-
-	const data = await res.json()
-
-	return data.data
+interface PropsType {
+	state: CategoriesData[]
 }
 
-export default async function ListCategoryHome() {
-	const state = await getData()
-
+export default function ListCategoryHome({state}:PropsType) {
 	return (
 		<section className='list-category'>
 			<div className='container'>

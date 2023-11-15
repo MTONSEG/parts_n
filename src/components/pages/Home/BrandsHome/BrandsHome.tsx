@@ -1,31 +1,19 @@
 import Image from 'next/image'
-import { API } from '../../../../api'
 import './BrandsHome.scss'
-import { BrandsHomeData } from './brands-home.types'
 import Link from 'next/link'
+import type { BrandsHomeData } from '../home.types'
 
-const getData = async (): Promise<BrandsHomeData[]> => {
-	const res = await fetch(`${API}/brands?sort[0]=name&populate=*`, {
-		next: { revalidate: 7200 },
-	})
 
-	if (!res.ok) {
-		throw new Error('Failed to fetching data')
-	}
-
-	const data = await res.json()
-
-	return data.data
+interface PropsType {
+	state: BrandsHomeData[]
 }
 
-export default async function BrandsHome() {
-	const brands: BrandsHomeData[] = await getData()
-
+export default function BrandsHome({ state }: PropsType) {
 	return (
 		<div className='brands-home'>
 			<div className='container'>
 				<ul className='brands-home__list'>
-					{brands?.map(el => (
+					{state?.map(el => (
 						<li className='brands-home__item' key={el.id}>
 							<Link href={'/catalog'} className='brands-home__link'>
 								<Image

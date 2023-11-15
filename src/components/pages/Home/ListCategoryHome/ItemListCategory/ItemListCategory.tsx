@@ -1,11 +1,11 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import type { CategoryHomeData } from '../list-catalog.types'
 import Image from 'next/image'
+import type { CategoriesData } from '../../home.types'
 
 interface PropsType {
-	el: CategoryHomeData
+	el: CategoriesData
 }
 
 export default function ItemListCategory({ el }: PropsType) {

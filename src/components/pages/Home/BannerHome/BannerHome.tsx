@@ -2,9 +2,10 @@
 
 import Image from 'next/image'
 import './BannerHome.scss'
-import { Banner } from '../home.types'
+
 import Markdown from 'react-markdown'
 import { Button } from '../../../ui/buttons/Button/Button'
+import type { Banner } from '../home.types'
 
 type PropsType = {
 	state: Banner
