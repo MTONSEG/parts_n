@@ -1,6 +1,8 @@
+import Image from 'next/image'
 import { API } from '../../../../api'
 import './ListCategoryHome.scss'
-import { CategoryHomeData } from './list-catalog.types'
+import type { CategoryHomeData } from './list-catalog.types'
+import ItemListCategory from './ItemListCategory/ItemListCategory'
 
 const getData = async (): Promise<CategoryHomeData[]> => {
 	const res = await fetch(`${API}/categories?populate=*`, {
@@ -13,6 +15,7 @@ const getData = async (): Promise<CategoryHomeData[]> => {
 }
 
 export default async function ListCategoryHome() {
+
 	const state = await getData()
 	console.log(state)
 
@@ -20,17 +23,13 @@ export default async function ListCategoryHome() {
 		<section className='list-category'>
 			<div className='container'>
 				<ul className='list-category__list'>
-					{state.map(el => (
-						<li
-							className={`list-category__item list-category__item_${el.attributes.type}`}
-							style={{ backgroundColor: el.attributes.color}}
-							key={el.id}
-						>
-							{el.attributes.title}
-						</li>
+					{state?.map(el => (
+						<ItemListCategory el={el} key={el.id}/>
 					))}
 				</ul>
 			</div>
 		</section>
 	)
 }
+
+

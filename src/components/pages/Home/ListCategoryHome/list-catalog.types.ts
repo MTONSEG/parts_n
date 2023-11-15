@@ -9,7 +9,8 @@ interface Attributes {
 	publishedAt: string
 	title: string
 	color: string
-	titleBtn: string
+	titleBtn: string,
+	subtitle?:string,
 	type: string
 	image: Image
 	keyboards: Keyboards
