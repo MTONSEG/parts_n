@@ -32,8 +32,8 @@ export function CallbackFooter() {
 						<path
 							d='M1 0.5H149'
 							stroke='#36DD65'
-							stroke-linecap='round'
-							stroke-dasharray='6 6'
+							strokeLinecap='round'
+							strokeDasharray='6 6'
 						/>
 					</svg>
 				</p>

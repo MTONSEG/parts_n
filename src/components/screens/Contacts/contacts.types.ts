@@ -53,7 +53,7 @@ interface ProviderMetadata {
 interface Email {
 	id: number
 	title: string
-	phone: string
+	contact: string
 	path: string
 	icon: Icon2
 }
@@ -94,7 +94,7 @@ interface ProviderMetadata2 {
 interface Tel {
 	id: number
 	title: string
-	phone: string
+	contact: string
 	path: string
 	icon: Icon3
 }

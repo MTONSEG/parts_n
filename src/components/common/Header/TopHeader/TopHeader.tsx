@@ -5,7 +5,7 @@ import './TopHeader.scss'
 import { useActions, useAppSelector } from '../../../../hooks/useRedux'
 import { CallbackHeader } from '../CallbackHeader/CallbackHeader'
 import CloseSVG from '@/icons/close.svg'
-import { LegacyRef, MouseEvent, useEffect, useRef } from 'react'
+import { MouseEvent} from 'react'
 import { FavoriteHeader } from '../FavoriteHeader/FavoriteHeader'
 import { MobileCatalogHeader } from '../MobileCatalogHeader/MobileCatalogHeader'
 
@@ -13,10 +13,6 @@ export function TopHeader() {
 	const links = useAppSelector(state => state.header.staticLinks)
 	const activeMenu = useAppSelector(state => state.header.activeMenu)
 	const { disableMenu } = useActions()
-
-	const handleMenuClick = (e: MouseEvent): void => {
-		e.stopPropagation()
-	}
 
 	return (
 		<div className={`top-header ${activeMenu ? 'active' : ''}`}>

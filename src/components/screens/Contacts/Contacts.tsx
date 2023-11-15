@@ -71,7 +71,7 @@ export default async function Contacts() {
 										href={`tel:${data.tel.path}`}
 										className='info-contacts__item-value info-contacts__item-value_link'
 									>
-										{data.tel.phone}
+										{data.tel.contact}
 									</a>
 								</li>
 								<li className='info-contacts__item'>
@@ -102,7 +102,7 @@ export default async function Contacts() {
 										href={`mailto:${data.email.path}`}
 										className='info-contacts__item-value  info-contacts__item-value_link'
 									>
-										{data.email.phone}
+										{data.email.contact}
 									</a>
 								</li>
 							</ul>
