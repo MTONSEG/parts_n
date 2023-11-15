@@ -4,6 +4,7 @@ import { BannerHome } from './BannerHome/BannerHome'
 import { API } from '../../../api'
 import { HomeData } from './home.types'
 import ListCategoryHome from './ListCategoryHome/ListCategoryHome'
+import BrandsHome from './BrandsHome/BrandsHome'
 
 const getData = async (): Promise<HomeData> => {
 	const res = await fetch(`${API}/home?populate[banner][populate]=*`, {
@@ -21,7 +22,8 @@ export default async function Home() {
 		<>
 			<NavPanel />
 			<BannerHome state={data.banner} />
-			<ListCategoryHome/>
+			<ListCategoryHome />
+			<BrandsHome/>
 			<Link href='/product'>product</Link>
 			<Link href='/about'>about</Link>
 		</>

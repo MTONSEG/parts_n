@@ -1,0 +1,47 @@
+.brands-home {
+	margin-bottom: 70px;
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	}
+	&__item {
+		position: relative;
+		height: 120px;
+	}
+	&__link {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 2px solid transparent;
+		&:hover {
+			border-color: #e3e3e3;
+		}
+	}
+	&__icon {
+		display: block;
+		max-width: 70%;
+	}
+	@media (max-width: 767px) {
+		&__list {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+	@media (max-width: 576px) {
+		margin-bottom: 40px;
+		&__item {
+			height: 50px;
+		}
+		&__link {
+			// padding: 10px 10px;
+		}
+		&__icon {
+			max-height: 32px;
+			width: auto;
+		}
+	}
+}

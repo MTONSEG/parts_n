@@ -6,7 +6,9 @@ import ItemListCategory from './ItemListCategory/ItemListCategory'
 
 const getData = async (): Promise<CategoryHomeData[]> => {
 	const res = await fetch(`${API}/categories?populate=*`, {
-		cache: 'no-cache',
+		next: {
+			revalidate: 7200
+		}
 	})
 
 	const data = await res.json()
@@ -15,9 +17,7 @@ const getData = async (): Promise<CategoryHomeData[]> => {
 }
 
 export default async function ListCategoryHome() {
-
 	const state = await getData()
-	console.log(state)
 
 	return (
 		<section className='list-category'>
