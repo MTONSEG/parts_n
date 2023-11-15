@@ -33,6 +33,7 @@ export function BannerHome({ state }: PropsType) {
 					alt='NoteBook'
 					sizes='(max-width: 992px) 147px'
 					className='banner-home__notebook-img'
+					priority
 				/>
 				<Image
 					src={state.imageTable.data?.attributes.url}
@@ -41,8 +42,11 @@ export function BannerHome({ state }: PropsType) {
 					alt='NoteBook'
 					sizes='(max-width: 992px) 179px'
 					className='banner-home__table-img'
+					priority
 				/>
-				<Button path='/catalog' className='banner-home__btn'>{state.titleBtn}</Button>
+				<Button path='/catalog' className='banner-home__btn'>
+					{state.titleBtn}
+				</Button>
 			</div>
 		</section>
 	)

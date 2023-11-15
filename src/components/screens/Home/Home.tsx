@@ -10,7 +10,7 @@ const getData = async (): Promise<HomeDataAttributes> => {
 	const res = await fetch(
 		`${API}/home?populate[banner][populate]=*&populate[categories][populate]=*&populate[brands][populate]=*&populate[benefits][populate]=*`,
 		{
-			cache: 'no-cache',
+			next: {revalidate:7200}
 		}
 	)
 	if (!res.ok) {
