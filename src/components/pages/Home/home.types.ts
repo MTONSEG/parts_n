@@ -15,7 +15,7 @@ export interface HomeDataAttributes {
 	banner: Banner
 	categories: Categories
 	brands: Brands
-	benefits: Benefit[]
+	benefits: BenefitsHomeData[]
 }
 
 export interface Banner {
@@ -354,7 +354,7 @@ interface ProviderMetadata9 {
 	resource_type: string
 }
 
-export interface Benefit {
+export interface BenefitsHomeData {
 	id: number
 	title: string
 	text: string

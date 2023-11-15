@@ -10,7 +10,7 @@ interface PropsType {
 
 export default function BrandsHome({ state }: PropsType) {
 	return (
-		<div className='brands-home'>
+		<section className='brands-home'>
 			<div className='container'>
 				<ul className='brands-home__list'>
 					{state?.map(el => (
@@ -28,6 +28,6 @@ export default function BrandsHome({ state }: PropsType) {
 					))}
 				</ul>
 			</div>
-		</div>
+		</section>
 	)
 }

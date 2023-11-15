@@ -4,6 +4,7 @@ import { API } from '../../../api'
 import { HomeData, HomeDataAttributes } from './home.types'
 import ListCategoryHome from './ListCategoryHome/ListCategoryHome'
 import BrandsHome from './BrandsHome/BrandsHome'
+import BenefitsHome from './BenefitsHome/BenefitsHome'
 
 const getData = async (): Promise<HomeDataAttributes> => {
 	const res = await fetch(
@@ -29,6 +30,7 @@ export default async function Home() {
 			<BannerHome state={data.banner} />
 			<ListCategoryHome state={data.categories.data} />
 			<BrandsHome state={data.brands.data} />
+			<BenefitsHome state={data.benefits} />
 		</>
 	)
 }
