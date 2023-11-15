@@ -24,6 +24,7 @@ export function MainHeader() {
 						onClick={() => {
 							enableMenu()
 						}}
+						aria-label='Open Menu'
 					>
 						<BurgerSVG />
 					</button>

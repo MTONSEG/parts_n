@@ -9,6 +9,7 @@ type ButtonPropsType = {
 	type?: ButtonTypes
 	className?: string
 	children?: ReactNode
+	ariaLabel?:string,
 	onClick?: () => void
 }
 
@@ -17,6 +18,7 @@ export function Button({
 	type = 'button',
 	className,
 	children,
+	ariaLabel,
 	onClick,
 }: ButtonPropsType) {
 	const router = useRouter()
@@ -33,6 +35,7 @@ export function Button({
 			type={type}
 			className={`button ${className ? className : ''}`}
 			onClick={handleClick}
+			aria-label='Submit button'
 		>
 			{children}
 		</button>

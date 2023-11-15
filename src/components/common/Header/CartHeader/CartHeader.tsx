@@ -3,7 +3,7 @@ import CartSVG from '@/icons/cart.svg'
 
 export function CartHeader() {
 	return (
-		<button className='cart-header'>
+		<button className='cart-header' aria-label='Cart'>
 			<div className='cart-header__icon'>
 				<CartSVG />
 			</div>

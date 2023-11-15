@@ -10,7 +10,7 @@ export function SearchForm() {
 					className='search-form__input'
 					placeholder='Поиск по каталогу..'
 				/>
-				<button className='search-form__input-btn'>
+				<button className='search-form__input-btn' aria-label='Search'>
 					<SearchSVG />
 				</button>
 			</div>
