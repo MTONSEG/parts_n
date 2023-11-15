@@ -1,13 +1,12 @@
 import './Contacts.scss'
 import Image from 'next/image'
 import { API } from '../../../api'
-import { ContactsForm } from '../../../components/pages/Contacts/ContactForms/ContactForms'
+import { ContactsForm } from './ContactForms/ContactForms'
 import Markdown from 'react-markdown'
 import type { ILink } from '../../../models/models'
-import { Title } from '../../../components/ui/atoms/Title/Title'
-import { Breadcrumbs } from '../../../components/common/Breadcrumbs/Breadcrumbs'
+import { Title } from '../../ui/atoms/Title/Title'
+import { Breadcrumbs } from '../../common/Breadcrumbs/Breadcrumbs'
 import type { IContactsData } from './contacts.types'
-
 
 const getData = async (): Promise<IContactsData> => {
 	const res = await fetch(
@@ -41,9 +40,7 @@ export default async function Contacts() {
 				<div className='container'>
 					<div className='contacts__row'>
 						<Title>{data.title}</Title>
-						<p className='contacts__text'>
-							{data.text}
-						</p>
+						<p className='contacts__text'>{data.text}</p>
 						<div className='contacts__body'>
 							<ul className='info-contacts'>
 								<li className='info-contacts__item'>

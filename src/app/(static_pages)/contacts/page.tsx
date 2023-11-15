@@ -1,11 +1,10 @@
-import Contacts from '@/components/pages/Contacts/Contacts';
-import { Metadata } from 'next';
+import Contacts from '@/components/screens/Contacts/Contacts'
+import { Metadata } from 'next'
 
-export const metadata: Metadata= {
+export const metadata: Metadata = {
 	title: 'Contacts | NOUT PARTS',
 }
 
 export default function ContactsPage() {
-	return <Contacts/>
-	
+	return <Contacts />
 }

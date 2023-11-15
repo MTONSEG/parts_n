@@ -1,4 +1,4 @@
-import { Breadcrumbs } from '../../../components/common/Breadcrumbs/Breadcrumbs'
+import { Breadcrumbs } from '../../common/Breadcrumbs/Breadcrumbs'
 import { ILink } from '../../../models/models'
 import Image from 'next/image'
 import './About.scss'
@@ -89,4 +89,3 @@ export default async function About() {
 		</div>
 	)
 }
-

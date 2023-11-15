@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Warranty from '@/components/pages/Warranty/Warranty'
+import Warranty from '@/components/screens/Warranty/Warranty'
 
 export const metadata: Metadata = {
 	title: 'Warranties | NOUT PARTS',
