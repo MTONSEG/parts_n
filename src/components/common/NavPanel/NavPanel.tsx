@@ -14,22 +14,22 @@ export default function NavPanel() {
 		<nav className='nav-panel'>
 			<div className='container'>
 				<div className='nav-panel__row'>
-					<LinkNavPanel title='Матрицы' path='/matrices'>
+					<LinkNavPanel title='Матрицы' path='/catalog/matrices'>
 						<MatrixSVG />
 					</LinkNavPanel>
-					<LinkNavPanel title='Аккумуляторы' path='/matrices'>
+					<LinkNavPanel title='Аккумуляторы' path='/catalog/matrices'>
 						<BatteriesSVG />
 					</LinkNavPanel>
-					<LinkNavPanel title='Жесткие диски / SSD' path='/drives'>
+					<LinkNavPanel title='Жесткие диски / SSD' path='/catalog/storages'>
 						<DrivesSVG />
 					</LinkNavPanel>
-					<LinkNavPanel title='Клавиатуры' path='/keyboards'>
+					<LinkNavPanel title='Клавиатуры' path='/catalog/keyboards'>
 						<KeyboardsSVG />
 					</LinkNavPanel>
-					<LinkNavPanel title='Оперативная память' path='/ram'>
+					<LinkNavPanel title='Оперативная память' path='/catalog/rams'>
 						<RamSVG />
 					</LinkNavPanel>
-					<LinkNavPanel title='Блоки питания' path='/powers'>
+					<LinkNavPanel title='Блоки питания' path='/catalog/powers'>
 						<PowersSVG />
 					</LinkNavPanel>
 				</div>

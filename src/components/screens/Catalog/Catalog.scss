@@ -1,0 +1,7 @@
+.catalog {
+	@media (min-width: 993px) {
+		& .breadcrumbs {
+			display: none;
+		}
+	}
+}

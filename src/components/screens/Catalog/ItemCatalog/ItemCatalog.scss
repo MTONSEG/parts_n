@@ -1,0 +1,102 @@
+.item-catalog {
+	&__top {
+		display: block;
+		padding: 25px 26px;
+		position: relative;
+		height: 210px;
+		overflow: hidden;
+		margin-bottom: 7px;
+		&:hover {
+			box-shadow: 0 0 5px rgb(41, 146, 60);
+		}
+		&:hover .item-catalog__title {
+			color: #36dd65;
+		}
+	}
+	&_matrices {
+		order: 1;
+	}
+	&_batteries {
+		order: 2;
+	}
+	&_storages {
+		order: 3;
+	}
+	&_rams {
+		order: 5;
+	}
+	&_keyboards {
+		order: 4;
+	}
+	&_powers {
+		order: 6;
+	}
+	&__title,
+	&__subtitle {
+		font-weight: 700;
+		line-height: 1.4;
+		text-transform: uppercase;
+	}
+	&__title {
+		color: #1d1f22;
+		font-size: 22px;
+		transform: all 0.2s;
+	}
+	&__subtitle {
+		color: #5a5a5a;
+		font-size: 20px;
+	}
+	&__image {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		max-width: 200px;
+	}
+	&__brand-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+		gap: 0 20px;
+	}
+	&__brand-item {
+		text-align: center;
+		&:last-child {
+			& .item-catalog__brand-link {
+				color: #67b6ff;
+				&:hover {
+					background: transparent;
+					color: #144879;
+				}
+			}
+		}
+	}
+	&__brand-link {
+		color: #505050;
+		font-size: 14px;
+		line-height: 2.4;
+		display: block;
+		width: 100%;
+		&:hover {
+			background: #bbfccd;
+			color: #000;
+			text-decoration: underline;
+		}
+	}
+	@media (max-width: 767px) {
+		&__top {
+			padding: 11px 12px;
+			height: 143px;
+		}
+		&__title {
+			font-size: 14px;
+		}
+		&__subtitle {
+			font-size: 12px;
+		}
+		&__image {
+			max-width: 110px;
+		}
+		&__brand-list {
+			display: none;
+		}
+	}
+}
