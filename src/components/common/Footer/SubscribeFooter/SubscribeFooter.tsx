@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form'
 import { Input } from '../../../ui/forms/Input/Input'
 import { Button } from '../../../ui/buttons/Button/Button'
-import { useAppSelector } from '../../../../hooks/useRedux'
+import { useAppSelector } from '../../../../hooks/useTypedRedux'
 
 type InputType = {
 	email: string
@@ -27,7 +27,9 @@ export default function SubscribeFooter() {
 					variant='black'
 					placeholder={data.placeholder}
 				/>
-				<Button type='submit' ariaLabel='Subscribe on the notify'>{data.btnTitle}</Button>
+				<Button type='submit' ariaLabel='Subscribe on the notify'>
+					{data.btnTitle}
+				</Button>
 			</form>
 		</div>
 	)

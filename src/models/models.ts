@@ -21,3 +21,12 @@ export interface IInput {
 	requiredMess?: string
 	pattern?: RegExp
 }
+
+export type CategoriesType =
+	| 'matrices'
+	| 'storages'
+	| 'batteries'
+	| 'keyboards'
+	| 'rams'
+	| 'powers'
+	| undefined

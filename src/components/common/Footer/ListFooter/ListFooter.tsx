@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useAppSelector } from '../../../../hooks/useRedux'
+import { useAppSelector } from '../../../../hooks/useTypedRedux'
 
 export default function ListFooter() {
 	const { nav, catalog, contacts } = useAppSelector(state => state.footer)

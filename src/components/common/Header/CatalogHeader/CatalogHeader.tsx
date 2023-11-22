@@ -3,7 +3,8 @@
 import './CatalogHeader.scss'
 import { BrandsCatalogHeader } from './BrandsCatalogHeader/BrandsCatalogHeader'
 import Link from 'next/link'
-import { useActions, useAppSelector } from '../../../../hooks/useRedux'
+import {useAppSelector } from '../../../../hooks/useTypedRedux'
+import { useActions } from '../../../../hooks/useAction'
 
 export function CatalogHeader() {
 	const { disableCatalog } = useActions()

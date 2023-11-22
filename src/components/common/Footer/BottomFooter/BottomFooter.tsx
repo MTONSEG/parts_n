@@ -2,7 +2,7 @@
 import FacebookSVG from '@/icons/fb-footer.svg'
 import InstagramSVG from '@/icons/insta-full.svg'
 import Image from 'next/image'
-import { useAppSelector } from '../../../../hooks/useRedux'
+import { useAppSelector } from '../../../../hooks/useTypedRedux'
 
 export default function BottomFooter() {
 	const data = useAppSelector(state => state.footer)

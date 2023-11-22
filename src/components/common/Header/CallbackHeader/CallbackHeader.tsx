@@ -1,6 +1,6 @@
 'use client'
 
-import { useAppSelector } from '../../../../hooks/useRedux'
+import { useAppSelector } from '../../../../hooks/useTypedRedux'
 import './CallbackHeader.scss'
 import PhoneSVG from '@/icons/phone.svg'
 import LineSVG from '@/icons/lines-cb.svg'

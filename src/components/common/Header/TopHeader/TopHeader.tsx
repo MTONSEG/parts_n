@@ -2,12 +2,12 @@
 
 import Link from 'next/link'
 import './TopHeader.scss'
-import { useActions, useAppSelector } from '../../../../hooks/useRedux'
+import { useAppSelector } from '../../../../hooks/useTypedRedux'
 import { CallbackHeader } from '../CallbackHeader/CallbackHeader'
 import CloseSVG from '@/icons/close.svg'
-import { MouseEvent} from 'react'
 import { FavoriteHeader } from '../FavoriteHeader/FavoriteHeader'
 import { MobileCatalogHeader } from '../MobileCatalogHeader/MobileCatalogHeader'
+import { useActions } from '../../../../hooks/useAction'
 
 export function TopHeader() {
 	const links = useAppSelector(state => state.header.staticLinks)

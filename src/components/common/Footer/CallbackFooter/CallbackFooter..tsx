@@ -1,9 +1,9 @@
 'use client'
 import TelSVG from '@/icons/phone.svg'
-import { useAppSelector } from '../../../../hooks/useRedux'
+import { useAppSelector } from '../../../../hooks/useTypedRedux'
 
 export function CallbackFooter() {
-	const data = useAppSelector(state => state.footer);
+	const data = useAppSelector(state => state.footer)
 
 	return (
 		<div className='footer__callback'>
@@ -15,13 +15,11 @@ export function CallbackFooter() {
 					{data.contacts.tel.value.title}
 				</span>
 			</p>
-			<p className='footer__callback-work-time'>
-				{data.timeWork}
-			</p>
+			<p className='footer__callback-work-time'>{data.timeWork}</p>
 			<button className='footer__callback-btn'>
 				<TelSVG />
 				<p className='footer__callback-btn-text'>
-					<span>{data.callback }</span>
+					<span>{data.callback}</span>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						width='150'

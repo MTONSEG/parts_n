@@ -5,9 +5,9 @@ import { SearchForm } from '../../../ui/forms/SearchForm/SearchForm'
 import { FavoriteHeader } from '../FavoriteHeader/FavoriteHeader'
 import { CartHeader } from '../CartHeader/CartHeader'
 import BurgerSVG from '@/icons/burger.svg'
-import { useActions } from '../../../../hooks/useRedux'
 import { CatalogButton } from '../../../ui/buttons/CatalogButton/CatalogButton'
 import Logo from '../../../ui/atoms/Logo/Logo'
+import { useActions } from '../../../../hooks/useAction'
 
 export function MainHeader() {
 	const { enableMenu } = useActions()

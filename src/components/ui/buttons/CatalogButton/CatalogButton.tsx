@@ -1,6 +1,6 @@
-
 import './CatalogButton.scss'
-import { useActions, useAppSelector } from '../../../../hooks/useRedux'
+import { useAppSelector } from '../../../../hooks/useTypedRedux'
+import { useActions } from '../../../../hooks/useAction'
 
 type CatalogButtonType = {
 	title: string

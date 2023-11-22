@@ -17,7 +17,7 @@ export default function NavPanel() {
 					<LinkNavPanel title='Матрицы' path='/catalog/matrices'>
 						<MatrixSVG />
 					</LinkNavPanel>
-					<LinkNavPanel title='Аккумуляторы' path='/catalog/matrices'>
+					<LinkNavPanel title='Аккумуляторы' path='/catalog/batteries'>
 						<BatteriesSVG />
 					</LinkNavPanel>
 					<LinkNavPanel title='Жесткие диски / SSD' path='/catalog/storages'>
