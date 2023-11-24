@@ -33,14 +33,59 @@
 	border-radius: 25px;
 	background: #30d25e;
 	font-size: 16px;
-	display: block;
+	display: flex;
 	font-weight: 700;
 	line-height: normal;
 	color: #fff;
 	padding: 15px 20px;
 	text-align: center;
+	align-items: center;
 	&:hover {
 		background-color: #1ba341;
+	}
+	&_favorite {
+		width: 49px;
+		height: 49px;
+		border-radius: 27px;
+		border: 2px solid #81e18a;
+		background: #fff;
+		border-radius: 50%;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		&:hover {
+			background-color: #e7fced;
+		}
+		svg {
+			width: 25px;
+			height: 25px;
+			stroke: #c7f7d5;
+			transition: all .2s;
+			fill: #fff;
+		}
+		&.active {
+			background-color: #36dd65;
+			border-color: transparent;
+		}
+	}
+
+	&_cart {
+		background-color: #1BA341;
+		&:hover {
+			background-color: #30d25e;
+		}
+	}
+
+	@media (max-width: 576px) {
+		&_favorite {
+			width: 36px;
+			height: 36px;
+			svg {
+				width: 20px;
+				height: 20px;
+			}
+		}
 	}
 }
 
@@ -50,7 +95,7 @@
 	height: 100%;
 	min-width: 100vw;
 	min-height: 100vh;
-	background-color: rgba(0, 0, 0, .5);
+	background-color: rgba(0, 0, 0, 0.5);
 	opacity: 0;
 	z-index: 9;
 	pointer-events: none;

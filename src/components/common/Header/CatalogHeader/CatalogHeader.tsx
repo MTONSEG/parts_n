@@ -3,7 +3,7 @@
 import './CatalogHeader.scss'
 import { BrandsCatalogHeader } from './BrandsCatalogHeader/BrandsCatalogHeader'
 import Link from 'next/link'
-import {useAppSelector } from '../../../../hooks/useTypedRedux'
+import { useAppSelector } from '../../../../hooks/useTypedRedux'
 import { useActions } from '../../../../hooks/useAction'
 
 export function CatalogHeader() {

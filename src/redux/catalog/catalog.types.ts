@@ -3,6 +3,32 @@ import { StatusType } from '../../models/models'
 export interface IProductState {
 	products: IProduct[]
 	status: StatusType
+	grid: boolean
+	info: IProductInfo
+	categories: CategoriesType[]
+}
+type ItemInfoProductType = {
+	id: string | number
+	title: string
+	value: string,
+	unit: string
+}
+
+export type CategoriesType =
+	| 'batteries'
+	| 'powers'
+	| 'matrices'
+	| 'keyboards'
+	| 'rams'
+	| 'storages'
+
+export interface IProductInfo {
+	batteries: ItemInfoProductType[]
+	powers: ItemInfoProductType[]
+	matrices: ItemInfoProductType[]
+	keyboards: ItemInfoProductType[]
+	rams: ItemInfoProductType[]
+	storages: ItemInfoProductType[]
 }
 
 export interface IRootProduct {
@@ -52,22 +78,38 @@ export interface Attributes2 {
 	path: any
 }
 
+type ValueInfoType =
+	| 'memory'
+	| 'speed'
+	| 'type'
+	| 'voltage'
+	| 'capacity'
+	| 'power'
+	| 'amperage'
+	| 'form'
+	| 'interface'
+	| 'size'
+	| 'resolution'
+	| 'lang'
+	| 'backlight'
+
 export interface ProductInfo {
 	id: number
 	__component: string
-	memory?: number
-	speed?: number
-	type?: string
-	capacity?: number
-	voltage?: number
-	power?: number
-	amperage?: number
-	form?: string
-	interface?: string
-	size?: number
-	resolution?: string
-	lang?: string
-	backlight?: boolean
+	[key: string]: number | string
+	// memory?: number
+	// speed?: number
+	// type?: string
+	// capacity?: number
+	// voltage?: number
+	// power?: number
+	// amperage?: number
+	// form?: string
+	// interface?: string
+	// size?: number
+	// resolution?: string
+	// lang?: string
+	// backlight?: boolean
 }
 
 export interface ProductImagesData {

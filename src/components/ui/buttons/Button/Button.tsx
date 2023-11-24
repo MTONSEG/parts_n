@@ -2,14 +2,17 @@
 
 import { useRouter } from 'next/navigation'
 import type { ButtonTypes } from '../../../../models/models'
-import { ReactNode } from 'react'
+import { MouseEventHandler, ReactNode } from 'react'
+import Image from 'next/image'
+import FavoriteIcon from '@/icons/favorite-in-card.svg'
 
 type ButtonPropsType = {
 	path?: string
 	type?: ButtonTypes
 	className?: string
 	children?: ReactNode
-	ariaLabel?:string,
+	ariaLabel?: string
+	variant?: 'favorite' | 'default' | 'cart'
 	onClick?: () => void
 }
 
@@ -19,11 +22,14 @@ export function Button({
 	className,
 	children,
 	ariaLabel = 'Go to Catalog',
+	variant = 'default',
 	onClick,
 }: ButtonPropsType) {
 	const router = useRouter()
 
-	const handleClick = () => {
+	const handleClick: MouseEventHandler<HTMLButtonElement> = e => {
+		e.stopPropagation()
+
 		if (path) {
 			router.push(path)
 		}
@@ -33,11 +39,13 @@ export function Button({
 	return (
 		<button
 			type={type}
-			className={`button ${className ? className : ''}`}
+			className={`button ${
+				className ? className : ''
+			} ${`button_${variant}`}`}
 			onClick={handleClick}
 			aria-label={ariaLabel}
 		>
-			{children}
+			{variant === 'favorite' ? <FavoriteIcon /> : children}
 		</button>
 	)
 }
