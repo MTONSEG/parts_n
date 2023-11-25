@@ -23,10 +23,9 @@ export interface IInput {
 }
 
 export type CategoriesType =
-	| 'matrices'
-	| 'storages'
 	| 'batteries'
+	| 'powers'
+	| 'matrices'
 	| 'keyboards'
 	| 'rams'
-	| 'powers'
-	| undefined
+	| 'storages'

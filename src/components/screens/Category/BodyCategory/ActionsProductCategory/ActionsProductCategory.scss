@@ -1,0 +1,12 @@
+.actions-catalog {
+	&__labels {
+		&::-webkit-scrollbar,
+		::-webkit-scrollbar-thumb {
+			background: transparent;
+		}
+		&::-webkit-scrollbar-track {
+			height: 0;
+			width: 0;
+		}
+	}
+}

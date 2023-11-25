@@ -17,7 +17,7 @@ export default function Category({ params }: PropsType) {
 			<NavPanel />
 			<section className='category pt-[14px] md:pt-[38px] min-h-[calc(100vh_-_258px)] relative'>
 				<div className='container'>
-					<div className='category__row flex'>
+					<div className='category__row'>
 						<FilterCategory />
 						<BodyCategory category={params.category}/>
 					</div>

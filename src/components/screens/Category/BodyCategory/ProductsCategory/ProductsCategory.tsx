@@ -7,13 +7,11 @@ import {
 import { getCatalogProducts } from '../../../../../redux/catalog/catalog.api'
 import Loading from '../../../../ui/loaders/Loading'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Button } from '../../../../ui/buttons/Button/Button'
 import InfoProductCategory from './InfoProductCategory/InfoProductCategory'
 import StatusProductCategory from './StatusProductCategory/StatusProductCategory'
 import CartIcon from '@/icons/cart.svg'
 import CheckIcon from '@/icons/check.svg'
-import { useActions } from '../../../../../hooks/useAction'
 
 export default function ProductsCategory({ category }: { category: string }) {
 	const [inCart, setInCart] = useState<boolean>(false)

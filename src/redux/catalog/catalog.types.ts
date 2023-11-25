@@ -1,4 +1,4 @@
-import { StatusType } from '../../models/models'
+import type { CategoriesType, StatusType } from '../../models/models'
 
 export interface IProductState {
 	products: IProduct[]
@@ -14,13 +14,6 @@ type ItemInfoProductType = {
 	unit: string
 }
 
-export type CategoriesType =
-	| 'batteries'
-	| 'powers'
-	| 'matrices'
-	| 'keyboards'
-	| 'rams'
-	| 'storages'
 
 export interface IProductInfo {
 	batteries: ItemInfoProductType[]

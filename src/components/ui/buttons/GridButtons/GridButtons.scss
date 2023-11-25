@@ -1,0 +1,26 @@
+.grid-buttons {
+	display: flex;
+	&__btn {
+		width: 68px;
+		height: 36px;
+		border: 1px solid #e2e2e2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #f4f4f4;
+		svg {
+			fill: #454545;
+		}
+		&:hover {
+			background: #eae9e9;
+		}
+		&.active {
+			border-color: #c3f5d1;
+			background: #fff;
+			pointer-events: none;
+			svg {
+				fill: #36dd65;
+			}
+		}
+	}
+}

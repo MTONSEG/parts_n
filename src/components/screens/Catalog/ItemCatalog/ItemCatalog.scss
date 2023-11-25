@@ -1,4 +1,4 @@
-.item-catalog {
+.item-category {
 	&__top {
 		display: block;
 		padding: 25px 26px;
@@ -9,7 +9,7 @@
 		&:hover {
 			box-shadow: 0 0 5px rgb(41, 146, 60);
 		}
-		&:hover .item-catalog__title {
+		&:hover .item-category__title {
 			color: #36dd65;
 		}
 	}
@@ -60,7 +60,7 @@
 	&__brand-item {
 		text-align: center;
 		&:last-child {
-			& .item-catalog__brand-link {
+			& .item-category__brand-link {
 				color: #67b6ff;
 				&:hover {
 					background: transparent;
