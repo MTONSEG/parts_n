@@ -18,11 +18,12 @@ export default function Category({ params }: PropsType) {
 			<section className='category pt-[14px] md:pt-[38px] min-h-[calc(100vh_-_258px)] relative'>
 				<div className='container'>
 					<div className='category__row'>
-						<FilterCategory />
-						<BodyCategory category={params.category}/>
+						<FilterCategory category={params.category} />
+						<BodyCategory category={params.category} />
 					</div>
 				</div>
 			</section>
 		</>
 	)
 }
+

@@ -14,7 +14,7 @@ export default function ActionsProductCategory() {
 	return (
 		<div className='actions-catalog mb-[19px] md:mb-[13px]'>
 			<div className=''>
-				<DeviceSelects />
+				{/* <DeviceSelects /> */}
 				<div className='flex justify-between flex-wrap-reverse items-center mb-[20px]'>
 					<ButtonsSortCatalog />
 					<SortItems />

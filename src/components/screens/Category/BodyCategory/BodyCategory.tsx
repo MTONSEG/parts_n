@@ -8,18 +8,21 @@ import {
 	getCatalogProducts,
 	getDevices,
 } from '../../../../redux/catalog/catalog.api'
+import Loading from '../../../ui/loaders/Loading'
 
 export default function BodyCategory({ category }: { category: string }) {
 	const dispatch = useAppDispatch()
-	const { products, brands } = useAppSelector(state => state.product)
+	const { products, brands, status } = useAppSelector(state => state.product)
 
 	useEffect(() => {
 		if (!brands.options.length) {
 			dispatch(getDevices())
 		}
 		dispatch(getCatalogProducts(category))
-	}, [])
-
+	}, [brands.options.length, category, dispatch])
+	
+	if (status === 'loading') return <Loading />
+	if (status === 'error') return <h1>Ooops, failed to fetching data (</h1>
 
 	return (
 		<div className='flex-grow'>

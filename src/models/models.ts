@@ -34,7 +34,7 @@ export type CategoriesType =
 
 export interface ItemSelectType {
 	id?: string | number
-	label: string
+	label: string | number | boolean
 	value: string
 	selected?: boolean
 }

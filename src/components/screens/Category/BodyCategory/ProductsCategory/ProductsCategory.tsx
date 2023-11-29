@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import './ProductsCategory.scss'
 import { useAppSelector } from '../../../../../hooks/useTypedRedux'
-import Loading from '../../../../ui/loaders/Loading'
 import Image from 'next/image'
 import { Button } from '../../../../ui/buttons/Button/Button'
 import InfoProductCategory from './InfoProductCategory/InfoProductCategory'
@@ -11,7 +10,6 @@ import CheckIcon from '@/icons/check.svg'
 
 export default function ProductsCategory({ category }: { category: string }) {
 	const [inCart] = useState<boolean>(false)
-	const status = useAppSelector(state => state.product.status)
 	const { currentProducts, grid, ...state } = useAppSelector(
 		state => state.product
 	)
@@ -21,8 +19,6 @@ export default function ProductsCategory({ category }: { category: string }) {
 
 	const handleBuyClick = () => {}
 
-	if (status === 'loading') return <Loading />
-	if (status === 'error') return <h1>Ooops, this is error =)</h1>
 
 	return (
 		<>

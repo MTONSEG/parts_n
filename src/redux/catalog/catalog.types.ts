@@ -10,6 +10,7 @@ export interface IProductState {
 	currentProducts: IProduct[]
 	status: StatusType
 	grid: boolean
+	isMountSelect: boolean
 	info: IProductInfo
 	categories: CategoriesType[]
 	viewSort: {
@@ -34,6 +35,8 @@ export interface IProductState {
 		placeholder?: string
 		options: ItemSelectType[]
 	}
+	filterInfo: IProductInfo
+	filterList: FilterListType
 }
 
 export type SaleSort = 'hit' | 'hot' | 'sale' | null
@@ -44,9 +47,52 @@ export interface IDevice {
 	model: string | undefined
 }
 
+export type FilterListType = {
+	batteries: {
+		capacity: ItemSelectType[]
+		type: ItemSelectType[]
+		voltage: ItemSelectType[]
+		[key: string]: ItemSelectType[]
+	}
+	powers: {
+		power: ItemSelectType[]
+		voltage: ItemSelectType[]
+		amperage: ItemSelectType[]
+		[key: string]: ItemSelectType[]
+	}
+	matrices: {
+		size: ItemSelectType[]
+		resolution: ItemSelectType[]
+		type: ItemSelectType[]
+		[key: string]: ItemSelectType[]
+	}
+	keyboards: {
+		backlight: ItemSelectType[]
+		lang: ItemSelectType[]
+		[key: string]: ItemSelectType[]
+	}
+	rams: {
+		memory: ItemSelectType[]
+		speed: ItemSelectType[]
+		type: ItemSelectType[]
+		[key: string]: ItemSelectType[]
+	}
+	storages: {
+		memory: ItemSelectType[]
+		type: ItemSelectType[]
+		form: ItemSelectType[]
+		interface: ItemSelectType[]
+		[key: string]: ItemSelectType[]
+	}
+	[key: string]: {
+		[key: string]: ItemSelectType[]
+	}
+}
+
 type ItemInfoProductType = {
 	id: string | number
-	title: string
+	title: string,
+	subtitle?:string
 	value: string
 	unit: string
 }
@@ -58,6 +104,7 @@ export interface IProductInfo {
 	keyboards: ItemInfoProductType[]
 	rams: ItemInfoProductType[]
 	storages: ItemInfoProductType[]
+	[key: string]: ItemInfoProductType[]
 }
 
 export interface IRootProduct {
@@ -122,23 +169,25 @@ type ValueInfoType =
 	| 'lang'
 	| 'backlight'
 
+export type ProductInfoItemType = number | string | boolean | undefined
+
 export interface ProductInfo {
 	id: number
 	__component: string
-	[key: string]: number | string
-	// memory?: number
-	// speed?: number
-	// type?: string
-	// capacity?: number
-	// voltage?: number
-	// power?: number
-	// amperage?: number
-	// form?: string
-	// interface?: string
-	// size?: number
-	// resolution?: string
-	// lang?: string
-	// backlight?: boolean
+	[key: string]: ProductInfoItemType
+	memory?: number
+	speed?: number
+	type?: string
+	capacity?: number
+	voltage?: number
+	power?: number
+	amperage?: number
+	form?: string
+	interface?: string
+	size?: number
+	resolution?: string
+	lang?: string
+	backlight?: boolean
 }
 
 export interface ProductImagesData {

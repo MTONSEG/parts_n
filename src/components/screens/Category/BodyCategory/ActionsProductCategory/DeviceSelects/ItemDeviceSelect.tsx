@@ -1,6 +1,11 @@
 'use client'
-import { useEffect, useState } from 'react'
-import Select, { ActionMeta, SingleValue } from 'react-select'
+import { useEffect, useRef, useState } from 'react'
+import Select, {
+	ActionMeta,
+	GroupBase,
+	OptionProps,
+	SingleValue,
+} from 'react-select'
 import { ItemSelectType } from '../../../../../../models/models'
 import './DeviceSelects.scss'
 import { useAppSelector } from '../../../../../../hooks/useTypedRedux'
@@ -20,23 +25,20 @@ export default function ItemDeviceSelect({
 	type,
 }: PropsType) {
 	const id = Date.now().toString()
-	const [isMounted, setIsMounted] = useState<boolean>(true)
-	useEffect(() => setIsMounted(true), [])
-	const { currentDevice } = useAppSelector(state => state.product)
+	const [isMounted, setIsMounted] = useState<boolean>(false)
+	const { currentDevice, isMountSelect } = useAppSelector(
+		state => state.product
+	)
+	const { toggleMountSelect } = useActions()
 	const {
 		setCurrentDeviceBrand,
 		setCurrentDeviceModel,
 		setCurrentDeviceSeries,
 	} = useActions()
 
-	const handleChange = (
-		newValue: SingleValue<string>,
-		actionMeta: ActionMeta<string>
-	) => {
-		// if(type === 'brand') {setCurrentDeviceBrand(newValue)}
-		console.log(newValue);
-		
-	}
+	const handleChange = (options: OptionProps) => {}
+
+	useEffect(() => setIsMounted(true), [isMounted])
 
 	return isMounted ? (
 		<div className='md:mr-[40px] last:mr-0'>
@@ -55,12 +57,10 @@ export default function ItemDeviceSelect({
 						background: isSelected ? '#36DD65' : '',
 					}),
 				}}
-				// options={options}
-				value={currentDevice[type]}
+				options={options}
 				placeholder={placeholder}
 				className='dev-select'
 				classNamePrefix='prefix-dev-select'
-				onChange={handleChange}
 			/>
 		</div>
 	) : null
