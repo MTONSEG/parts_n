@@ -1,5 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { IProduct, IRootProduct } from './catalog.types'
+import {
+	DeviceData,
+	DeviceFullData,
+	IProduct,
+	IRootProduct,
+} from './catalog.types'
 import { API } from '../../api'
 
 export const getCatalogProducts = createAsyncThunk<
@@ -14,6 +19,20 @@ export const getCatalogProducts = createAsyncThunk<
 	if (!res.ok) throw new Error('Failed to fetching data')
 
 	const data: IRootProduct = await res.json()
+
+	return data.data
+})
+
+export const getDevices = createAsyncThunk<
+	DeviceData[],
+	undefined,
+	{ rejectValue: string }
+>('api/device', async (_, { rejectWithValue }) => {
+	const res = await fetch(`${API}/devices?populate[0]=brand.name`)
+
+	if (!res.ok) throw new Error('Failed to fetching data')
+
+	const data: DeviceFullData = await res.json()
 
 	return data.data
 })

@@ -1,11 +1,25 @@
 'use client'
 
-import { useAppSelector } from '../../../../hooks/useTypedRedux'
+import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../../../../hooks/useTypedRedux'
 import ActionsProductCategory from './ActionsProductCategory/ActionsProductCategory'
 import ProductsCategory from './ProductsCategory/ProductsCategory'
+import {
+	getCatalogProducts,
+	getDevices,
+} from '../../../../redux/catalog/catalog.api'
 
 export default function BodyCategory({ category }: { category: string }) {
-	const { products } = useAppSelector(state => state.product)
+	const dispatch = useAppDispatch()
+	const { products, brands } = useAppSelector(state => state.product)
+
+	useEffect(() => {
+		if (!brands.options.length) {
+			dispatch(getDevices())
+		}
+		dispatch(getCatalogProducts(category))
+	}, [])
+
 
 	return (
 		<div className='flex-grow'>

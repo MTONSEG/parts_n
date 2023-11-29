@@ -1,13 +1,13 @@
 'use client'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useAppSelector } from '@/hooks/useRedux'
+
 import './ContactsForms.scss'
 import { Input } from '../../../ui/forms/Input/Input'
 import { Textarea } from '../../../ui/forms/Textarea/Textarea'
 import { Button } from '../../../ui/buttons/Button/Button'
-import { useEffect } from 'react'
 import { API } from '../../../../api'
+import { useAppSelector } from '../../../../hooks/useTypedRedux'
 
 type InputForm = {
 	name: string

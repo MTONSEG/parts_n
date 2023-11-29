@@ -77,6 +77,17 @@
 		}
 	}
 
+	&_square {
+		border-radius: 0;
+		border: 1px solid transparent;
+		padding: 9px 15px;
+		&.active {
+			border-color: #36DD65;
+			background: #fff;
+			color: #555;
+		}
+
+	}
 	@media (max-width: 576px) {
 		&_favorite {
 			width: 36px;

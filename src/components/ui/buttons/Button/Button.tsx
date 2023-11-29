@@ -2,9 +2,10 @@
 
 import { useRouter } from 'next/navigation'
 import type { ButtonTypes } from '../../../../models/models'
-import { MouseEventHandler, ReactNode } from 'react'
+import { CSSProperties, MouseEventHandler, ReactNode } from 'react'
 import Image from 'next/image'
 import FavoriteIcon from '@/icons/favorite-in-card.svg'
+import { SaleSort } from '../../../../redux/catalog/catalog.types'
 
 type ButtonPropsType = {
 	path?: string
@@ -12,7 +13,8 @@ type ButtonPropsType = {
 	className?: string
 	children?: ReactNode
 	ariaLabel?: string
-	variant?: 'favorite' | 'default' | 'cart'
+	variant?: 'favorite' | 'default' | 'cart' | 'square'
+	style?: CSSProperties,
 	onClick?: () => void
 }
 
@@ -22,8 +24,10 @@ export function Button({
 	className,
 	children,
 	ariaLabel = 'Go to Catalog',
-	variant = 'default',
+	style,
 	onClick,
+	variant = 'default',
+	
 }: ButtonPropsType) {
 	const router = useRouter()
 
@@ -38,6 +42,7 @@ export function Button({
 	}
 	return (
 		<button
+			style={style}
 			type={type}
 			className={`button ${
 				className ? className : ''

@@ -1,3 +1,5 @@
+import { SaleSort } from '../redux/catalog/catalog.types'
+
 export type NumStr = string | number
 
 export interface ILink {
@@ -6,7 +8,7 @@ export interface ILink {
 	path: string
 }
 
-export type ButtonTypes = 'button' | 'submit';
+export type ButtonTypes = 'button' | 'submit'
 
 export type StatusType = 'init' | 'loading' | 'success' | 'error'
 
@@ -29,3 +31,18 @@ export type CategoriesType =
 	| 'keyboards'
 	| 'rams'
 	| 'storages'
+
+export interface ItemSelectType {
+	id?: string | number
+	label: string
+	value: string
+	selected?: boolean
+}
+
+export interface SortItemType {
+	id?: string | number
+	label: string
+	value: SaleSort
+	selected?:boolean
+}
+

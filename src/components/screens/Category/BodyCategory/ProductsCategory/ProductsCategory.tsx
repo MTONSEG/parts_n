@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react'
 import './ProductsCategory.scss'
-import {
-	useAppDispatch,
-	useAppSelector,
-} from '../../../../../hooks/useTypedRedux'
-import { getCatalogProducts } from '../../../../../redux/catalog/catalog.api'
+import { useAppSelector } from '../../../../../hooks/useTypedRedux'
 import Loading from '../../../../ui/loaders/Loading'
 import Image from 'next/image'
 import { Button } from '../../../../ui/buttons/Button/Button'
@@ -14,14 +10,12 @@ import CartIcon from '@/icons/cart.svg'
 import CheckIcon from '@/icons/check.svg'
 
 export default function ProductsCategory({ category }: { category: string }) {
-	const [inCart, setInCart] = useState<boolean>(false)
-	const dispatch = useAppDispatch()
-	const { products, status, grid, ...state } = useAppSelector(
+	const [inCart] = useState<boolean>(false)
+	const status = useAppSelector(state => state.product.status)
+	const { currentProducts, grid, ...state } = useAppSelector(
 		state => state.product
 	)
-	useEffect((): void => {
-		dispatch(getCatalogProducts(category))
-	}, [dispatch])
+	useEffect((): void => {}, [])
 
 	const handleFavoriteClick = () => {}
 
@@ -34,10 +28,10 @@ export default function ProductsCategory({ category }: { category: string }) {
 		<>
 			<ul
 				className={`catalog ${grid ? 'catalog_grid' : ''} ${
-					products?.length < 3 ? 'small' : ''
+					currentProducts?.length < 3 ? 'small' : ''
 				}`}
 			>
-				{products?.map(el => (
+				{currentProducts?.map(el => (
 					<li className='catalog__item item-catalog' key={el.id}>
 						<div className='item-catalog__body'>
 							<div className='item-catalog__image-wrap'>

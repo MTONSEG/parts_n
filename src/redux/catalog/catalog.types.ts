@@ -1,19 +1,55 @@
-import type { CategoriesType, StatusType } from '../../models/models'
+import type {
+	CategoriesType,
+	ItemSelectType,
+	SortItemType,
+	StatusType,
+} from '../../models/models'
 
 export interface IProductState {
 	products: IProduct[]
+	currentProducts: IProduct[]
 	status: StatusType
 	grid: boolean
 	info: IProductInfo
 	categories: CategoriesType[]
+	viewSort: {
+		currentItem: string
+		items: ItemSelectType[]
+	}
+	saleSort: SaleSort
+	sortButtons: SortItemType[]
+	currentDevice: IDevice
+	brands: {
+		title: string
+		placeholder?: string
+		options: ItemSelectType[]
+	}
+	models: {
+		title: string
+		placeholder?: string
+		options: ItemSelectType[]
+	}
+	series: {
+		title: string
+		placeholder?: string
+		options: ItemSelectType[]
+	}
 }
+
+export type SaleSort = 'hit' | 'hot' | 'sale' | null
+
+export interface IDevice {
+	brand: string | undefined
+	series: string | undefined
+	model: string | undefined
+}
+
 type ItemInfoProductType = {
 	id: string | number
 	title: string
-	value: string,
+	value: string
 	unit: string
 }
-
 
 export interface IProductInfo {
 	batteries: ItemInfoProductType[]
@@ -165,6 +201,53 @@ export interface Meta {
 }
 
 export interface Pagination {
+	page: number
+	pageSize: number
+	pageCount: number
+	total: number
+}
+
+export interface DeviceFullData {
+	data: DeviceData[]
+	meta: DeviceBrandAttributesMeta
+}
+
+export interface DeviceData {
+	id: number
+	attributes: DeviceDataAttributes
+}
+
+export interface DeviceDataAttributes {
+	model: string
+	series: string
+	createdAt: string
+	updatedAt: string
+	publishedAt: string
+	brand: DeviceBrandFullData
+}
+
+export interface DeviceBrandFullData {
+	data: DeviceBrandData
+}
+
+export interface DeviceBrandData {
+	id: number
+	attributes: DeviceBrandAttributes
+}
+
+export interface DeviceBrandAttributes {
+	name: string
+	createdAt: string
+	updatedAt: string
+	publishedAt: string
+	device: boolean
+}
+
+export interface DeviceBrandAttributesMeta {
+	pagination: DeviceDataPagination
+}
+
+export interface DeviceDataPagination {
 	page: number
 	pageSize: number
 	pageCount: number
