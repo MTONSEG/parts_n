@@ -15,9 +15,9 @@ export default function BodyCategory({ category }: { category: string }) {
 	const { products, brands, status } = useAppSelector(state => state.product)
 
 	useEffect(() => {
-		// if (!brands.options.length) {
-		// 	dispatch(getDevices())
-		// }
+		if (!brands.options.length) {
+			dispatch(getDevices())
+		}
 		dispatch(getCatalogProducts(category))
 	}, [brands.options.length, category, dispatch])
 	

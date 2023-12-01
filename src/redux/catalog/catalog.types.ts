@@ -14,7 +14,7 @@ export interface IProductState {
 	info: IProductInfo
 	categories: CategoriesType[]
 	viewSort: {
-		currentItem: string
+		currentItem: { label: string; value: string | null }
 		items: ItemSelectType[]
 	}
 	saleSort: SaleSort
@@ -37,6 +37,7 @@ export interface IProductState {
 	}
 	filterInfo: IProductInfo
 	filterList: FilterListType
+	filterSelected: { [key: string]: string[] }
 }
 
 export type SaleSort = 'hit' | 'hot' | 'sale' | null
@@ -91,8 +92,8 @@ export type FilterListType = {
 
 type ItemInfoProductType = {
 	id: string | number
-	title: string,
-	subtitle?:string
+	title: string
+	subtitle?: string
 	value: string
 	unit: string
 }

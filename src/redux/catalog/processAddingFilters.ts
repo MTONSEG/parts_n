@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import { CategoriesType, ItemSelectType } from '../../models/models'
+import { ItemSelectType } from '../../models/models'
 import type {
 	FilterListType,
 	IProduct,
@@ -19,25 +19,25 @@ export const processInitSetters = (
 
 		products?.forEach(product => {
 			keys?.forEach(key => {
-				const value = product.attributes.info[0][key]
-				infoSetters[key].add(value)
+				const value = product.attributes.info[0]?.[key]
+				if (value) {
+					infoSetters[key].add(value)
 
-				result[String(value)] = result[String(value)]
-					? result[String(value)] + 1
-					: 1
+					result[String(value)] = result[String(value)]
+						? result[String(value)] + 1
+						: 1
 
-				if (!qtyItems[key]) {
-					qtyItems[key] = {}
+					if (!qtyItems[key]) {
+						qtyItems[key] = {}
+					}
+
+					qtyItems[key][String(value)] = qtyItems[key][String(value)]
+						? qtyItems[key][String(value)] + 1
+						: 1
 				}
-
-				qtyItems[key][String(value)] = qtyItems[key][String(value)]
-					? qtyItems[key][String(value)] + 1
-					: 1
 			})
 		})
 	}
-
-	console.log(qtyItems)
 
 	const processFilterList = (
 		category: keyof FilterListType,

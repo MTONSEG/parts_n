@@ -1,5 +1,6 @@
 import { useActions } from '../../../../../hooks/useAction'
 import { useAppSelector } from '../../../../../hooks/useTypedRedux'
+import { objectFilterToArray } from '../../../../../utils/getFilterItems'
 import GridButtons from '../../../../ui/buttons/GridButtons/GridButtons'
 import LabelFilter from '../../../../ui/buttons/LabelFilter/LabelFilter'
 import SortItems from '../../../../ui/forms/SortItems/SortItems'
@@ -8,13 +9,16 @@ import ButtonsSortCatalog from './ButtonsSortCatalog/ButtonSortCatalog'
 import DeviceSelects from './DeviceSelects/DeviceSelects'
 
 export default function ActionsProductCategory() {
-	const { currentProducts } = useAppSelector(state => state.product)
-	const {clearSort} = useActions()
+	const { currentProducts, filterSelected } = useAppSelector(
+		state => state.product
+	)
+	const { clearSort } = useActions()
+	
 
 	return (
 		<div className='actions-catalog mb-[19px] md:mb-[13px]'>
 			<div className=''>
-				{/* <DeviceSelects /> */}
+				<DeviceSelects />
 				<div className='flex justify-between flex-wrap-reverse items-center mb-[20px]'>
 					<ButtonsSortCatalog />
 					<SortItems />
@@ -22,14 +26,15 @@ export default function ActionsProductCategory() {
 			</div>
 			<div className='flex items-start justify-between'>
 				<ul className='actions-catalog__labels flex md:flex-wrap overflow-auto md:overflow-visible px-[16px] mx-[-16px] md:px-0 md:mx-0'>
-					<LabelFilter title='asus' onClick={() => {}} />
-					<LabelFilter title='asus' onClick={() => {}} />
-					<LabelFilter title='asus' onClick={() => {}} />
-					<LabelFilter
-						title='Clear all'
-						variant='clear'
-						onClick={clearSort}
-					/>
+					{objectFilterToArray(filterSelected).map((el, index) => (
+						<LabelFilter title={el} key={index} />
+					))}
+					{objectFilterToArray(filterSelected).length > 0 && (
+						<LabelFilter
+							title='Clear all'
+							variant='clear'
+						/>
+					)}
 				</ul>
 			</div>
 			<div className='flex items-center justify-between'>

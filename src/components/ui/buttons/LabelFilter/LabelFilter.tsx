@@ -1,24 +1,27 @@
 'use client'
 
 import Image from 'next/image'
+import { useAppSelector } from '../../../../hooks/useTypedRedux'
+import { useActions } from '../../../../hooks/useAction'
 
 type PropsType = {
+	id?: string | number | undefined
 	title: string
 	variant?: 'clear' | 'label'
-	onClick: () => void
 }
 
 export default function LabelFilter({
+	id,
 	title,
 	variant = 'label',
-	onClick,
 }: PropsType) {
+	const { clearSort, removeFilterItem } = useActions()
 	return (
 		<>
 			{variant === 'clear' ? (
 				<button
 					className='border border-solid border-[#CACDD8] rounded-[2px] bg-white px-[18px] py-[10px] flex shrink-0 grow-0 items-center w-max mr-[9px] md:mr-[0] mb-[9px] md:mb-[16px] text-[12px] md:text-[14px] font-medium hover:bg-slate-100 h-[40px] order-1 md:-order-none'
-					onClick={onClick}
+					onClick={()=>{clearSort()}}
 				>
 					{title}
 				</button>
@@ -28,7 +31,7 @@ export default function LabelFilter({
 						{title}
 					</p>
 					<button
-						onClick={onClick}
+						onClick={()=>{removeFilterItem(title)}}
 						className='block hover:opacity-[0.8] w-[18px] h-[18px] md:w-[20px] md:h-[20px]'
 						aria-label='delete filter item'
 					>

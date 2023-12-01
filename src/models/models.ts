@@ -33,11 +33,12 @@ export type CategoriesType =
 	| 'storages'
 
 export interface ItemSelectType {
-	id?: string | number
-	label: string | number | boolean
+	id?: string | number 
+	label: string | number
 	value: string
 	selected?: boolean
-	qty: number
+	unit?: string
+	qty?: number
 }
 
 export interface SortItemType {

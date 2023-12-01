@@ -7,8 +7,10 @@ import InfoProductCategory from './InfoProductCategory/InfoProductCategory'
 import StatusProductCategory from './StatusProductCategory/StatusProductCategory'
 import CartIcon from '@/icons/cart.svg'
 import CheckIcon from '@/icons/check.svg'
+import { useRouter } from 'next/navigation'
 
 export default function ProductsCategory({ category }: { category: string }) {
+	const router = useRouter()
 	const [inCart] = useState<boolean>(false)
 	const { currentProducts, grid, ...state } = useAppSelector(
 		state => state.product
@@ -28,7 +30,7 @@ export default function ProductsCategory({ category }: { category: string }) {
 				}`}
 			>
 				{currentProducts?.map(el => (
-					<li className='catalog__item item-catalog' key={el.id}>
+					<li className='catalog__item item-catalog' key={el.id} onClick={()=>{router.push(`/catalog/${category}/${el.id}`)}}>
 						<div className='item-catalog__body'>
 							<div className='item-catalog__image-wrap'>
 								<Image

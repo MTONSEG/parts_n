@@ -9,6 +9,8 @@ import { getCatalogProducts, getDevices } from './catalog.api'
 import { v4 } from 'uuid'
 import { upperFirstLetter } from '../../utils/upperFirstLetter'
 import { processInitSetters } from './processAddingFilters'
+import { CategoriesType } from '../../models/models'
+import { sortDateProducts, sortDownProducts, sortUpProducts } from '../../utils/sortProducts'
 
 const initialState: IProductState = {
 	status: 'init',
@@ -57,12 +59,15 @@ const initialState: IProductState = {
 		],
 	},
 	viewSort: {
-		currentItem: 'Популярные',
+		currentItem: {
+			label: 'по дате',
+			value: null,
+		},
 		items: [
 			{
 				id: v4(),
-				label: 'Популярные',
-				value: 'popular',
+				label: 'по дате',
+				value: 'date',
 				selected: true,
 			},
 			{
@@ -288,6 +293,7 @@ const initialState: IProductState = {
 			interface: [],
 		},
 	},
+	filterSelected: {},
 }
 
 export const productSlice = createSlice({
@@ -304,15 +310,26 @@ export const productSlice = createSlice({
 			state.isMountSelect = !state.isMountSelect
 		},
 		setSortView(state, action: PayloadAction<{ id: string | number }>) {
-			// state.viewSort.items = state.viewSort.items.map(item => {
-			// 	if (item.id === action.payload.id) {
-			// 		state.viewSort.currentItem = item.label
-			// 	}
-			// 	return {
-			// 		...item,
-			// 		selected: item.id === action.payload.id,
-			// 	}
-			// })
+			state.viewSort.items = state.viewSort.items.map(item => {
+				if (item.id === action.payload.id) {
+					state.viewSort.currentItem.label = String(item.label)
+					state.viewSort.currentItem.value = item.value
+				}
+				return {
+					...item,
+					selected: item.id === action.payload.id,
+				}
+			})
+
+			if (state.viewSort.currentItem.value === 'priceUp') {
+				sortUpProducts(state.currentProducts)
+			}
+			if (state.viewSort.currentItem.value === 'priceDown') {
+				sortDownProducts(state.currentProducts)
+			}
+			if (state.viewSort.currentItem.value === 'date') {
+				sortDateProducts(state.currentProducts)
+			}
 		},
 		setSaleSort(state, action: PayloadAction<SaleSort>) {
 			if (state.saleSort !== action.payload) {
@@ -342,6 +359,51 @@ export const productSlice = createSlice({
 		setCurrentDeviceModel(state, action: PayloadAction<string | undefined>) {
 			state.currentDevice.model = action.payload
 		},
+		toggleItemToFilter(
+			state,
+			action: PayloadAction<{
+				category: string
+				subcategory: string
+				id: string | number | undefined
+			}>
+		) {
+			const { category, subcategory, id } = action.payload
+
+			if (!state.filterSelected[subcategory]) {
+				state.filterSelected[subcategory] = []
+			}
+
+			state.filterList[category][subcategory] = state.filterList[category][
+				subcategory
+			].map(el => {
+				if (el.id === id) {
+					if (el.selected) {
+						const index: number = state.filterSelected[
+							subcategory
+						].indexOf(String(el.label))
+						state.filterSelected[subcategory].splice(index, 1)
+					} else {
+						state.filterSelected[subcategory].push(String(el.label))
+					}
+
+					el.selected = !el.selected
+				}
+				return el
+			})
+
+			state.currentProducts = state.products.filter(el => {
+				const subcategoriesMatch = Object.keys(state.filterSelected).every(
+					subcatKey =>
+						state.filterSelected[subcatKey].length === 0 ||
+						state.filterSelected[subcatKey].some(
+							item => String(el.attributes.info[0][subcatKey]) === item
+						)
+				)
+
+				return subcategoriesMatch
+			})
+		},
+
 		clearSort(state) {
 			state.currentDevice = {
 				brand: '',
@@ -350,6 +412,54 @@ export const productSlice = createSlice({
 			}
 
 			state.saleSort = null
+
+			if (Object.keys(state.filterSelected).length) {
+				for (let key in state.filterSelected) {
+					state.filterSelected[key].length = 0
+				}
+			}
+
+			for (let key in state.filterList) {
+				for (let subKey in state.filterList[key]) {
+					state.filterList[key][subKey] = state.filterList[key][
+						subKey
+					].map(el => {
+						el.selected = false
+						return el
+					})
+				}
+			}
+		},
+		removeFilterItem(state, action: PayloadAction<string>) {
+			for (let key in state.filterSelected) {
+				state.filterSelected[key] = state.filterSelected[key].filter(
+					el => el !== action.payload
+				)
+			}
+			for (let key in state.filterList) {
+				for (let subKey in state.filterList[key]) {
+					state.filterList[key][subKey] = state.filterList[key][
+						subKey
+					].map(el => {
+						if (el.label === action.payload) {
+							el.selected = false
+						}
+
+						return el
+					})
+				}
+			}
+			state.currentProducts = state.products.filter(el => {
+				const subcategoriesMatch = Object.keys(state.filterSelected).every(
+					subcatKey =>
+						state.filterSelected[subcatKey].length === 0 ||
+						state.filterSelected[subcatKey].some(
+							item => String(el.attributes.info[0][subcatKey]) === item
+						)
+				)
+
+				return subcategoriesMatch
+			})
 		},
 	},
 	extraReducers: builder => {
@@ -360,6 +470,13 @@ export const productSlice = createSlice({
 			.addCase(getCatalogProducts.fulfilled, (state, action) => {
 				state.products = action.payload
 				state.currentProducts = action.payload
+				state.viewSort.currentItem = { label: 'по дате', value: 'date' }
+
+				if (Object.keys(state.filterSelected).length) {
+					for (let key in state.filterSelected) {
+						state.filterSelected[key].length = 0
+					}
+				}
 
 				const type: string =
 					action.payload[0].attributes.category.data.attributes.type
@@ -406,29 +523,29 @@ export const productSlice = createSlice({
 					uniqueSeries.add(el?.attributes?.series)
 				})
 
-				// state.brands.options = Array.from(uniqueBrands).map(
-				// 	(el, index) => ({
-				// 		id: index,
-				// 		value: el.toLowerCase(),
-				// 		label: upperFirstLetter(el),
-				// 	})
-				// )
+				state.brands.options = Array.from(uniqueBrands).map(
+					(el, index) => ({
+						id: index,
+						value: el.toLowerCase(),
+						label: upperFirstLetter(el),
+					})
+				)
 
-				// state.models.options = Array.from(uniqueModels).map(
-				// 	(el, index) => ({
-				// 		id: index,
-				// 		value: el.toLowerCase(),
-				// 		label: upperFirstLetter(el),
-				// 	})
-				// )
+				state.models.options = Array.from(uniqueModels).map(
+					(el, index) => ({
+						id: index,
+						value: el.toLowerCase(),
+						label: upperFirstLetter(el),
+					})
+				)
 
-				// state.series.options = Array.from(uniqueSeries).map(
-				// 	(el, index) => ({
-				// 		id: index,
-				// 		value: el?.toLowerCase(),
-				// 		label: upperFirstLetter(el),
-				// 	})
-				// )
+				state.series.options = Array.from(uniqueSeries).map(
+					(el, index) => ({
+						id: index,
+						value: el?.toLowerCase(),
+						label: upperFirstLetter(el),
+					})
+				)
 
 				state.status = 'success'
 			})

@@ -36,7 +36,10 @@ export default function ItemDeviceSelect({
 		setCurrentDeviceSeries,
 	} = useActions()
 
-	const handleChange = (options: OptionProps) => {}
+	const handleChange = (options: OptionProps) => {
+		console.log(options);
+		
+	}
 
 	useEffect(() => setIsMounted(true), [isMounted])
 
@@ -52,7 +55,8 @@ export default function ItemDeviceSelect({
 					option: (base, { isFocused, isSelected }) => ({
 						...base,
 						':hover': {
-							background: isFocused ? '#a6dfb6' : '',
+							background:
+								isFocused && isSelected ? '#36DD65' : '#a6dfb6',
 						},
 						background: isSelected ? '#36DD65' : '',
 					}),

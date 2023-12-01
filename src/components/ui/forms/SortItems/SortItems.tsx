@@ -30,7 +30,7 @@ export default function SortItems() {
 				onMouseMove={handleMouseMove}
 				onMouseLeave={handleMouseLeave}
 			>
-				<p className='sort-items__current'>{upperFirstLetter(viewSort.currentItem)}</p>
+				<p className='sort-items__current'>{upperFirstLetter(viewSort.currentItem.label)}</p>
 				<ul className='sort-items__list'>
 					{viewSort?.items.map(item => (
 						<li
@@ -39,10 +39,10 @@ export default function SortItems() {
 							}`}
 							key={item.id}
 							onClick={() => {
-								handleClickItem(item.id)
+								handleClickItem(String(item.id))
 							}}
 						>
-							{upperFirstLetter(item.label)}
+							{upperFirstLetter(String(item.label))}
 						</li>
 					))}
 				</ul>

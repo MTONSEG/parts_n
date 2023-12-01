@@ -35,9 +35,11 @@
 	cursor: pointer;
 	display: flex;
 	align-items: center;
+	position: relative;
 
 	&:hover {
 		border-color: #36dd65;
+		z-index: 4;
 	}
 	&:hover .item-catalog__title {
 		text-decoration: underline;
