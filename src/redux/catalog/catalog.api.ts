@@ -13,7 +13,7 @@ export const getCatalogProducts = createAsyncThunk<
 	{ rejectValue: string }
 >('api/product', async (category, { rejectWithValue }) => {
 	const res = await fetch(
-		`${API}/products?filters[category][type]=${category}&populate=*`
+		`${API}/products?filters[category][type]=${category}&populate[device][populate]=*&populate[info][populate]=*&populate[category][populate]=*&populate[images][populate]=`
 	)
 
 	if (!res.ok) throw new Error('Failed to fetching data')

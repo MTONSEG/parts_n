@@ -15,7 +15,9 @@ interface PropsType {
 	placeholder?: string
 	title?: string
 	options: ItemSelectType[]
+	disable?: boolean
 	type: 'brand' | 'series' | 'model'
+	handleStateChange: (payload: string | number) => void
 }
 
 export default function ItemDeviceSelect({
@@ -23,6 +25,8 @@ export default function ItemDeviceSelect({
 	options,
 	title,
 	type,
+	disable,
+	handleStateChange,
 }: PropsType) {
 	const id = Date.now().toString()
 	const [isMounted, setIsMounted] = useState<boolean>(false)
@@ -36,15 +40,25 @@ export default function ItemDeviceSelect({
 		setCurrentDeviceSeries,
 	} = useActions()
 
-	const handleChange = (options: OptionProps) => {
-		console.log(options);
+	const handleChange = (
+		newValue: SingleValue<ItemSelectType>,
+		actionMeta: ActionMeta<ItemSelectType>
+	): void => {
+		console.log(newValue, actionMeta)
+
 		
+
+		if (newValue) handleStateChange(newValue.label)
 	}
 
 	useEffect(() => setIsMounted(true), [isMounted])
 
 	return isMounted ? (
-		<div className='md:mr-[40px] last:mr-0'>
+		<div
+			className={`inner-select md:mr-[40px] last:mr-0 relative ${
+				disable ? 'pointer-events-none opacity-50' : ''
+			}`}
+		>
 			{title && <p className='md:mb-[8px]'>{title}</p>}
 			<Select
 				id={id}
@@ -65,6 +79,7 @@ export default function ItemDeviceSelect({
 				placeholder={placeholder}
 				className='dev-select'
 				classNamePrefix='prefix-dev-select'
+				onChange={handleChange}
 			/>
 		</div>
 	) : null

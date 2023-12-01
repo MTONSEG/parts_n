@@ -10,7 +10,11 @@ import { v4 } from 'uuid'
 import { upperFirstLetter } from '../../utils/upperFirstLetter'
 import { processInitSetters } from './processAddingFilters'
 import { CategoriesType } from '../../models/models'
-import { sortDateProducts, sortDownProducts, sortUpProducts } from '../../utils/sortProducts'
+import {
+	sortDateProducts,
+	sortDownProducts,
+	sortUpProducts,
+} from '../../utils/sortProducts'
 
 const initialState: IProductState = {
 	status: 'init',
@@ -350,13 +354,36 @@ export const productSlice = createSlice({
 				})
 			}
 		},
-		setCurrentDeviceBrand(state, action: PayloadAction<string | undefined>) {
+		setCurrentDeviceBrand(
+			state,
+			action: PayloadAction<string | number | undefined>
+		) {
 			state.currentDevice.brand = action.payload
+			state.currentDevice.series = ''
+			state.currentDevice.model = ''
+
+			state.currentProducts = state.products.filter(el => 
+				el.attributes.device?.data?.attributes.brand.data.attributes.name ===
+					state.currentDevice.brand
+
+				// let test =
+				// 	el.attributes.device?.data.attributes.brand.data.attributes.name
+				// console.log(test)
+
+				// return el
+			
+			)
 		},
-		setCurrentDeviceSeries(state, action: PayloadAction<string | undefined>) {
+		setCurrentDeviceSeries(
+			state,
+			action: PayloadAction<string | number | undefined>
+		) {
 			state.currentDevice.series = action.payload
 		},
-		setCurrentDeviceModel(state, action: PayloadAction<string | undefined>) {
+		setCurrentDeviceModel(
+			state,
+			action: PayloadAction<string | number | undefined>
+		) {
 			state.currentDevice.model = action.payload
 		},
 		toggleItemToFilter(

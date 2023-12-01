@@ -43,9 +43,9 @@ export interface IProductState {
 export type SaleSort = 'hit' | 'hot' | 'sale' | null
 
 export interface IDevice {
-	brand: string | undefined
-	series: string | undefined
-	model: string | undefined
+	brand: string | undefined | number
+	series: string | undefined | number
+	model: string | undefined | number
 }
 
 export type FilterListType = {
@@ -132,6 +132,7 @@ export interface IProductAttributes {
 	category: ProductCategory
 	info: ProductInfo[]
 	images: ProductImagesData
+	device: DeviceFullDataWithoutMeta
 }
 
 export interface ProductCategory {
@@ -261,7 +262,10 @@ export interface DeviceFullData {
 	data: DeviceData[]
 	meta: DeviceBrandAttributesMeta
 }
-
+export interface DeviceFullDataWithoutMeta {
+	data: DeviceData
+	meta: DeviceBrandAttributesMeta
+}
 export interface DeviceData {
 	id: number
 	attributes: DeviceDataAttributes
