@@ -9,7 +9,6 @@ import { getCatalogProducts, getDevices } from './catalog.api'
 import { v4 } from 'uuid'
 import { upperFirstLetter } from '../../utils/upperFirstLetter'
 import { processInitSetters } from './processAddingFilters'
-import { info } from 'console'
 
 const initialState: IProductState = {
 	status: 'init',
@@ -402,34 +401,34 @@ export const productSlice = createSlice({
 				const uniqueSeries = new Set<string>()
 
 				action.payload.forEach(el => {
-					uniqueBrands.add(el.attributes?.brand.data.attributes.name)
-					uniqueModels.add(el.attributes?.model)
-					uniqueSeries.add(el.attributes?.series)
+					uniqueBrands.add(el?.attributes?.brand.data.attributes.name)
+					uniqueModels.add(el?.attributes?.model)
+					uniqueSeries.add(el?.attributes?.series)
 				})
 
-				state.brands.options = Array.from(uniqueBrands).map(
-					(el, index) => ({
-						id: index,
-						value: el.toLowerCase(),
-						label: upperFirstLetter(el),
-					})
-				)
+				// state.brands.options = Array.from(uniqueBrands).map(
+				// 	(el, index) => ({
+				// 		id: index,
+				// 		value: el.toLowerCase(),
+				// 		label: upperFirstLetter(el),
+				// 	})
+				// )
 
-				state.models.options = Array.from(uniqueModels).map(
-					(el, index) => ({
-						id: index,
-						value: el.toLowerCase(),
-						label: upperFirstLetter(el),
-					})
-				)
+				// state.models.options = Array.from(uniqueModels).map(
+				// 	(el, index) => ({
+				// 		id: index,
+				// 		value: el.toLowerCase(),
+				// 		label: upperFirstLetter(el),
+				// 	})
+				// )
 
-				state.series.options = Array.from(uniqueSeries).map(
-					(el, index) => ({
-						id: index,
-						value: el?.toLowerCase(),
-						label: upperFirstLetter(el),
-					})
-				)
+				// state.series.options = Array.from(uniqueSeries).map(
+				// 	(el, index) => ({
+				// 		id: index,
+				// 		value: el?.toLowerCase(),
+				// 		label: upperFirstLetter(el),
+				// 	})
+				// )
 
 				state.status = 'success'
 			})

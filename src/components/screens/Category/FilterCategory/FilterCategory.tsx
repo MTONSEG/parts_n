@@ -26,7 +26,7 @@ export default function FilterCategory({ category }: { category: string }) {
 					<ul>
 						{filterList[category][item.value]?.map(el => (
 							<li key={el.id}>
-								{`${el.label}`}
+								{`${el.label} (${el.qty})`}
 							</li>
 						))}
 					</ul>

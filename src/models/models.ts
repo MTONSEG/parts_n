@@ -37,12 +37,12 @@ export interface ItemSelectType {
 	label: string | number | boolean
 	value: string
 	selected?: boolean
+	qty: number
 }
 
 export interface SortItemType {
 	id?: string | number
 	label: string
 	value: SaleSort
-	selected?:boolean
+	selected?: boolean
 }
-
