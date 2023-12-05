@@ -20,6 +20,8 @@ const initialState: IProductState = {
 	status: 'init',
 	products: [],
 	currentProducts: [],
+	activeFilter: false,
+	activeDevices: false,
 	grid: true,
 	isMountSelect: false,
 	categories: [
@@ -362,16 +364,16 @@ export const productSlice = createSlice({
 			state.currentDevice.series = ''
 			state.currentDevice.model = ''
 
-			state.currentProducts = state.products.filter(el => 
-				el.attributes.device?.data?.attributes.brand.data.attributes.name ===
-					state.currentDevice.brand
+			state.currentProducts = state.products.filter(
+				el =>
+					el.attributes.device?.data?.attributes.brand.data.attributes
+						.name === state.currentDevice.brand
 
 				// let test =
 				// 	el.attributes.device?.data.attributes.brand.data.attributes.name
 				// console.log(test)
 
 				// return el
-			
 			)
 		},
 		setCurrentDeviceSeries(
@@ -385,6 +387,13 @@ export const productSlice = createSlice({
 			action: PayloadAction<string | number | undefined>
 		) {
 			state.currentDevice.model = action.payload
+		},
+		toggleFilter(state) {
+			state.activeFilter = !state.activeFilter
+		},
+
+		toggleDeviceMenu(state) {
+			state.activeDevices = !state.activeDevices
 		},
 		toggleItemToFilter(
 			state,

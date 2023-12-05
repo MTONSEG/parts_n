@@ -43,6 +43,14 @@
 	&:hover {
 		background-color: #1ba341;
 	}
+	&_white {
+		border: 1px solid #e2e2e2;
+		background: #fbfcfc;
+		color: #585858;
+		&:hover {
+			background: #fbfcfc;
+		}
+	}
 	&_favorite {
 		width: 49px;
 		height: 49px;
@@ -61,7 +69,7 @@
 			width: 25px;
 			height: 25px;
 			stroke: #c7f7d5;
-			transition: all .2s;
+			transition: all 0.2s;
 			fill: #fff;
 		}
 		&.active {
@@ -71,7 +79,7 @@
 	}
 
 	&_cart {
-		background-color: #1BA341;
+		background-color: #1ba341;
 		&:hover {
 			background-color: #30d25e;
 		}
@@ -82,11 +90,10 @@
 		border: 1px solid transparent;
 		padding: 9px 15px;
 		&.active {
-			border-color: #36DD65;
+			border-color: #36dd65;
 			background: #fff;
 			color: #555;
 		}
-
 	}
 	@media (max-width: 576px) {
 		&_favorite {
@@ -107,7 +114,75 @@
 	min-width: 100vw;
 	min-height: 100vh;
 	background-color: rgba(0, 0, 0, 0.5);
+	top: 0;
+	left: 0;
+	transition: opacity 0.4s;
+	pointer-events: none;
 	opacity: 0;
 	z-index: 9;
-	pointer-events: none;
+	&.active {
+		opacity: 1;
+	}
+}
+@media (max-width: 767px) {
+	.bottom-menu {
+		position: fixed;
+		left: 0;
+		width: 100%;
+		background: #fff;
+		display: flex;
+		flex-direction: column;
+		max-height: 100%;
+		overflow-y: auto;
+		border-radius: 20px 20px 0 0;
+		transition: all 0.4s ease;
+		bottom: -100%;
+
+		z-index: 10;
+		&.active {
+			bottom: 0;
+		}
+		&__body {
+			padding: 13px 30px;
+			&.open .bottom-menu__list {
+				grid-template-rows: 1fr;
+				padding: 20px 0 0;
+			}
+			&.open .bottom-menu__head::after {
+				transform: translateY(-50%) rotate(225deg);
+			}
+		}
+		&__head {
+			position: relative;
+			&::after {
+				content: '';
+				display: block;
+				position: absolute;
+				top: 50%;
+				right: 0;
+				width: 8px;
+				height: 8px;
+				border: 1px solid #000;
+				border-width: 0 2px 2px 0;
+				transform: translateY(-50%) rotate(45deg);
+				transition: transform 0.2s;
+			}
+		}
+		&__footer {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 20px 30px;
+		}
+		&__list {
+			display: grid;
+			grid-template-rows: 0fr;
+			transition: grid-template-rows 0.2s;
+			overflow: hidden;
+			ul {
+				grid-column: span 2;
+			}
+		
+		}
+	}
 }

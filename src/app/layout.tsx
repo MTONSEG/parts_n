@@ -16,16 +16,16 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<ReduxProvider>
-			<html lang='ru'>
-				<body className={roboto.variable}>
+		<html lang='ru'>
+			<body className={roboto.variable}>
+				<ReduxProvider>
 					<div className='wrapper'>
 						<Header />
 						<main className='main'>{children}</main>
 						<Footer />
 					</div>
-				</body>
-			</html>
-		</ReduxProvider>
+				</ReduxProvider>
+			</body>
+		</html>
 	)
 }

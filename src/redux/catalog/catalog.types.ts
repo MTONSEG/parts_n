@@ -9,6 +9,8 @@ export interface IProductState {
 	products: IProduct[]
 	currentProducts: IProduct[]
 	status: StatusType
+	activeFilter: boolean
+	activeDevices: boolean
 	grid: boolean
 	isMountSelect: boolean
 	info: IProductInfo

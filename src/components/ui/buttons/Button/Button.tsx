@@ -13,7 +13,7 @@ type ButtonPropsType = {
 	className?: string
 	children?: ReactNode
 	ariaLabel?: string
-	variant?: 'favorite' | 'default' | 'cart' | 'square'
+	variant?: 'favorite' | 'default' | 'cart' | 'square'|'white'
 	style?: CSSProperties,
 	onClick?: () => void
 }
