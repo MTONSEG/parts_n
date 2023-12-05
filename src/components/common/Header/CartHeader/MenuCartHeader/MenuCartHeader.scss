@@ -1,0 +1,148 @@
+.menu-cart {
+	width: 100vw;
+	max-width: 328px;
+	position: absolute;
+	top: calc(100% + 30px);
+	right: -18px;
+	cursor: default;
+	&__triangle {
+		position: absolute;
+		bottom: calc(100% - 1px);
+		right: 27px;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 15px 20px 15px;
+		border-color: transparent transparent #d1d1d1 transparent;
+		z-index: 2;
+		&::after {
+			content: '';
+			position: absolute;
+			top: 1px;
+			right: -13px;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 13px 19px 13px;
+			border-color: transparent transparent white transparent;
+			z-index: 1;
+		}
+	}
+	&__body {
+		position: relative;
+		z-index: 1;
+		background: #fff;
+		border: 1px solid #d1d1d1;
+		padding: 28px 20px 22px;
+		border-radius: 6px;
+	}
+
+	&__list,
+	&__item {
+		border-bottom: 1px solid #e8e8e8;
+	}
+	&__list {
+		margin-bottom: 19px;
+		max-height: 531px;
+		overflow-y: auto;
+		&::-webkit-scrollbar {
+			width: 4px;
+		}
+		&::-webkit-scrollbar-thumb {
+			width: 2px;
+			background-color: green;
+		}
+	}
+	&__item {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		text-align: left;
+		padding: 14px 0 13px;
+		&:last-child {
+			border: 0;
+		}
+	}
+	&__image-wrap {
+		flex: 0 0 74px;
+		width: 74px;
+		height: 62px;
+		margin: 0 24px 0 0;
+		overflow: hidden;
+	}
+	&__image {
+		object-fit: contain;
+		width: 100%;
+		height: 100%;
+	}
+	&__item-body {
+		margin: 0 9px 0 0;
+	}
+	&__item-title {
+		font-size: 14px;
+		color: #19191d;
+		font-weight: 500;
+		line-height: 1.5;
+		margin-bottom: 9px;
+		&:hover {
+			text-decoration: underline;
+		}
+		span {
+			display: -webkit-box;
+			overflow: hidden;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3;
+		}
+	}
+	&__item-model,
+	&__item-code {
+		font-size: 12px;
+		line-height: 1.5;
+	}
+	&__item-text-tile {
+		font-weight: 500;
+		display: inline-block;
+		margin: 0 4px 0 0;
+	}
+	&__item-model {
+		margin-bottom: 6px;
+	}
+	&__item-code {
+		margin-bottom: 8px;
+	}
+	&__item-price {
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.5;
+	}
+	&__del-btn {
+		margin: 4px 0 0;
+		flex: 0 0 21px;
+		width: 21px;
+		height: 21px;
+		display: block;
+		&:hover {
+			opacity: 0.5;
+		}
+	}
+	&__amount {
+		margin-bottom: 17px;
+		display: flex;
+		align-items: center;
+		line-height: 1.5;
+		&-text {
+			margin: 0 21px;
+			color: #636363;
+			font-weight: 500;
+		}
+		&-value {
+			font-weight: 700;
+		}
+	}
+	&__buttons {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		gap: 15px 0;
+	}
+}

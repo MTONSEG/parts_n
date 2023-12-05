@@ -9,6 +9,8 @@ import StatusProductCategory from './StatusProductCategory/StatusProductCategory
 import CartIcon from '@/icons/cart.svg'
 import CheckIcon from '@/icons/check.svg'
 import { useRouter } from 'next/navigation'
+import { useActions } from '../../../../../hooks/useAction'
+import { IProduct } from '../../../../../redux/catalog/catalog.types'
 
 export default function ProductsCategory({ category }: { category: string }) {
 	const router = useRouter()
@@ -16,12 +18,21 @@ export default function ProductsCategory({ category }: { category: string }) {
 	const { currentProducts, grid, ...state } = useAppSelector(
 		state => state.product
 	)
-	useEffect((): void => {}, [])
+	const { cartList } = useAppSelector(state => state.cart)
+	const { addToCart } = useActions()
 
 	const handleFavoriteClick = () => {}
 
-	const handleBuyClick = () => {}
+	const handleBuyClick = (id: string | number) => {
+		const product: IProduct | undefined = currentProducts.find(
+			el => el.id === id
+		)
 
+		console.log(cartList)
+		
+
+		product && addToCart(product)
+	}
 
 	return (
 		<>
@@ -31,7 +42,13 @@ export default function ProductsCategory({ category }: { category: string }) {
 				}`}
 			>
 				{currentProducts?.map(el => (
-					<li className='catalog__item item-catalog' key={el.id} onClick={()=>{router.push(`/catalog/${category}/${el.id}`)}}>
+					<li
+						className='catalog__item item-catalog'
+						key={el.id}
+						onClick={() => {
+							router.push(`/catalog/${category}/${el.id}`)
+						}}
+					>
 						<div className='item-catalog__body'>
 							<div className='item-catalog__image-wrap'>
 								<Image
@@ -69,10 +86,12 @@ export default function ProductsCategory({ category }: { category: string }) {
 									className='item-catalog__favorite-btn'
 									onClick={handleFavoriteClick}
 								/>
-								{!inCart ? (
+								{!cartList?.some(item => item.id === el.id) ? (
 									<Button
 										className='item-catalog__cart-btn'
-										onClick={handleBuyClick}
+										onClick={() => {
+											handleBuyClick(el.id)
+										}}
 									>
 										Купить <CartIcon />
 									</Button>

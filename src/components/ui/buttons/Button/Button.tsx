@@ -13,8 +13,8 @@ type ButtonPropsType = {
 	className?: string
 	children?: ReactNode
 	ariaLabel?: string
-	variant?: 'favorite' | 'default' | 'cart' | 'square'|'white'
-	style?: CSSProperties,
+	variant?: 'favorite' | 'default' | 'cart' | 'square' | 'white' | 'underline'
+	style?: CSSProperties
 	onClick?: () => void
 }
 
@@ -27,7 +27,6 @@ export function Button({
 	style,
 	onClick,
 	variant = 'default',
-	
 }: ButtonPropsType) {
 	const router = useRouter()
 
@@ -51,6 +50,26 @@ export function Button({
 			aria-label={ariaLabel}
 		>
 			{variant === 'favorite' ? <FavoriteIcon /> : children}
+			{variant === 'underline' ? (
+				<div>
+					<svg
+						xmlns='http://www.w3.org/2000/svg'
+						width='150'
+						height='2'
+						viewBox='0 0 150 1'
+						fill='none'
+					>
+						<path
+							d='M1 0.5H149'
+							stroke='#36DD65'
+							strokeLinecap='round'
+							strokeDasharray='6 6'
+						/>
+					</svg>
+				</div>
+			) : (
+				<></>
+			)}
 		</button>
 	)
 }

@@ -34,7 +34,7 @@ const storage =
 const persistConfig = {
 	key: 'root',
 	storage,
-	blacklist: ['product','header','footer','contacts']
+	whitelist:['cart']
 }
 
 
