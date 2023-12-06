@@ -51,7 +51,7 @@ export function Button({
 		>
 			{variant === 'favorite' ? <FavoriteIcon /> : children}
 			{variant === 'underline' ? (
-				<div>
+				<div className='button__underline'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						width='150'

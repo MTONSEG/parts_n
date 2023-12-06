@@ -1,6 +1,17 @@
 .cart-header {
 	display: flex;
 	align-items: center;
+	&.active {
+		& .cart-header__icon {
+			border-color: #fff;
+			svg {
+				stroke: #fff;
+				fill: #fff;
+				width: 15px;
+				height: 15px;
+			}
+		}
+	}
 	&:hover .cart-header__icon {
 		border-color: #fff;
 		background: #4edd76;
@@ -13,7 +24,7 @@
 		transition: all 0.2s;
 	}
 	&__icon {
-		border: 1px solid rgba(255, 255, 255, 0.5);
+		border: 3px solid transparent;
 		background: #36dd65;
 		margin: 0 24px 0 0;
 		display: flex;

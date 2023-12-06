@@ -3,8 +3,19 @@
 	max-width: 328px;
 	position: absolute;
 	top: calc(100% + 30px);
-	right: -18px;
+	right: calc(100% - 70px);
 	cursor: default;
+	pointer-events: none;
+	visibility: hidden;
+	opacity: 0;
+	transition:
+		opacity 0.2s,
+		visibility 0.2s;
+	&.open {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: all;
+	}
 	&__triangle {
 		position: absolute;
 		bottom: calc(100% - 1px);
@@ -35,11 +46,13 @@
 		border: 1px solid #d1d1d1;
 		padding: 28px 20px 22px;
 		border-radius: 6px;
+		box-shadow: 0 0 30px rgb(176, 176, 176);
 	}
 
 	&__list,
 	&__item {
 		border-bottom: 1px solid #e8e8e8;
+		cursor: pointer;
 	}
 	&__list {
 		margin-bottom: 19px;
@@ -51,6 +64,7 @@
 		&::-webkit-scrollbar-thumb {
 			width: 2px;
 			background-color: green;
+			border: 2px solid #fff;
 		}
 	}
 	&__item {
@@ -121,6 +135,7 @@
 		width: 21px;
 		height: 21px;
 		display: block;
+		// position: absolute;
 		&:hover {
 			opacity: 0.5;
 		}
@@ -143,6 +158,6 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		align-items: center;
-		gap: 15px 0;
+		gap: 15px 16px;
 	}
 }

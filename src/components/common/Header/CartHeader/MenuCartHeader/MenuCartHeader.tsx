@@ -2,11 +2,15 @@ import Image from 'next/image'
 import { useAppSelector } from '../../../../../hooks/useTypedRedux'
 import './MenuCartHeader.scss'
 import { Button } from '../../../../ui/buttons/Button/Button'
-import { useEffect, useState } from 'react'
+import { MouseEventHandler, useEffect, useRef, useState } from 'react'
+import { useActions } from '../../../../../hooks/useAction'
+import { useRouter } from 'next/navigation'
 
 export default function MenuCartHeader() {
-	const cartList = useAppSelector(state => state.cart.cartList)
+	const { cartList, openMenu } = useAppSelector(state => state.cart)
 	const [amountPrice, setAmountPrice] = useState<number | null>(null)
+	const { removeFromCart } = useActions()
+	const router = useRouter()
 
 	useEffect(() => {
 		let amount: number = 0
@@ -18,13 +22,23 @@ export default function MenuCartHeader() {
 		setAmountPrice(amount)
 	}, [cartList])
 
+	const handleClickTitle = (id: string | number): void => {
+		router.push(`/product/${id}`)
+	}
+
 	return (
-		<div className='menu-cart'>
+		<div className={`menu-cart ${openMenu ? 'open' : ''}`}>
 			<div className='menu-cart__body'>
 				{cartList?.length > 0 ? (
 					<ul className='menu-cart__list'>
 						{cartList?.map(el => (
-							<li className='menu-cart__item' key={el.id}>
+							<li
+								className='menu-cart__item'
+								key={el.id}
+								onClick={() => {
+									handleClickTitle(el.id)
+								}}
+							>
 								<div className='menu-cart__image-wrap'>
 									<Image
 										src={el.attributes.images.data[0].attributes.url}
@@ -62,7 +76,14 @@ export default function MenuCartHeader() {
 										{el.attributes.price} грн
 									</p>
 								</div>
-								<button className='menu-cart__del-btn'>
+								<button
+									className='menu-cart__del-btn'
+									type='button'
+									onClick={(e) => {
+										e.stopPropagation()
+										removeFromCart(el.id)
+									}}
+								>
 									<Image
 										src={'/icons/del_cart-item.svg'}
 										width={21}
@@ -89,7 +110,9 @@ export default function MenuCartHeader() {
 						</p>
 
 						<div className='menu-cart__buttons'>
-							<Button path='/cart' variant='underline'>В корзину</Button>
+							<Button path='/cart' variant='underline'>
+								В корзину
+							</Button>
 							<Button path='/order'>Оформить</Button>
 						</div>
 					</div>
