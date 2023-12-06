@@ -118,6 +118,7 @@ export interface IRootProduct {
 export interface IProduct {
 	id: number
 	attributes: IProductAttributes
+	orderQuantity?: number
 }
 
 export interface IProductAttributes {

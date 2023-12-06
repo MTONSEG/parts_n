@@ -2,32 +2,46 @@ import Image from 'next/image'
 import { useAppSelector } from '../../../../../hooks/useTypedRedux'
 import './MenuCartHeader.scss'
 import { Button } from '../../../../ui/buttons/Button/Button'
-import { MouseEventHandler, useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useActions } from '../../../../../hooks/useAction'
 import { useRouter } from 'next/navigation'
+import RemoveBtn from '../../../../ui/buttons/RemoveBtn/RemoveBtn'
 
 export default function MenuCartHeader() {
 	const { cartList, openMenu } = useAppSelector(state => state.cart)
-	const [amountPrice, setAmountPrice] = useState<number | null>(null)
-	const { removeFromCart } = useActions()
+	const { removeFromCart, toggleCartMenu } = useActions()
 	const router = useRouter()
+	const refMenu = useRef<HTMLDivElement>(null)
 
-	useEffect(() => {
+	const amountPrice = useMemo<number>(() => {
 		let amount: number = 0
 
 		cartList.forEach(el => {
 			amount += Number(el.attributes.price)
 		})
 
-		setAmountPrice(amount)
+		return amount
 	}, [cartList])
+
+	useEffect(() => {
+		function handleOutClick(e: MouseEvent) {
+			if (openMenu && !refMenu.current?.contains(e.target as Node)) {
+				toggleCartMenu()
+			}
+		}
+
+		document.addEventListener('click', handleOutClick)
+		return () => {
+			document.removeEventListener('click', handleOutClick)
+		}
+	}, [openMenu, toggleCartMenu])
 
 	const handleClickTitle = (id: string | number): void => {
 		router.push(`/product/${id}`)
 	}
 
 	return (
-		<div className={`menu-cart ${openMenu ? 'open' : ''}`}>
+		<div ref={refMenu} className={`menu-cart ${openMenu ? 'open' : ''}`}>
 			<div className='menu-cart__body'>
 				{cartList?.length > 0 ? (
 					<ul className='menu-cart__list'>
@@ -76,21 +90,7 @@ export default function MenuCartHeader() {
 										{el.attributes.price} грн
 									</p>
 								</div>
-								<button
-									className='menu-cart__del-btn'
-									type='button'
-									onClick={(e) => {
-										e.stopPropagation()
-										removeFromCart(el.id)
-									}}
-								>
-									<Image
-										src={'/icons/del_cart-item.svg'}
-										width={21}
-										height={21}
-										alt='Delete from cart'
-									/>
-								</button>
+								<RemoveBtn className='menu-cart__del-btn' id={el.id} />
 							</li>
 						))}
 					</ul>
@@ -110,10 +110,23 @@ export default function MenuCartHeader() {
 						</p>
 
 						<div className='menu-cart__buttons'>
-							<Button path='/cart' variant='underline'>
+							<Button
+								path='/cart'
+								variant='underline'
+								onClick={() => {
+									toggleCartMenu()
+								}}
+							>
 								В корзину
 							</Button>
-							<Button path='/order'>Оформить</Button>
+							<Button
+								path='/order'
+								onClick={() => {
+									toggleCartMenu()
+								}}
+							>
+								Оформить
+							</Button>
 						</div>
 					</div>
 				) : (

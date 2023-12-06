@@ -4,25 +4,24 @@ import localFont from 'next/font/local'
 export const roboto = Roboto({
 	weight: ['300', '400', '500', '700'],
 	subsets: ['cyrillic', 'latin'],
-	variable: '--roboto-font'
+	variable: '--roboto-font',
 })
 
 export const inter = Inter({
 	weight: ['400', '700'],
 	subsets: ['cyrillic', 'latin'],
-	variable: '--font-inter'
+	variable: '--font-inter',
 })
-
 
 export const poppins = Poppins({
 	weight: ['400', '600', '700'],
 	subsets: ['latin'],
-	variable: '--font-poppins'
+	variable: '--font-poppins',
 })
 
 export const sfProDisplay300 = localFont({
 	src: './files/SFProDisplay-Light.woff',
-	variable:'--sf-pro-d300'
+	variable: '--sf-pro-d300',
 })
 
 export const sfProDisplay400 = localFont({

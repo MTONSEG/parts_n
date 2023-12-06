@@ -1,0 +1,40 @@
+.cart {
+	padding: 0 0 100px;
+	&__title {
+		margin-bottom: 31px !important;
+	}
+	&__row {
+		display: grid;
+		grid-template-columns: 1fr 356px;
+		gap: 32px 36px;
+	}
+	&__button-wrap {
+		grid-column: span 2;
+	}
+	&__table-header,
+	&__table-list .item-cart {
+		display: flex;
+		align-items: flex-start;
+	}
+	&__table-list {
+		border: 1px solid #cacdd8;
+		border-width: 1px 0;
+	}
+	&__table-header {
+		padding-bottom: 14px;
+	}
+	&__table-title {
+		font-size: 16px;
+		font-weight: 700;
+		&_product {
+			width: 53%;
+		}
+		&_qty {
+			width: 24%;
+			min-width: 111px;
+		}
+		&_price {
+			width: 23%;
+		}
+	}
+}

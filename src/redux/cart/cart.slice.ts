@@ -20,7 +20,7 @@ const cartSlice = createSlice({
 			)
 
 			if (!isExist) {
-				state.cartList.push(action.payload)
+				state.cartList.push({ ...action.payload, orderQuantity: 1 })
 			}
 		},
 		removeFromCart(state, action: PayloadAction<string | number>) {
@@ -30,6 +30,27 @@ const cartSlice = createSlice({
 		},
 		toggleCartMenu(state) {
 			state.openMenu = !state.openMenu
+		},
+		incrementQuantity(state, action: PayloadAction<string | number>) {
+			state.cartList = state.cartList.map(el => {
+				if (action.payload === el.id) {
+					el.orderQuantity = el.orderQuantity ? el.orderQuantity + 1 : 1
+				}
+
+				return el
+			})
+		},
+		decrementQuantity(state, action: PayloadAction<string | number>) {
+			state.cartList = state.cartList.map(el => {
+				if (action.payload === el.id) {
+					el.orderQuantity =
+						el.orderQuantity && el.orderQuantity > 1
+							? el.orderQuantity - 1
+							: 1
+				}
+
+				return el
+			})
 		},
 	},
 })

@@ -1,0 +1,54 @@
+.quantity-from {
+	border-radius: 12px;
+	border: 1px solid #d1d1d1;
+	background: #fbfcfc;
+	width: 111px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	&__value {
+		width: 45px;
+		text-align: center;
+		color: #7c7c7c;
+		font-weight: 700;
+		font-size: 18px;
+		position: relative;
+		&::after {
+			content: "";
+			width: 1px;
+			height: 20px;
+			background: #D1D1D1;
+			position: absolute;
+			top: 50%;
+			right: 0;
+			transform: translateY(-50%);
+		}
+	}
+	&__buttons {
+		flex-grow: 1;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+	&__btn {
+		height: 24px;
+		width: 24px;
+		position: relative;
+		&::before {
+			content: '';
+			display: block;
+			border: 2px solid #000;
+			border-width: 0 2px 2px 0;
+			position: absolute;
+			top: 40%;
+			left: 50%;
+			transform: translate(-50%, -50%) rotate(45deg);
+			width: 7px;
+			height: 7px;
+		}
+		&_increment::before {
+			top: 60%;
+			transform: translate(-50%, -50%) rotate(225deg);
+		}
+	}
+}

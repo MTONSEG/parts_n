@@ -79,12 +79,18 @@
 			width: 39px;
 			height: 39px;
 			svg {
-				width: 16px;
-				height: 14px;
+				height: 20px;
 			}
 		}
 		&__text {
 			display: none;
+		}
+		&__qty {
+			width: 20px;
+			height: 20px;
+			font-size: 12px;
+			top: -10px;
+			right: -10px;
 		}
 	}
 }
