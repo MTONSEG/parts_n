@@ -6,7 +6,7 @@ interface PropsType {
 	className: string
 	id: string | number
 	title?: string
-	handleRemove: (id: string | number) => void
+	handleRemove?: (id: string | number) => void
 }
 export default function RemoveBtn({
 	id,
