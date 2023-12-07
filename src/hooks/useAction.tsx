@@ -5,12 +5,14 @@ import { headerActions } from '../redux/header/header-slice'
 import { footerActions } from '../redux/footer/footer-slice'
 import { productActions } from '../redux/catalog/catalog.slice'
 import { cartActions } from '../redux/cart/cart.slice'
+import { favoriteActions } from '../redux/favorite/favorite.slice'
 
 const rootActions = {
 	...headerActions,
 	...footerActions,
 	...productActions,
-	...cartActions
+	...cartActions,
+	...favoriteActions,
 }
 
 export const useActions = () => {

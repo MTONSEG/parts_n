@@ -4,11 +4,13 @@ import { headerReducer } from './header/header-slice';
 import { footerReducer } from './footer/footer-slice';
 import { productReducer } from './catalog/catalog.slice';
 import { cartReducer } from './cart/cart.slice';
+import { favoriteReducer } from './favorite/favorite.slice';
 
 export const rootReducer = combineReducers({
 	contacts: contactsReducer,
 	header: headerReducer,
 	footer: footerReducer,
 	product: productReducer,
-	cart: cartReducer
+	cart: cartReducer,
+	favorite: favoriteReducer,
 })

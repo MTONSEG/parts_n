@@ -14,23 +14,27 @@ import { IProduct } from '../../../../../redux/catalog/catalog.types'
 
 export default function ProductsCategory({ category }: { category: string }) {
 	const router = useRouter()
-	const [inCart] = useState<boolean>(false)
-	const { currentProducts, grid, ...state } = useAppSelector(
-		state => state.product
-	)
-	const { cartList } = useAppSelector(state => state.cart)
-	const { addToCart } = useActions()
+	const { currentProducts, grid } = useAppSelector(state => state.product)
+	const cartList = useAppSelector(state => state.cart.cartList)
+	const favorites = useAppSelector(state => state.favorite.favorites)
+	const { addToCart, addToFavorite, removeFromFavorite } = useActions()
 
-	const handleFavoriteClick = () => {}
+	const handleFavoriteClick = (id: string | number) => {
+		const product: IProduct | undefined = currentProducts.find(
+			el => el.id === id
+		)
+
+		if (favorites.some(el => el.id === product?.id)) {
+			product && removeFromFavorite(id)
+		} else {
+			product && addToFavorite(product)
+		}
+	}
 
 	const handleBuyClick = (id: string | number) => {
 		const product: IProduct | undefined = currentProducts.find(
 			el => el.id === id
 		)
-
-		console.log(cartList)
-		
-
 		product && addToCart(product)
 	}
 
@@ -83,8 +87,14 @@ export default function ProductsCategory({ category }: { category: string }) {
 							<div className='item-catalog__buttons'>
 								<Button
 									variant='favorite'
-									className='item-catalog__favorite-btn'
-									onClick={handleFavoriteClick}
+									className={`item-catalog__favorite-btn ${
+										favorites?.some(item => item.id === el.id)
+											? 'selected'
+											: ''
+									}`}
+									onClick={() => {
+										handleFavoriteClick(el.id)
+									}}
 								/>
 								{!cartList?.some(item => item.id === el.id) ? (
 									<Button

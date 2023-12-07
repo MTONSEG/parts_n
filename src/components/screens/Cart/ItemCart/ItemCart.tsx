@@ -12,7 +12,7 @@ export default function ItemCart({ product }: { product: IProduct }) {
 	const { removeFromCart } = useActions()
 	const [openInfo, setOpenInfo] = useState<boolean>(true)
 	const [removePreview, setRemovePreview] = useState<boolean>(false)
-	const [seconds, setSeconds] = useState<number>(55555555555555)
+	const [seconds, setSeconds] = useState<number>(5)
 	const timer = useRef<NodeJS.Timeout | null>(null)
 	const handleRemove = (id: string | number) => {
 		setRemovePreview(true)
