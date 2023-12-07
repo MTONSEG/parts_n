@@ -9,7 +9,7 @@ export default function EmptyCart() {
 			<div className='empty-cart__body'>
 				<p className='empty-cart__text'>В вашей корзине пока нет товаров</p>
 				<Button path='/catalog' variant='square' className='empty-cart__btn'>
-					Перейти в каталог
+					Перейти в каталог 
 				</Button>
 			</div>
 
