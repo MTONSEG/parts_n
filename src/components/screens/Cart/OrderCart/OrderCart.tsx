@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useAppSelector } from '../../../../hooks/useTypedRedux'
 import './OrderCart.scss'
+import { Button } from '../../../ui/buttons/Button/Button'
 export default function OrderCart() {
 	const { cartList } = useAppSelector(state => state.cart)
 
@@ -33,10 +34,14 @@ export default function OrderCart() {
 					</li>
 				))}
 			</ul>
-			<p className='order-cart__total-price'>
-				<span>Итоговая цена</span>
-				<span>{totalPrice.toFixed()}</span>
-			</p>
+			<div className='order-cart__total-price'>
+				<p className='order-cart__total-price-title'>Итоговая цена</p>
+				<div className='order-cart__item-line'></div>
+				<p className='order-cart__total-price-value'>
+					{totalPrice.toFixed()} грн
+				</p>
+			</div>
+			<Button className='order-cart__btn'>Оформить заказ</Button>
 		</div>
 	)
 }

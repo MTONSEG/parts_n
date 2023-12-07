@@ -4,6 +4,7 @@ import { IProduct } from '../catalog/catalog.types'
 
 const initialState: ICartStateType = {
 	cartList: [],
+	removeList: [],
 	openMenu: false,
 	title: 'Корзина',
 }
@@ -22,6 +23,9 @@ const cartSlice = createSlice({
 			if (!isExist) {
 				state.cartList.push({ ...action.payload, orderQuantity: 1 })
 			}
+		},
+		addToRemoveCartList(state, action: PayloadAction<IProduct>) {
+			
 		},
 		removeFromCart(state, action: PayloadAction<string | number>) {
 			state.cartList = state.cartList.filter(

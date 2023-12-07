@@ -13,12 +13,15 @@
 		font-weight: 600;
 		margin-bottom: 10px;
 	}
-	&__item {
-		line-height: 2;
-		font-size: 13px;
+	&__item,
+	&__total-price {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+	}
+	&__item {
+		line-height: 2;
+		font-size: 13px;
 	}
 	&__item-line {
 		flex: 1 1 auto;
@@ -26,16 +29,62 @@
 		border-bottom: 1px dashed #000;
 	}
 	&__name {
-		max-width: 230px;
-		span {
-			display: -webkit-box;
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 1;
-			overflow: hidden;
-			text-overflow: clip;
-		}
+		max-width: 214px;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	&__list {
+		margin-bottom: 43px;
 	}
 	&__price {
 		font-weight: 500;
+	}
+	&__total-price {
+		margin-bottom: 40px;
+	}
+	&__total-price-title,
+	&__total-price-value {
+		white-space: nowrap;
+		font-weight: 700;
+	}
+	&__total-price-value {
+		font-size: 18px;
+	}
+	&__btn {
+		width: 100%;
+		justify-content: center;
+	}
+	@media (max-width: 767px) {
+		display: flex;
+		align-items: center;
+		padding: 21px 16px;
+		margin: 0 -16px;
+		&__title,
+		&__list,
+		&__item-line,
+		&__subtitle {
+			display: none;
+		}
+		&__total-price {
+			flex-direction: column;
+			align-items: flex-start;
+			margin: 0 40px 0 0;
+			&-title {
+				color: #7b7b7b;
+				font-size: 12px;
+				font-weight: 500;
+				line-height: 2;
+			}
+			&-value {
+				font-size: 14px;
+				font-weight: 700;
+				line-height: 2;
+			}
+		}
+	}
+	@media (max-width: 567px) {
+		&__total-price {
+			margin: 0 20px 0 0;
+		}
 	}
 }

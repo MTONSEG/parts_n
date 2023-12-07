@@ -5,8 +5,15 @@ import { useActions } from '../../../../hooks/useAction'
 interface PropsType {
 	className: string
 	id: string | number
+	title?: string
+	handleRemove: (id: string | number) => void
 }
-export default function RemoveBtn({ id, ...props }: PropsType) {
+export default function RemoveBtn({
+	id,
+	title,
+	handleRemove,
+	...props
+}: PropsType) {
 	const { removeFromCart } = useActions()
 	return (
 		<button
@@ -15,7 +22,7 @@ export default function RemoveBtn({ id, ...props }: PropsType) {
 			onClick={e => {
 				e.stopPropagation()
 				e.nativeEvent.stopImmediatePropagation()
-				removeFromCart(id)
+				handleRemove ? handleRemove(id) : removeFromCart(id)
 			}}
 		>
 			<Image
@@ -24,6 +31,7 @@ export default function RemoveBtn({ id, ...props }: PropsType) {
 				height={21}
 				alt='Delete from cart'
 			/>
+			<span>{title && title}</span>
 		</button>
 	)
 }
