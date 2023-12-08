@@ -1,5 +1,5 @@
-import { useAppSelector } from '../../../../../../hooks/useTypedRedux'
-import { ProductInfo } from '../../../../../../redux/catalog/catalog.types'
+import { useAppSelector } from '../../../../../hooks/useTypedRedux'
+import { ProductInfo } from '../../../../../redux/catalog/catalog.types'
 import './InfoProductCategory.scss'
 
 interface PropsType {
