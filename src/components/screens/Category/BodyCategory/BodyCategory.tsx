@@ -33,7 +33,11 @@ export default function BodyCategory({ category }: { category: string }) {
 				}`}
 			>
 				{currentProducts?.map(el => (
-					<ProductCard key={el.id} product={el} />
+					<ProductCard
+						key={el.id}
+						product={el}
+						variant={grid ? 'grid' : 'block'}
+					/>
 				))}
 			</ul>
 		</div>

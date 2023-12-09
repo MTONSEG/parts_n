@@ -1,5 +1,73 @@
 .favorites {
+	padding: 0 0 118px;
+	position: relative;
 	&__title {
-		margin-bottom: 24px;
+		margin-bottom: 24px !important;
+	}
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 36px;
+	}
+	&__image-wrap {
+		margin: 72px auto 0;
+		width: 474px;
+		height: 474px;
+		border: 1px solid #ececec;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		span {
+			display: inline-block;
+			margin: 37px 0 0;
+			color: #989898;
+			font-size: 32px;
+			font-weight: 700;
+			letter-spacing: 1px;
+		}
+	}
+	&__image {
+		width: 171px;
+	}
+
+	@media (max-width: 1220px) {
+		&__list {
+			gap: 15px;
+		}
+	}
+	@media (max-width: 992px) {
+		padding: 0 0 50px;
+		&__list {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		&__image-wrap {
+			width: 275px;
+			height: 275px;
+			span {
+				font-size: 20px;
+			}
+		}
+		&__image {
+			width: 100px;
+		}
+	}
+	@media (max-width: 767px) {
+		&__list {
+			gap: 2px;
+		}
+		&__image-wrap {
+			width: 222px;
+			height: 222px;
+		}
+		&__image {
+			width: 84px;
+		}
+	}
+	@media (max-width: 576px) {
+		&__list {
+			grid-template-columns: 1fr;
+		}
 	}
 }

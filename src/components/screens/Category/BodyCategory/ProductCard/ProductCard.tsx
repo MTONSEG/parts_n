@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import { IProduct } from '../../../../../redux/catalog/catalog.types'
 import { Button } from '../../../../ui/buttons/Button/Button'
@@ -9,51 +11,60 @@ import { useAppSelector } from '../../../../../hooks/useTypedRedux'
 import CartIcon from '@/icons/cart.svg'
 import CheckIcon from '@/icons/check.svg'
 import { useActions } from '../../../../../hooks/useAction'
+import DelIcon from '@/icons/del.svg'
 
 interface ProductPropsType {
 	product: IProduct
-	variant?: 'default' | 'favorite'
+	variant?: 'block' | 'grid'
+	favorite?: boolean
 }
 
 export default function ProductCard({
 	product,
-	variant = 'default',
+	variant = 'grid',
+	favorite,
 }: ProductPropsType) {
 	const router = useRouter()
 	const favorites = useAppSelector(state => state.favorite.favorites)
 	const cartList = useAppSelector(state => state.cart.cartList)
-	const currentProducts = useAppSelector(
-		state => state.product.currentProducts
-	)
 	const { addToCart, addToFavorite, removeFromFavorite } = useActions()
 
 	const handleFavoriteClick = (id: string | number) => {
-		const product: IProduct | undefined = currentProducts.find(
-			el => el.id === id
-		)
-
 		if (favorites.some(el => el.id === product?.id)) {
-			product && removeFromFavorite(id)
+			removeFromFavorite(id)
 		} else {
-			product && addToFavorite(product)
+			addToFavorite(product)
 		}
 	}
 
 	const handleBuyClick = (id: string | number) => {
-		const product: IProduct | undefined = currentProducts.find(
-			el => el.id === id
-		)
-		product && addToCart(product)
+		addToCart(product)
 	}
 
 	return (
 		<li
-			className='catalog__item item-catalog'
+			className={`item-catalog item-catalog_${variant} ${
+				favorite ? 'favorite' : ''
+			}`}
 			key={product.id}
 			onClick={() => {
 				router.push(`/product/${product.id}`)
 			}}
 		>
+			{favorite ? (
+				<button
+					className='item-catalog__remove-favorite-btn'
+					onClick={e => {
+						removeFromFavorite(product.id)
+						e.stopPropagation()
+					}}
+				>
+					<DelIcon /> <span>Удалить</span>
+				</button>
+			) : (
+				<></>
+			)}
+
 			<div className='item-catalog__body'>
 				<div className='item-catalog__image-wrap'>
 					<Image
@@ -84,20 +95,27 @@ export default function ProductCard({
 					{product.attributes.price} грн
 				</p>
 				<div className='item-catalog__buttons'>
-					<Button
-						variant='favorite'
-						className={`item-catalog__favorite-btn ${
-							favorites?.some(item => item.id === product.id)
-								? 'selected'
-								: ''
-						}`}
-						onClick={() => {
-							handleFavoriteClick(product.id)
-						}}
-					/>
+					{!favorite ? (
+						<Button
+							variant='favorite'
+							className={`item-catalog__favorite-btn ${
+								favorites?.some(item => item.id === product.id)
+									? 'selected'
+									: ''
+							}`}
+							onClick={() => {
+								handleFavoriteClick(product.id)
+							}}
+						/>
+					) : (
+						<></>
+					)}
+
 					{!cartList?.some(item => item.id === product.id) ? (
 						<Button
-							className='item-catalog__cart-btn'
+							className={`item-catalog__cart-btn ${
+								product.attributes.quantity < 1 ? 'disabled' : ''
+							}`}
 							onClick={() => {
 								handleBuyClick(product.id)
 							}}
