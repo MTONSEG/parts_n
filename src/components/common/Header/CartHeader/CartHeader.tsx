@@ -6,11 +6,21 @@ import CloseSVG from '@/icons/close.svg'
 import { poppins } from '../../../../fonts/fonts'
 import MenuCartHeader from './MenuCartHeader/MenuCartHeader'
 import { useActions } from '../../../../hooks/useAction'
-import { EventHandler, useEffect, useRef } from 'react'
+import { EventHandler, useEffect, useMemo, useRef } from 'react'
 
 export function CartHeader() {
 	const { cartList, openMenu } = useAppSelector(state => state.cart)
 	const { toggleCartMenu } = useActions()
+
+	const amountPrice = useMemo<number>(() => {
+		let amount: number = 0
+
+		cartList.forEach(el => {
+			amount += Number(el.attributes.price)
+		})
+
+		return amount
+	}, [cartList])
 
 	return (
 		<div className='relative'>
@@ -34,7 +44,7 @@ export function CartHeader() {
 				</div>
 				<p className='cart-header__text'>
 					<span>Корзина</span>
-					<span> 0 грн</span>
+					<span> {amountPrice} грн</span>
 				</p>
 			</button>
 			<MenuCartHeader />
