@@ -97,7 +97,29 @@ export default function DetailsProduct({ product }: PropsType) {
 					</Button>
 				)}
 			</div>
-			<div className='detail-product__favorite'></div>
+			<div className='detail-product__favorite'>
+				{favorites?.some(item => item.id === product.id) ? (
+					<Button
+						variant='favorite'
+						className={`item-catalog__favorite-btn selected`}
+						onClick={() => {
+							handleFavoriteClick(product.id);
+						}}
+					>
+						В избранном
+					</Button>
+				) : (
+					<Button
+						variant='favorite'
+						className={`item-catalog__favorite-btn`}
+						onClick={() => {
+							handleFavoriteClick(product.id);
+						}}
+					>
+						В избранное
+					</Button>
+				)}
+			</div>
 			<div className='detail-product__form'></div>
 		</div>
 	);

@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import { useRouter } from 'next/navigation'
-import type { ButtonTypes } from '../../../../models/models'
-import { CSSProperties, MouseEventHandler, ReactNode } from 'react'
-import Image from 'next/image'
-import FavoriteIcon from '@/icons/favorite-in-card.svg'
-import { SaleSort } from '../../../../redux/catalog/catalog.types'
+import { useRouter } from 'next/navigation';
+import type { ButtonTypes } from '../../../../models/models';
+import { CSSProperties, MouseEventHandler, ReactNode } from 'react';
+import Image from 'next/image';
+import FavoriteIcon from '@/icons/favorite-in-card.svg';
+import { SaleSort } from '../../../../redux/catalog/catalog.types';
 
 type ButtonPropsType = {
-	path?: string
-	type?: ButtonTypes
-	className?: string
-	children?: ReactNode
-	ariaLabel?: string
-	variant?: 'favorite' | 'default' | 'cart' | 'square' | 'white' | 'underline'
-	style?: CSSProperties
-	onClick?: () => void
-}
+	path?: string;
+	type?: ButtonTypes;
+	className?: string;
+	children?: ReactNode;
+	ariaLabel?: string;
+	variant?: 'favorite' | 'default' | 'cart' | 'square' | 'white' | 'underline';
+	style?: CSSProperties;
+	onClick?: () => void;
+};
 
 export function Button({
 	path,
@@ -28,28 +28,36 @@ export function Button({
 	onClick,
 	variant = 'default',
 }: ButtonPropsType) {
-	const router = useRouter()
+	const router = useRouter();
 
 	const handleClick: MouseEventHandler<HTMLButtonElement> = e => {
-		e.stopPropagation()
+		e.stopPropagation();
 
 		if (path) {
-			router.push(path)
+			router.push(path);
 		}
 
-		onClick?.()
-	}
+		onClick?.();
+	};
 	return (
 		<button
 			style={style}
 			type={type}
-			className={`button ${
-				className ? className : ''
-			} ${`button_${variant}`}`}
+			className={`button ${className ? className : ''} ${`button_${variant}`}`}
 			onClick={handleClick}
 			aria-label={ariaLabel}
 		>
-			{variant === 'favorite' ? <FavoriteIcon /> : children}
+			{variant === 'favorite' ? (
+				<>
+					<div className='button__icon-wrap'>
+						<FavoriteIcon />
+					</div>
+
+					{children}
+				</>
+			) : (
+				children
+			)}
 			{variant === 'underline' ? (
 				<div className='button__underline'>
 					<svg
@@ -71,5 +79,5 @@ export function Button({
 				<></>
 			)}
 		</button>
-	)
+	);
 }
