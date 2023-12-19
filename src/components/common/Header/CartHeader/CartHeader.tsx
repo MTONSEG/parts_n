@@ -15,8 +15,8 @@ export function CartHeader() {
 	const amountPrice = useMemo<number>(() => {
 		let amount: number = 0
 
-		cartList.forEach(el => {
-			amount += Number(el.attributes.price)
+		cartList?.forEach(el => {
+			amount += Number(el.attributes?.price)
 		})
 
 		return amount

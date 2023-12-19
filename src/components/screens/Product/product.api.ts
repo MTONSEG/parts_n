@@ -1,7 +1,7 @@
 import { API } from '../../../api';
-import type { IProductAttributes, IRootSingleProduct } from '../../../redux/catalog/catalog.types';
+import type { IProduct, IRootSingleProduct } from '../../../redux/catalog/catalog.types';
 
-export const getProduct = async (id: string | number): Promise<IProductAttributes> => {
+export const getProduct = async (id: string | number): Promise<IProduct> => {
 	const res = await fetch(`${API}/products/${id}?populate=*`, {
 		// next: {
 		// 	revalidate: 1,
@@ -15,5 +15,5 @@ export const getProduct = async (id: string | number): Promise<IProductAttribute
 
 	const data: IRootSingleProduct = await res.json();
 
-	return data.data.attributes;
+	return data.data;
 };

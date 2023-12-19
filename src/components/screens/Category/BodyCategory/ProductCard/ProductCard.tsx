@@ -38,7 +38,7 @@ export default function ProductCard({
 	}
 
 	const handleBuyClick = (id: string | number) => {
-		addToCart(product)
+		addToCart({product, qty: 1})
 	}
 
 	return (

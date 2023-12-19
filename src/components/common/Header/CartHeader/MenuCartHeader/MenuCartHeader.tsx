@@ -40,6 +40,9 @@ export default function MenuCartHeader() {
 		router.push(`/product/${id}`)
 	}
 
+
+	console.log(cartList);
+	
 	return (
 		<div ref={refMenu} className={`menu-cart ${openMenu ? 'open' : ''}`}>
 			<div className='menu-cart__body'>

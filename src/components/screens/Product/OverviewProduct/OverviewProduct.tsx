@@ -1,13 +1,13 @@
 'use client';
 
-import type { IProductAttributes } from '../../../../redux/catalog/catalog.types';
+import type { IProduct } from '../../../../redux/catalog/catalog.types';
 import StatusProductCategory from '../../Category/BodyCategory/StatusProductCategory/StatusProductCategory';
 import DetailsProduct from './DetailsProduct/DetailsProduct';
 import ImageSliderProduct from './ImageSliderProduct/ImageSliderProduct';
 import './OverviewProduct.scss';
 
 type PropsType = {
-	data: IProductAttributes;
+	data: IProduct;
 };
 
 export default function OverviewProduct({ data }: PropsType) {
@@ -16,22 +16,24 @@ export default function OverviewProduct({ data }: PropsType) {
 			<div className='container'>
 				<div className='overview-product__row'>
 					<div className='overview-product__title'>
-						<span>{data.title}</span>
+						<span>{data.attributes.title}</span>
 					</div>
 
 					<div className='overview-product__images'>
-						<ImageSliderProduct images={data.images.data} />
+						<ImageSliderProduct images={data.attributes.images.data} />
 					</div>
 
 					<div className='overview-product__codes'>
-						<OverviewProductCode variant='model' value={data.model} />
-						<OverviewProductCode variant='code' value={data.code} />
-						<StatusProductCategory quantity={data.quantity} className='overview-product__status' />
+						<OverviewProductCode variant='model' value={data.attributes.model} />
+						<OverviewProductCode variant='code' value={data.attributes.code} />
+						<StatusProductCategory
+							quantity={data.attributes.quantity}
+							className='overview-product__status'
+						/>
 					</div>
 
 					<div className='overview-product__info'>
-						lol
-						<DetailsProduct data={data} />
+						<DetailsProduct product={data} />
 					</div>
 				</div>
 			</div>

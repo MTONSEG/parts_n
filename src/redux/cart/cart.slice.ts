@@ -1,62 +1,57 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ICartStateType } from './cart.types'
-import { IProduct } from '../catalog/catalog.types'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ICartStateType } from './cart.types';
+import { IProduct } from '../catalog/catalog.types';
 
 const initialState: ICartStateType = {
 	cartList: [],
 	removeList: [],
 	openMenu: false,
 	title: 'Корзина',
-}
+};
 
 const cartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
-		addToCart(state, action: PayloadAction<IProduct>) {
-			if (!state.cartList) state.cartList = []
+		addToCart(state, action: PayloadAction<{ product: IProduct; qty?: number }>) {
+			if (!state.cartList) state.cartList = [];
 
-			const isExist: boolean = state.cartList.some(
-				el => el.id === action.payload.id
-			)
+			const isExist: boolean = state.cartList.some(el => el.id === action.payload.product.id);
 
 			if (!isExist) {
-				state.cartList.push({ ...action.payload, orderQuantity: 1 })
+				state.cartList.push({
+					...action.payload.product,
+					orderQuantity: action.payload.qty ? action.payload.qty : 1,
+				});
 			}
 		},
-		addToRemoveCartList(state, action: PayloadAction<IProduct>) {
-			
-		},
+		addToRemoveCartList(state, action: PayloadAction<IProduct>) {},
 		removeFromCart(state, action: PayloadAction<string | number>) {
-			state.cartList = state.cartList.filter(
-				product => product.id !== action.payload
-			)
+			state.cartList = state.cartList.filter(product => product.id !== action.payload);
 		},
 		toggleCartMenu(state) {
-			state.openMenu = !state.openMenu
+			state.openMenu = !state.openMenu;
 		},
 		incrementQuantity(state, action: PayloadAction<string | number>) {
 			state.cartList = state.cartList.map(el => {
 				if (action.payload === el.id) {
-					el.orderQuantity = el.orderQuantity ? el.orderQuantity + 1 : 1
+					el.orderQuantity = el.orderQuantity ? el.orderQuantity + 1 : 1;
 				}
 
-				return el
-			})
+				return el;
+			});
 		},
 		decrementQuantity(state, action: PayloadAction<string | number>) {
 			state.cartList = state.cartList.map(el => {
 				if (action.payload === el.id) {
 					el.orderQuantity =
-						el.orderQuantity && el.orderQuantity > 1
-							? el.orderQuantity - 1
-							: 1
+						el.orderQuantity && el.orderQuantity > 1 ? el.orderQuantity - 1 : 1;
 				}
 
-				return el
-			})
+				return el;
+			});
 		},
 	},
-})
+});
 
-export const { reducer: cartReducer, actions: cartActions } = cartSlice
+export const { reducer: cartReducer, actions: cartActions } = cartSlice;

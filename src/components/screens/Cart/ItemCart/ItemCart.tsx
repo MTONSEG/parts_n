@@ -1,41 +1,44 @@
-import Image from 'next/image'
-import { IProduct } from '../../../../redux/catalog/catalog.types'
-import './ItemCart.scss'
-import Link from 'next/link'
-import InfoProductCategory from '../../Category/BodyCategory/InfoProductCategory/InfoProductCategory'
-import QuantityCounter from '../../../ui/forms/QuantityCounter/QuantityCounter'
-import RemoveBtn from '../../../ui/buttons/RemoveBtn/RemoveBtn'
-import { useEffect, useRef, useState } from 'react'
-import { useActions } from '../../../../hooks/useAction'
+import Image from 'next/image';
+import { IProduct } from '../../../../redux/catalog/catalog.types';
+import './ItemCart.scss';
+import Link from 'next/link';
+import InfoProductCategory from '../../Category/BodyCategory/InfoProductCategory/InfoProductCategory';
+import QuantityCounter from '../../../ui/forms/QuantityCounter/QuantityCounter';
+import RemoveBtn from '../../../ui/buttons/RemoveBtn/RemoveBtn';
+import { useEffect, useRef, useState } from 'react';
+import { useActions } from '../../../../hooks/useAction';
 
 export default function ItemCart({ product }: { product: IProduct }) {
-	const { removeFromCart } = useActions()
-	const [openInfo, setOpenInfo] = useState<boolean>(true)
-	const [removePreview, setRemovePreview] = useState<boolean>(false)
-	const [seconds, setSeconds] = useState<number>(5)
-	const timer = useRef<NodeJS.Timeout | null>(null)
+	const { removeFromCart } = useActions();
+	const [openInfo, setOpenInfo] = useState<boolean>(true);
+	const [removePreview, setRemovePreview] = useState<boolean>(false);
+	const [seconds, setSeconds] = useState<number>(5);
+	const timer = useRef<NodeJS.Timeout | null>(null);
+	
 	const handleRemove = (id: string | number) => {
-		setRemovePreview(true)
-	}
+		setRemovePreview(true);
+	};
+
+	const { incrementQuantity, decrementQuantity } = useActions();
 
 	useEffect(() => {
 		if (removePreview) {
 			timer.current = setInterval(() => {
 				setSeconds(s => {
 					if (s < 1) {
-						removeFromCart(product.id)
+						removeFromCart(product.id);
 					}
-					return s - 1
-				})
-			}, 1000)
+					return s - 1;
+				});
+			}, 1000);
 		}
 
 		return () => {
 			if (timer.current) {
-				clearInterval(timer.current)
+				clearInterval(timer.current);
 			}
-		}
-	}, [removePreview])
+		};
+	}, [removePreview]);
 
 	return (
 		<>
@@ -45,61 +48,39 @@ export default function ItemCart({ product }: { product: IProduct }) {
 						<div className='item-cart__image-wrap'>
 							<Image
 								src={product.attributes.images.data[0].attributes.url}
-								width={
-									product.attributes.images.data[0].attributes.width
-								}
-								height={
-									product.attributes.images.data[0].attributes.height
-								}
+								width={product.attributes.images.data[0].attributes.width}
+								height={product.attributes.images.data[0].attributes.height}
 								alt={product.attributes.model}
 								className='item-cart__image'
 							/>
 						</div>
 						<div className='item-cart__product-body'>
 							<div className='item-cart__product-info'>
-								<Link
-									href={`/product/${product.id}`}
-									className='item-cart__product-title'
-								>
+								<Link href={`/product/${product.id}`} className='item-cart__product-title'>
 									<span>{product.attributes.title}</span>
 								</Link>
 								<p className='item-cart__text'>
-									<span className='item-cart__text-title'>
-										Модель:
-									</span>
-									<span className='item-cart__text-value'>
-										{product.attributes.model}
-									</span>
+									<span className='item-cart__text-title'>Модель:</span>
+									<span className='item-cart__text-value'>{product.attributes.model}</span>
 								</p>
 
 								<p className='item-cart__text'>
-									<span className='item-cart__text-title'>
-										Артикул:
-									</span>
-									<span className='item-cart__text-value'>
-										{product.attributes.code}
-									</span>
+									<span className='item-cart__text-title'>Артикул:</span>
+									<span className='item-cart__text-value'>{product.attributes.code}</span>
 								</p>
 							</div>
-							<div
-								className={`item-cart__info ${openInfo ? 'open' : ''}`}
-							>
+							<div className={`item-cart__info ${openInfo ? 'open' : ''}`}>
 								<h3
 									className='item-cart__info-header'
 									onClick={() => {
-										setOpenInfo(!openInfo)
+										setOpenInfo(!openInfo);
 									}}
 								>
-									{openInfo
-										? 'Cкрыть данные о товаре'
-										: 'Показать данные о товаре'}
+									{openInfo ? 'Cкрыть данные о товаре' : 'Показать данные о товаре'}
 								</h3>
 								<div className='item-cart__info-body'>
 									<InfoProductCategory
-										variant={
-											product.attributes.category.data.attributes
-												.type
-										}
+										variant={product.attributes.category.data.attributes.type}
 										data={product.attributes.info[0]}
 									/>
 								</div>
@@ -109,15 +90,16 @@ export default function ItemCart({ product }: { product: IProduct }) {
 					<div className='item-cart__buy-wrap'>
 						<div className='item-cart__qty-wrap'>
 							<QuantityCounter
-								id={product.id}
-								value={
-									product.orderQuantity ? product.orderQuantity : 1
-								}
+								value={product.orderQuantity ? product.orderQuantity : 1}
+								incrementHandler={() => {
+									incrementQuantity(product.id);
+								}}
+								decrementHandler={() => {
+									decrementQuantity(product.id);
+								}}
 							/>
 						</div>
-						<p className='item-cart__price'>
-							{product.attributes.price} грн
-						</p>
+						<p className='item-cart__price'>{product.attributes.price} грн</p>
 						<RemoveBtn
 							className='item-cart__del-btn'
 							id={product.id}
@@ -134,8 +116,8 @@ export default function ItemCart({ product }: { product: IProduct }) {
 							className='remove-item-cart__btn'
 							aria-label='Restore product to cart list'
 							onClick={() => {
-								setRemovePreview(false)
-								setSeconds(5)
+								setRemovePreview(false);
+								setSeconds(5);
 							}}
 						>
 							Восстановить ?
@@ -154,5 +136,5 @@ export default function ItemCart({ product }: { product: IProduct }) {
 				</li>
 			)}
 		</>
-	)
+	);
 }
