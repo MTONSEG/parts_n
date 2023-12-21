@@ -10,6 +10,7 @@ import CheckIcon from '@/icons/check.svg';
 import './DetailsProduct.scss';
 import { useActions } from '../../../../../hooks/useAction';
 import { useMemo, useState } from 'react';
+import BuyOneClickForm from '../BuyOneClickForm/BuyOneClickForm';
 
 type PropsType = {
 	product: IProduct;
@@ -72,7 +73,7 @@ export default function DetailsProduct({ product }: PropsType) {
 			</div>
 			<div className='detail-product__qty-price-btn'>
 				<div className='detail-product__price-wrap'>
-					<p className='detail-product__price'>{product.attributes.price}</p>
+					<p className='detail-product__price'>{product.attributes.price} грн</p>
 					<QuantityCounter
 						value={productQuantity}
 						incrementHandler={handleIncrement}
@@ -120,7 +121,9 @@ export default function DetailsProduct({ product }: PropsType) {
 					</Button>
 				)}
 			</div>
-			<div className='detail-product__form'></div>
+			<div className='detail-product__form'>
+				<BuyOneClickForm />
+			</div>
 		</div>
 	);
 }

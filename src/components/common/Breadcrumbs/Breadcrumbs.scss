@@ -1,9 +1,13 @@
 .breadcrumbs {
-	overflow-x: auto;
 	&__row {
+		overflow-x: auto;
 		padding: 19px 4px 24px;
 		align-items: flex-end;
 		display: flex;
+		&::-webkit-scrollbar {
+			height: 0;
+			opacity: 0;
+		}
 	}
 	&__link {
 		color: #7e7c7c;
@@ -14,6 +18,8 @@
 		height: 19px;
 		display: flex;
 		align-items: center;
+		white-space: nowrap;
+
 		svg {
 			fill: rgba(0, 0, 0, 0.5);
 			width: 16px;

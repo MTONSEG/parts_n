@@ -35,25 +35,27 @@ export default function ImageSliderProduct({ images }: PropsType) {
 					</SwiperSlide>
 				))}
 			</Swiper>
-			<Swiper
-				onSwiper={setThumbsSwiper}
-				spaceBetween={10}
-				slidesPerView={4}
-				modules={[Thumbs]}
-				className='images-slider__thumb'
-			>
-				{images?.map((image, index) => (
-					<SwiperSlide className='images-slider__slide-thumb' key={image.id}>
-						<Image
-							src={image.attributes.url}
-							height={image.attributes.height}
-							width={image.attributes.width}
-							alt={`Product image ${index}`}
-							className='images-slider__image-thumb'
-						/>
-					</SwiperSlide>
-				))}
-			</Swiper>
+			{images.length > 1 && (
+				<Swiper
+					onSwiper={setThumbsSwiper}
+					spaceBetween={10}
+					slidesPerView={4}
+					modules={[Thumbs]}
+					className='images-slider__thumb'
+				>
+					{images?.map((image, index) => (
+						<SwiperSlide className='images-slider__slide-thumb' key={image.id}>
+							<Image
+								src={image.attributes.url}
+								height={image.attributes.height}
+								width={image.attributes.width}
+								alt={`Product image ${index}`}
+								className='images-slider__image-thumb'
+							/>
+						</SwiperSlide>
+					))}
+				</Swiper>
+			)}
 		</>
 	);
 }

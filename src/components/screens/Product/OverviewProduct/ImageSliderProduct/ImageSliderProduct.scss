@@ -24,4 +24,17 @@
 	&__image {
 		position: absolute;
 	}
+
+	@media (max-width: 992px) {
+		&__thumb {
+			height: 65px;
+		}
+	}
+
+
+	@media (max-width: 767px) {
+		&__thumb {
+			height: 40px;
+		}
+	}
 }

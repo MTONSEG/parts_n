@@ -1,0 +1,23 @@
+.item-catalog {
+	&__info-items {
+		width: 220px;
+	}
+	&__info-item {
+		margin-bottom: 3px;
+		display: flex;
+		line-height: normal;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		&-title {
+			color: #8c8b8b;
+			display: inline-block;
+			margin: 0 4px 0 0;
+		}
+		&-value {
+			color: #151515;
+			font-weight: 500;
+			letter-spacing: 0.44px;
+		}
+	}
+}
