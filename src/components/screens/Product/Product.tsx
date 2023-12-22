@@ -1,8 +1,11 @@
 import type { ILink } from '../../../models/models';
 import type { IProduct } from '../../../redux/catalog/catalog.types';
 import { Breadcrumbs } from '../../common/Breadcrumbs/Breadcrumbs';
+import AdvantageousSet from './AdvantageousSet/AdvantageousSet';
 import OverviewProduct from './OverviewProduct/OverviewProduct';
 import './Product.scss';
+import SpecificationsProduct from './SpecificationsProduct/SpecificationsProduct';
+import ViewedProducts from './ViewedProducts/ViewedProducts';
 import { getProduct } from './product.api';
 
 export default async function Product({ id }: { id: string }) {
@@ -22,6 +25,9 @@ export default async function Product({ id }: { id: string }) {
 		<div className='product'>
 			<Breadcrumbs links={breadcrumbs} />
 			<OverviewProduct data={data} />
+			<AdvantageousSet product={data.attributes} />
+			<SpecificationsProduct />
+			<ViewedProducts/>
 		</div>
 	);
 }

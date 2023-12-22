@@ -3,10 +3,9 @@ import type { IProduct, IRootSingleProduct } from '../../../redux/catalog/catalo
 
 export const getProduct = async (id: string | number): Promise<IProduct> => {
 	const res = await fetch(`${API}/products/${id}?populate=*`, {
-		// next: {
-		// 	revalidate: 1,
-		// },
-		cache: 'no-cache',
+		next: {
+			revalidate: 1,
+		},
 	});
 
 	if (!res.ok) {
