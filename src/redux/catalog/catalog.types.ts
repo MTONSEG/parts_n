@@ -136,6 +136,7 @@ export interface IProductAttributes {
 	info: ProductInfo[];
 	images: ProductImagesData;
 	device: DeviceFullDataWithoutMeta;
+	description: string
 }
 
 export interface ProductCategory {

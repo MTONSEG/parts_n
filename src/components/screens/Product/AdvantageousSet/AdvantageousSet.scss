@@ -11,6 +11,9 @@
 		margin: 0 -20px;
 		position: relative;
 		z-index: 1;
+		&::-webkit-scrollbar {
+			height: 0px;
+		}
 	}
 
 	&__title {
