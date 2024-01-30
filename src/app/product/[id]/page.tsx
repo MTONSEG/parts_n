@@ -8,7 +8,7 @@ type PropsType = {
 };
 
 export async function generateMetadata({ params }: PropsType): Promise<Metadata> {
-	const data: IProductAttributes = await getProduct(params.id);
+	const data: IProductAttributes = (await getProduct(params.id)).attributes;
 
 	return {
 		title: data.title,
